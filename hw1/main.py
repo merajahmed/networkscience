@@ -2,32 +2,30 @@ import networkx as nx
 import csv
 __author__ = 'meraj'
 
-G = nx.read_edgelist("dataset/Wiki-Vote.txt", create_using=nx.DiGraph(), nodetype=int)
-idc_wiki = nx.in_degree_centrality(G)
-writer = csv.writer(open('indegree_centrality_wiki-vote', 'wb'))
-for node in idc_wiki:
-    writer.writerow([node, idc_wiki[node]])
-odc_wiki = nx.out_degree_centrality(G)
-writer = csv.writer(open('outdegree_centrality_wiki-vote', 'wb'))
-for node in odc_wiki:
-    writer.writerow([node, odc_wiki[node]])
-dc_wiki = nx.degree_centrality(G)
-writer = csv.writer(open('degree_centrality_wiki-vote', 'wb'))
-for node in dc_wiki:
-    writer.writerow([node, dc_wiki[node]])
-cc_wiki = nx.closeness_centrality(G)
-writer = csv.writer(open('closeness_centrality_wiki-vote', 'wb'))
-for node in cc_wiki:
-    writer.writerow([node, cc_wiki[node]])
-bc_wiki = nx.betweenness_centrality(G)
-writer = csv.writer(open('betweennness_centrality_wiki-vote', 'wb'))
-for node in bc_wiki:
-    writer.writerow([node, bc_wiki[node]])
-eigen_wiki = nx.eigenvector_centrality(G)
-writer = csv.writer(open('eigen_centrality_wiki-vote', 'wb'))
-for node in eigen_wiki:
-    writer.writerow([node, eigen_wiki[node]])
-pagerank = nx.pagerank(G)
-writer = csv.writer(open('pagerank_wiki-vote', 'wb'))
-for node in pagerank:
-    writer.writerow([node, pagerank[node]])
+class data_network:
+    def __init__(self, filename, data_type):  # where data_type is facebook, wiki_vote, gnutella etc
+        self.G = nx.read_edgelist(filename, create_using=nx.DiGraph(), nodetype=int)
+        self.data_type = data_type
+
+    def centrality(self):
+        centrality_terms = {'in_degree': nx.in_degree_centrality,
+                            'out_degree': nx.out_degree_centrality,
+                            'degree': nx.degree_centrality,
+                            'closeness': nx.closeness_centrality,
+                            'betweeness': nx.betweenness_centrality,
+                            'eigen': nx.eigenvector_centrality,
+                            'page_rank': nx.pagerank}
+
+        for term in centrality_terms:
+            with open('{}_centrality_{}.csv'.format(term, self.data_type), 'wb') as csv_file:
+                writer = csv.writer(csv_file)
+                centrality_measure = centrality_terms[term](self.G)
+                for node in centrality_measure:
+                    writer.writerow([node, centrality_measure[node]])
+
+def main():
+    wiki_vote = data_network('dataset/Wiki-Vote.txt', 'wiki')
+    wiki_vote.centrality()
+
+if __name__ == '__main__':
+    main()
