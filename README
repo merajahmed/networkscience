@@ -1,1 +1,11 @@
 Network science labs
+
+Ideas to look at
+
+1) Correlation between coefficients
+2) degree_pearson_correlation_coefficient and other similar ones provided by networkx
+3) https://networkx.github.io/documentation/latest/examples/drawing/atlas.html - atlas like drawing (useful for analysis and meta level understanding)
+4) Explore drawing - either matplotlib or pygraphviz
+5) Explore facebook (as it seems to be the biggest collection)
+
+
