@@ -7,5 +7,6 @@ Ideas to look at
 3) https://networkx.github.io/documentation/latest/examples/drawing/atlas.html - atlas like drawing (useful for analysis and meta level understanding)
 4) Explore drawing - either matplotlib or pygraphviz
 5) Explore facebook (as it seems to be the biggest collection)
+6) For the draw function, check out https://networkx.github.io/documentation/latest/examples/drawing/degree_histogram.html
 
 

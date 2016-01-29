@@ -1,8 +1,9 @@
 import networkx as nx
 import csv
 from collections import OrderedDict
+import matplotlib.pyplot as plt
 
-__author__ = 'anirban & meraj'
+__author__ = 'Anirban and Meraj'
 
 
 class DataNetwork:
@@ -55,11 +56,33 @@ class DataNetwork:
             for node in clustering_dict:
                 writer.writerow([node, clustering_dict[node]])
 
+    def degree_histogram(self):
+        degree_sequence = sorted(nx.degree(self.G).values(), reverse=True)  # degree sequence
+        # print degree_sequence
+        dmax=max(degree_sequence)
+
+        plt.loglog(degree_sequence, 'b-', marker='o')
+        plt.title("Degree rank plot")
+        plt.ylabel("degree")
+        plt.xlabel("rank")
+
+        # draw graph in inset
+        plt.axes([0.45, 0.45, 0.45, 0.45])
+        Gcc = sorted(nx.connected_component_subgraphs(self.G.to_undirected()), key=len, reverse=True)[0]
+        pos = nx.spring_layout(Gcc)
+        plt.axis('off')
+        nx.draw_networkx_nodes(Gcc, pos, node_size=20)
+        nx.draw_networkx_edges(Gcc, pos, alpha=0.4)
+
+        plt.savefig("degree_histogram.png")
+        plt.show()
 
 def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
-    wiki_vote.centrality()
-    wiki_vote.clustering_coefficient()
+    # wiki_vote.centrality()
+    # wiki_vote.clustering_coefficient()
+    wiki_vote.degree_histogram()
+
 
 if __name__ == '__main__':
     main()
