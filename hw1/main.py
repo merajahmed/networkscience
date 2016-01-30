@@ -81,6 +81,15 @@ def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
     # wiki_vote.centrality()
     # wiki_vote.clustering_coefficient()
+    facebook = DataNetwork('dataset/facebook_combined.txt','facebook', 'undirected')
+    facebook.centrality()
+    facebook.clustering_coefficient()
+    gnutella = DataNetwork('dataset/p2p-Gnutella08.txt','gnutella', 'undirected')
+    gnutella.centrality()
+    gnutella.clustering_coefficient()
+    grqc = DataNetwork('dataset/CA-GrQc.txt','gr-qc', 'undirected')
+    grqc.centrality()
+    grqc.clustering_coefficient()
     wiki_vote.degree_histogram()
 
 
