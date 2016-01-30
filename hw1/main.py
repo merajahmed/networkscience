@@ -11,6 +11,7 @@ class DataNetwork:
                        'undirected': nx.Graph,
                        'multidirected': nx.MultiDiGraph,
                        'multiundirected': nx.MultiGraph}
+
     CENTRALITY_DICT = {'in_degree': nx.in_degree_centrality,
                        'out_degree': nx.out_degree_centrality,
                        'degree': nx.degree_centrality,
@@ -56,44 +57,50 @@ class DataNetwork:
             for node in clustering_dict:
                 writer.writerow([node, clustering_dict[node]])
 
-    def degree_histogram(self):
+    def network_graphs(self):
+        # degree histogram
         degree_sequence = sorted(nx.degree(self.G).values(), reverse=True)  # degree sequence
         # print degree_sequence
-        dmax=max(degree_sequence)
+        dmax = max(degree_sequence)
 
         plt.loglog(degree_sequence, 'b-', marker='o')
         plt.title("Degree rank plot")
         plt.ylabel("degree")
         plt.xlabel("rank")
+        plt.savefig(self.data_type + "_degree_histogram.png")
+        plt.close()
 
-        # draw graph in inset
-        plt.axes([0.45, 0.45, 0.45, 0.45])
+        # connected components subgraphs
         Gcc = sorted(nx.connected_component_subgraphs(self.G.to_undirected()), key=len, reverse=True)[0]
         pos = nx.spring_layout(Gcc)
         plt.axis('off')
         nx.draw_networkx_nodes(Gcc, pos, node_size=20)
         nx.draw_networkx_edges(Gcc, pos, alpha=0.4)
 
-        plt.savefig(self.data_type+"_degree_histogram.png")
-        plt.show()
+        plt.savefig(self.data_type + "_connected_subgraphs.png")
+        plt.close()
 
 def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
     # wiki_vote.centrality()
     # wiki_vote.clustering_coefficient()
-    facebook = DataNetwork('dataset/facebook_combined.txt','facebook', 'undirected')
+
+    facebook = DataNetwork('dataset/facebook_combined.txt', 'facebook', 'undirected')
     # facebook.centrality()
     # facebook.clustering_coefficient()
-    gnutella = DataNetwork('dataset/p2p-Gnutella08.txt','gnutella', 'undirected')
+
+    gnutella = DataNetwork('dataset/p2p-Gnutella08.txt', 'gnutella', 'undirected')
     # gnutella.centrality()
     # gnutella.clustering_coefficient()
-    grqc = DataNetwork('dataset/CA-GrQc.txt','gr-qc', 'undirected')
+
+    grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'undirected')
     # grqc.centrality()
     # grqc.clustering_coefficient()
-    wiki_vote.degree_histogram()
-    facebook.degree_histogram()
-    grqc.degree_histogram()
-    gnutella.degree_histogram()
+
+    wiki_vote.network_graphs()
+    facebook.network_graphs()
+    grqc.network_graphs()
+    gnutella.network_graphs()
 
 if __name__ == '__main__':
     main()
