@@ -74,7 +74,7 @@ class DataNetwork:
         nx.draw_networkx_nodes(Gcc, pos, node_size=20)
         nx.draw_networkx_edges(Gcc, pos, alpha=0.4)
 
-        plt.savefig("degree_histogram.png")
+        plt.savefig(self.data_type+"_degree_histogram.png")
         plt.show()
 
 def main():
@@ -82,16 +82,18 @@ def main():
     # wiki_vote.centrality()
     # wiki_vote.clustering_coefficient()
     facebook = DataNetwork('dataset/facebook_combined.txt','facebook', 'undirected')
-    facebook.centrality()
-    facebook.clustering_coefficient()
+    # facebook.centrality()
+    # facebook.clustering_coefficient()
     gnutella = DataNetwork('dataset/p2p-Gnutella08.txt','gnutella', 'undirected')
-    gnutella.centrality()
-    gnutella.clustering_coefficient()
+    # gnutella.centrality()
+    # gnutella.clustering_coefficient()
     grqc = DataNetwork('dataset/CA-GrQc.txt','gr-qc', 'undirected')
-    grqc.centrality()
-    grqc.clustering_coefficient()
+    # grqc.centrality()
+    # grqc.clustering_coefficient()
     wiki_vote.degree_histogram()
-
+    facebook.degree_histogram()
+    grqc.degree_histogram()
+    gnutella.degree_histogram()
 
 if __name__ == '__main__':
     main()
