@@ -1,0 +1,2 @@
+Average clustering coefficient 0.60554671862
+Degree pearson correlation coefficient 0.0635772291856

@@ -25,11 +25,25 @@ class DataNetwork:
         self.G = nx.read_edgelist(filename, create_using=self.GRAPH_TYPE_DICT[self.graph_type](), nodetype=int)
         self.data_type = data_type
 
+    def other_graph_info(self):
+        with open('{}_graph_information.txt'.format(self.data_type), 'w') as my_file:
+            # my_file.write('Average degree connectivity {}'.format(nx.average_degree_connectivity(self.G)))
+            my_file.write('Average clustering coefficient {}\n'.format(nx.average_clustering(self.G.to_undirected())))
+            my_file.write('Degree pearson correlation coefficient {}\n'.format(
+                nx.degree_pearson_correlation_coefficient(self.G)))
+
+            # Do this for the largest component (could give us insight)
+            # my_file.write('Center of graph {}\n'.format(nx.center(self.G)))
+            # my_file.write('Diameter of graph {}\n'.format(nx.diameter(self.G)))
+            # my_file.write('Average node connectivity '.format(nx.average_node_connectivity(self.G)))
+            # my_file.write('Average degree connectivity '.format(nx.average_degree_connectivity(self.G)))
+
     def centrality(self):
         if self.graph_type == 'undirected':
             self.CENTRALITY_DICT.pop('in_degree', None)
             # None has been done to take care of exception in case key doesn't exist
             self.CENTRALITY_DICT.pop('out_degree', None)  # like wise
+
         with open('{}_centrality.csv'.format(self.data_type), 'wb') as csv_file:
             writer = csv.writer(csv_file)
             centrality_measures = []
@@ -82,20 +96,24 @@ class DataNetwork:
 
 def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
-    # wiki_vote.centrality()
-    # wiki_vote.clustering_coefficient()
+    wiki_vote.centrality()
+    wiki_vote.clustering_coefficient()
+    wiki_vote.other_graph_info()
 
     facebook = DataNetwork('dataset/facebook_combined.txt', 'facebook', 'undirected')
-    # facebook.centrality()
-    # facebook.clustering_coefficient()
+    facebook.centrality()
+    facebook.clustering_coefficient()
+    facebook.other_graph_info()
 
-    gnutella = DataNetwork('dataset/p2p-Gnutella08.txt', 'gnutella', 'undirected')
-    # gnutella.centrality()
-    # gnutella.clustering_coefficient()
+    gnutella = DataNetwork('dataset/p2p-Gnutella08.txt', 'gnutella', 'directed')
+    gnutella.centrality()
+    gnutella.clustering_coefficient()
+    gnutella.other_graph_info()
 
-    grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'undirected')
-    # grqc.centrality()
-    # grqc.clustering_coefficient()
+    grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'directed')
+    grqc.centrality()
+    grqc.clustering_coefficient()
+    grqc.other_graph_info()
 
     wiki_vote.network_graphs()
     facebook.network_graphs()
