@@ -32,6 +32,7 @@ class DataNetwork:
             my_file.write('Degree pearson correlation coefficient {}\n'.format(
                 nx.degree_pearson_correlation_coefficient(self.G)))
 
+
             # Do this for the largest component (could give us insight)
             # my_file.write('Center of graph {}\n'.format(nx.center(self.G)))
             # my_file.write('Diameter of graph {}\n'.format(nx.diameter(self.G)))
@@ -85,40 +86,53 @@ class DataNetwork:
         plt.close()
 
         # connected components subgraphs
-        Gcc = sorted(nx.connected_component_subgraphs(self.G.to_undirected()), key=len, reverse=True)[0]
-        pos = nx.spring_layout(Gcc)
+        Gcc = sorted(nx.connected_component_subgraphs(self.G.to_undirected()), key=len, reverse=True)
+        pos = nx.spring_layout(self.G.to_undirected())
+        plt.title('All connected components graph')
         plt.axis('off')
-        nx.draw_networkx_nodes(Gcc, pos, node_size=20)
-        nx.draw_networkx_edges(Gcc, pos, alpha=0.4)
+        nx.draw_networkx_nodes(Gcc[0], pos, edge_color='r', with_labels=False, node_size=20)
+        nx.draw_networkx_edges(Gcc[0], pos, alpha=0.4, width=6.0)
+        for g in Gcc[1:]:
+            if len(g) > 1:
+                nx.draw_networkx_edges(g, pos, edge_color='r', with_labels=False, alpha=0.3, width=5.0)
+        plt.savefig('{}_connected_subgraphs.png'.format(self.data_type))
+        plt.close()
 
-        plt.savefig(self.data_type + "_connected_subgraphs.png")
+        #largest connected component diagram
+        pos = nx.spring_layout(Gcc[0])
+        plt.axis('off')
+        nx.draw_networkx_nodes(Gcc[0], pos, node_size=20)
+        nx.draw_networkx_edges(Gcc[0], pos, alpha=0.4)
+
+        plt.savefig(self.data_type + "_largest_connected_component.png")
         plt.close()
 
 def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
-    wiki_vote.centrality()
-    wiki_vote.clustering_coefficient()
-    wiki_vote.other_graph_info()
-
+    # wiki_vote.centrality()
+    # wiki_vote.clustering_coefficient()
+    # wiki_vote.other_graph_info()
+    #
     facebook = DataNetwork('dataset/facebook_combined.txt', 'facebook', 'undirected')
-    facebook.centrality()
-    facebook.clustering_coefficient()
-    facebook.other_graph_info()
-
+    # facebook.centrality()
+    # facebook.clustering_coefficient()
+    # facebook.other_graph_info()
+    #
     gnutella = DataNetwork('dataset/p2p-Gnutella08.txt', 'gnutella', 'directed')
-    gnutella.centrality()
-    gnutella.clustering_coefficient()
-    gnutella.other_graph_info()
-
-    grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'directed')
-    grqc.centrality()
-    grqc.clustering_coefficient()
-    grqc.other_graph_info()
-
+    # gnutella.centrality()
+    # gnutella.clustering_coefficient()
+    # gnutella.other_graph_info()
+    #
+    grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'undirected')
+    # grqc.centrality()
+    # grqc.clustering_coefficient()
+    # grqc.other_graph_info()
+    #
     wiki_vote.network_graphs()
     facebook.network_graphs()
     grqc.network_graphs()
     gnutella.network_graphs()
+
 
 if __name__ == '__main__':
     main()
