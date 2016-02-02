@@ -1,2 +1,7 @@
+No of nodes 6301
+No of edges 20777
 Average clustering coefficient 0.0108679219358
 Degree pearson correlation coefficient -0.0285339698514
+Is the graph connected False
+No of connected components 2
+Diameter of largest connected component 9
