@@ -115,40 +115,41 @@ class DataNetwork:
         plt.savefig('{}_connected_subgraphs.png'.format(self.data_type))
         plt.close()
 
-        #largest connected component diagram
-        pos = nx.spring_layout(Gcc[0])
+        # largest connected component diagram
+        pos = nx.spring_layout(self.gcc[0])
         plt.axis('off')
-        nx.draw_networkx_nodes(Gcc[0], pos, node_size=20)
-        nx.draw_networkx_edges(Gcc[0], pos, alpha=0.4)
+        nx.draw_networkx_nodes(self.gcc[0], pos, node_size=20)
+        nx.draw_networkx_edges(self.gcc[0], pos, alpha=0.4)
 
         plt.savefig(self.data_type + "_largest_connected_component.png")
         plt.close()
 
+
 def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
-    # wiki_vote.centrality()
-    # wiki_vote.clustering_coefficient()
+    wiki_vote.centrality()
+    wiki_vote.clustering_coefficient()
     wiki_vote.other_graph_info()
-    #
+
     facebook = DataNetwork('dataset/facebook_combined.txt', 'facebook', 'undirected')
-    # facebook.centrality()
-    # facebook.clustering_coefficient()
+    facebook.centrality()
+    facebook.clustering_coefficient()
     facebook.other_graph_info()
-    #
+
     gnutella = DataNetwork('dataset/p2p-Gnutella08.txt', 'gnutella', 'directed')
-    # gnutella.centrality()
-    # gnutella.clustering_coefficient()
+    gnutella.centrality()
+    gnutella.clustering_coefficient()
     gnutella.other_graph_info()
-    #
+
     grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'undirected')
-    # grqc.centrality()
-    # grqc.clustering_coefficient()
+    grqc.centrality()
+    grqc.clustering_coefficient()
     grqc.other_graph_info()
-    #
-    # wiki_vote.network_graphs()
-    # facebook.network_graphs()
-    # grqc.network_graphs()
-    # gnutella.network_graphs()
+
+    wiki_vote.network_graphs()
+    facebook.network_graphs()
+    grqc.network_graphs()
+    gnutella.network_graphs()
 
 
 if __name__ == '__main__':
