@@ -1,7 +1,7 @@
 import networkx as nx
 import csv
 from collections import OrderedDict
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 __author__ = 'Anirban and Meraj'
 
@@ -97,12 +97,12 @@ class DataNetwork:
             clustering_sequence = [v for k, v in OrderedDict(sorted(nx.clustering(undirected_G).items(),
                                                                     key=lambda x: x[0])).items()]
 
-            plt.loglog(degree_sequence, clustering_sequence, 'rx')
-            plt.title("Clustering coefficients plot")
-            plt.ylabel("Clustering coefficient")
-            plt.xlabel("Degree")
-            plt.savefig(self.data_type + "_clustering_histogram.png")
-            plt.close()
+            # plt.loglog(degree_sequence, clustering_sequence, 'rx')
+            # plt.title("Clustering coefficients plot")
+            # plt.ylabel("Clustering coefficient")
+            # plt.xlabel("Degree")
+            # plt.savefig(self.data_type + "_clustering_histogram.png")
+            # plt.close()
 
     def network_graphs(self):
         # degree histogram
@@ -143,8 +143,8 @@ def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
     wiki_vote.centrality()
     wiki_vote.clustering_coefficient()
-    # # wiki_vote.other_graph_info()
-    #
+    # wiki_vote.other_graph_info()
+
     DataNetwork.CENTRALITY_DICT  =  {'in_degree': nx.in_degree_centrality,
                        'out_degree': nx.out_degree_centrality,
                        'degree': nx.degree_centrality,
@@ -157,7 +157,7 @@ def main():
     facebook.centrality()
     facebook.clustering_coefficient()
     # facebook.other_graph_info()
-    #
+
     DataNetwork.CENTRALITY_DICT  =  {'in_degree': nx.in_degree_centrality,
                        'out_degree': nx.out_degree_centrality,
                        'degree': nx.degree_centrality,
@@ -168,9 +168,9 @@ def main():
                        'harmonic': nx.harmonic_centrality}
     gnutella = DataNetwork('dataset/p2p-Gnutella08.txt', 'gnutella', 'directed')
     gnutella.centrality()
-    # gnutella.clustering_coefficient()
-    # # gnutella.other_graph_info()
-    #
+    gnutella.clustering_coefficient()
+    # gnutella.other_graph_info()
+
     DataNetwork.CENTRALITY_DICT  =  {'in_degree': nx.in_degree_centrality,
                        'out_degree': nx.out_degree_centrality,
                        'degree': nx.degree_centrality,
@@ -182,7 +182,7 @@ def main():
     grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'undirected')
     grqc.centrality()
     grqc.clustering_coefficient()
-    # # grqc.other_graph_info()
+    # grqc.other_graph_info()
 
     # wiki_vote.network_graphs()
     # facebook.network_graphs()
