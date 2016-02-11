@@ -18,13 +18,14 @@ class DataNetwork:
                        'closeness': nx.closeness_centrality,
                        'betweeness': nx.betweenness_centrality,
                        'eigen': nx.eigenvector_centrality,
-                       'page_rank': nx.pagerank}
+                       'page_rank': nx.pagerank,
+                       'harmonic': nx.harmonic_centrality}
 
     def __init__(self, filename, data_type, graph_type):  # where data_type is facebook, wiki_vote, gnutella etc
         self.graph_type = graph_type
         self.G = nx.read_edgelist(filename, create_using=self.GRAPH_TYPE_DICT[self.graph_type](), nodetype=int)
         self.data_type = data_type
-        self.gcc = sorted(nx.connected_component_subgraphs(self.G.to_undirected()), key=len, reverse=True)
+        #self.gcc = sorted(nx.connected_component_subgraphs(self.G.to_undirected()), key=len, reverse=True)
 
     def other_graph_info(self):
         with open('{}_graph_information.txt'.format(self.data_type), 'w') as my_file:
@@ -50,6 +51,17 @@ class DataNetwork:
             self.CENTRALITY_DICT.pop('in_degree', None)
             # None has been done to take care of exception in case key doesn't exist
             self.CENTRALITY_DICT.pop('out_degree', None)  # like wise
+        connected = True
+        if self.graph_type is 'directed':
+            if nx.is_strongly_connected(self.G) is False:
+                connected = False
+        elif self.graph_type is 'undirected':
+            if nx.is_connected(self.G) is False:
+                connected = False
+        if connected is False:
+            self.CENTRALITY_DICT.pop('closeness')
+        else:
+            self.CENTRALITY_DICT.pop('harmonic')
 
         with open('{}_centrality.csv'.format(self.data_type), 'wb') as csv_file:
             writer = csv.writer(csv_file)
@@ -75,8 +87,10 @@ class DataNetwork:
         with open('clustering_coefficients_{}.csv'.format(self.data_type), 'wb') as csv_file:
             writer = csv.writer(csv_file)
             clustering_dict = nx.clustering(undirected_G)
-            for node in clustering_dict:
-                writer.writerow([node, clustering_dict[node]])
+            ordered_clustering_coefficient = OrderedDict(sorted(clustering_dict.items(), key=lambda x: x[0]))
+            writer.writerow(['NodeID', 'ClusteringCoefficient'])
+            for node in ordered_clustering_coefficient:
+                writer.writerow([node, ordered_clustering_coefficient[node]])
 
             degree_sequence = [v for k, v in OrderedDict(sorted(nx.degree(undirected_G).items(),
                                                                 key=lambda x: x[0])).items()]
@@ -129,27 +143,51 @@ def main():
     wiki_vote = DataNetwork('dataset/Wiki-Vote.txt', 'wiki', 'directed')
     wiki_vote.centrality()
     wiki_vote.clustering_coefficient()
-    wiki_vote.other_graph_info()
-
+    # # wiki_vote.other_graph_info()
+    #
+    DataNetwork.CENTRALITY_DICT  =  {'in_degree': nx.in_degree_centrality,
+                       'out_degree': nx.out_degree_centrality,
+                       'degree': nx.degree_centrality,
+                       'closeness': nx.closeness_centrality,
+                       'betweeness': nx.betweenness_centrality,
+                       'eigen': nx.eigenvector_centrality,
+                       'page_rank': nx.pagerank,
+                       'harmonic': nx.harmonic_centrality}
     facebook = DataNetwork('dataset/facebook_combined.txt', 'facebook', 'undirected')
     facebook.centrality()
     facebook.clustering_coefficient()
-    facebook.other_graph_info()
-
+    # facebook.other_graph_info()
+    #
+    DataNetwork.CENTRALITY_DICT  =  {'in_degree': nx.in_degree_centrality,
+                       'out_degree': nx.out_degree_centrality,
+                       'degree': nx.degree_centrality,
+                       'closeness': nx.closeness_centrality,
+                       'betweeness': nx.betweenness_centrality,
+                       'eigen': nx.eigenvector_centrality,
+                       'page_rank': nx.pagerank,
+                       'harmonic': nx.harmonic_centrality}
     gnutella = DataNetwork('dataset/p2p-Gnutella08.txt', 'gnutella', 'directed')
     gnutella.centrality()
-    gnutella.clustering_coefficient()
-    gnutella.other_graph_info()
-
+    # gnutella.clustering_coefficient()
+    # # gnutella.other_graph_info()
+    #
+    DataNetwork.CENTRALITY_DICT  =  {'in_degree': nx.in_degree_centrality,
+                       'out_degree': nx.out_degree_centrality,
+                       'degree': nx.degree_centrality,
+                       'closeness': nx.closeness_centrality,
+                       'betweeness': nx.betweenness_centrality,
+                       'eigen': nx.eigenvector_centrality,
+                       'page_rank': nx.pagerank,
+                       'harmonic': nx.harmonic_centrality}
     grqc = DataNetwork('dataset/CA-GrQc.txt', 'gr-qc', 'undirected')
     grqc.centrality()
     grqc.clustering_coefficient()
-    grqc.other_graph_info()
+    # # grqc.other_graph_info()
 
-    wiki_vote.network_graphs()
-    facebook.network_graphs()
-    grqc.network_graphs()
-    gnutella.network_graphs()
+    # wiki_vote.network_graphs()
+    # facebook.network_graphs()
+    # grqc.network_graphs()
+    # gnutella.network_graphs()
 
 
 if __name__ == '__main__':
