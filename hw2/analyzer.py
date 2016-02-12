@@ -1,7 +1,7 @@
 __author__ = 'meraj'
 import csv
 
-
+#create community dictionary of form - {communityId:[list of vertices]}, and edge dictionary of form - {vertexId:[list of vertexIds connected to]}
 def findCommunityEdgesMCL(mcloutfile, metisfile):
     communityDictionary = dict()
     edgeDictionary = dict()
