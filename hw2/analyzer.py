@@ -30,11 +30,33 @@ def findCommunityEdgesMCL(mcloutfile, metisfile):
 def findCommunityEdgesMetis(metisoutfile, metisfile):
     communityDictionary = dict()
     edgeDictionary = dict()
+    edgeList = []
     return edgeDictionary, communityDictionary
 
 
 def calculateModularity(edgeDictionary, communityDictionary):
-    return 1
+    edgesWithinGroups = dict()
+    edgeList = list()
+    for vertex in edgeDictionary:
+        for vertex2 in edgeDictionary[vertex]:
+            if (vertex, vertex2) not in edgeList and (vertex2, vertex) not in edgeList:
+                       edgeList.append((vertex,vertex2))
+    communityList_one = communityDictionary.keys()[0:communityDictionary.keys()/2]
+    communityList_two = communityDictionary[communityDictionary.keys()/2+1:]
+    modularity = 0.0
+    m = 0.0 #number of edges
+    for vertex in edgeDictionary:
+        m += len(edgeDictionary[vertex])
+    m /= 2
+    for community_one in communityList_one:
+        for community_two in communityList_two:
+            for vertex_one in communityList_one[community_one]:
+                for vertex_two in communityList_two[community_two]:
+                    if (vertex_one, vertex_two) in edgeList or (vertex_two, vertex_one) in edgeList:
+                        modularity += 1
+                        modularity -= ((len(edgeDictionary[vertex_one])*len(edgeDictionary[vertex_two]))/(2*m))
+    modularity = modularity/(2*m)
+    return modularity
 
-
-findCommunityEdgesMCL('output/mlrmcl/r=2/wiki-Vote.metis.c1000.i2.0.b0.5','data/wiki-Vote.metis')
+edgeDictionary, communityDictionary = findCommunityEdgesMCL('output/mlrmcl/r=2/wiki-Vote.metis.c1000.i2.0.b0.5','data/wiki-Vote.metis')
+print(calculateModularity(edgeDictionary, communityDictionary))
