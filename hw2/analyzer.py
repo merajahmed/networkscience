@@ -83,7 +83,8 @@ def calculateModularityMetis(metisOutFilePath, metisFilePath):
     # modularity = modularity/(2*m)
     # return modularity
 
-print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=2/wiki-Vote.metis.c1000.i2.0.b0.5','data/wiki-Vote.metis'))
-print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=2/p2p-Gnutella08.metis.c1000.i2.0.b0.5','data/p2p-Gnutella08.metis'))
-print('Facebook Modularity:', calculateModularityMetis('output/mlrmcl/r=2/facebook_combined.metis.c1000.i2.0.b0.5','data/facebook_combined.metis'))
-print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=2/com-youtube.ungraph.metis.c1000.i2.0.b0.5','data/com-youtube.ungraph.metis'))
+print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
+print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
+print('Facebook Modularity:', calculateModularityMetis('output/mlrmcl/r=3/facebook_combined.metis.c1000.i3.0.b0.5','data/facebook_combined.metis'))
+print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
+print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))

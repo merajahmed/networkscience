@@ -1,0 +1,43 @@
+Input graph information ---------------------------------------------------
+  Name: data/p2p-Gnutella08.metis, #Vertices: 6301, #Edges: 23927
+Output shall be placed in the file data/p2p-Gnutella08.metis.c1000.i1.0.b0.5
+------------------------------------------------
+Clustering....
+Coarsened 4 levels
+Number of vertices in coarsest graph:892
+Done level 4
+Done level 3
+Done level 2
+Done level 1
+Done level 0
+------------------------------------------------
+Clusters: 76 N-Cut: 36.070 AvgN-Cut: 0.475 Balance in cluster sizes: 68.24 Std.Deviation in cluster sizes: 643.78 Coefficient_of_Variation: 7.76
+
+Output is written to file: data/p2p-Gnutella08.metis.c1000.i1.0.b0.5
+
+Timing Information --------------------------------------------------
+  I/O:          		   0.000
+  Partitioning: 		   1.120   (MLR-MCL time)
+  Total:        		   1.120
+**********************************************************************
+Input graph information ---------------------------------------------------
+  Name: data/facebook_combined.metis, #Vertices: 4039, #Edges: 90253
+Output shall be placed in the file data/facebook_combined.metis.c1000.i1.0.b0.5
+------------------------------------------------
+Clustering....
+Coarsened 3 levels
+Number of vertices in coarsest graph:605
+Done level 3
+Done level 2
+Done level 1
+Done level 0
+------------------------------------------------
+Clusters: 15 N-Cut: 2.332 AvgN-Cut: 0.155 Balance in cluster sizes: 3.83 Std.Deviation in cluster sizes: 328.04 Coefficient_of_Variation: 1.22
+
+Output is written to file: data/facebook_combined.metis.c1000.i1.0.b0.5
+
+Timing Information --------------------------------------------------
+  I/O:          		   0.000
+  Partitioning: 		   1.870   (MLR-MCL time)
+  Total:        		   1.870
+**********************************************************************
