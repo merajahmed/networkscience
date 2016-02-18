@@ -4,29 +4,26 @@ import networkx as nx
 import community
 
 
-#create community dictionary of form - {communityId:[list of vertices]}, and edge dictionary of form - {vertexId:[list of vertexIds connected to]}
+# create community dictionary of form - {communityId:[list of vertices]}, and edge dictionary of form - {vertexId:[list of vertexIds connected to]}
 def findCommunityEdgesMCL(mcloutfile, metisfile):
     communityDictionary = dict()
     edgeDictionary = dict()
-    communityFile = open(mcloutfile,'r')
-    lines = communityFile.readlines()
-    vertexId = 1
-    for line in lines:
-        communityId = int(line.rstrip('\n'))
-        if communityId not in communityDictionary:
-            communityDictionary[communityId] = [vertexId]
-        else:
-            communityDictionary[communityId].append(vertexId)
-        vertexId += 1
-    communityFile.close()
-    edgeFile = open(metisfile, 'r')
-    lines = edgeFile.readlines()
-    vertexId = 1
-    for line in lines[1:]:
-        edgeList = map(lambda x: int(x), line.split())
-        edgeDictionary[vertexId] = edgeList
-        vertexId += 1
-    edgeFile.close()
+
+    with open(mcloutfile, 'r') as communityFile:
+        for line_id, line in enumerate(communityFile.readlines()):
+            vertexId = line_id + 1
+            communityId = int(line.rstrip('\n'))
+            if communityId not in communityDictionary:
+                communityDictionary[communityId] = [vertexId]
+            else:
+                communityDictionary[communityId].append(vertexId)
+
+    with open(metisfile, 'r') as edgeFile:
+        for line_id, line in enumerate(edgeFile.readlines()[1:]):
+            vertexId = line_id + 1
+            edgeList = map(lambda x: int(x), line.split())
+            edgeDictionary[vertexId] = edgeList
+
     return edgeDictionary, communityDictionary
 
 
@@ -43,7 +40,7 @@ def convert_to_networkx(metisfilepath):
     lines = metisfile.readlines()
     vertexId = 1
     for line in lines[1:]:
-        edgeList = map(lambda x:(vertexId, int(x)), line.split())
+        edgeList = map(lambda x: (vertexId, int(x)), line.split())
         G.add_edges_from(edgeList)
         vertexId += 1
     metisfile.close()
