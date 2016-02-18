@@ -47,16 +47,16 @@ def convert_to_networkx(metisfilepath):
     return G
 
 def calculateModularityMetis(metisOutFilePath, metisFilePath):
-    metisOutFile = open(metisOutFilePath, 'r')
-    nxGraph = convert_to_networkx(metisFilePath)
-    vertexId = 1
-    partition = dict()
-    lines = metisOutFile.readlines()
-    for line in lines:
-        partition[vertexId] = int(line.split()[0])
-        vertexId += 1
-    modularity = community.modularity(partition, nxGraph)
+    with open(metisOutFilePath, 'r') as metisOutFile:
+        nxGraph = convert_to_networkx(metisFilePath)
+        partition = dict()
+
+        for line_id, line in enumerate(metisOutFile.readlines()):
+            vertexId = line_id + 1
+            partition[vertexId] = int(line.split()[0])
+        modularity = community.modularity(partition, nxGraph)
     return modularity
+
     # edgesWithinGroups = dict()
     # edgeList = list()
     # for vertex in edgeDictionary:
@@ -80,8 +80,24 @@ def calculateModularityMetis(metisOutFilePath, metisFilePath):
     # modularity = modularity/(2*m)
     # return modularity
 
-print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
-print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
-print('Facebook Modularity:', calculateModularityMetis('output/mlrmcl/r=3/facebook_combined.metis.c1000.i3.0.b0.5','data/facebook_combined.metis'))
-print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
-print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
+def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
+    with open(metisOutFilePath, 'r') as metisOutFile:
+        nxGraph = convert_to_networkx(metisFilePath)
+        partition = dict()
+
+        for line_id, line in enumerate(metisOutFile.readlines()):
+            vertexId = line_id + 1
+            partition[vertexId] = int(line.split()[0])
+
+
+    # return conductance
+
+
+
+# print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
+# print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
+# print('Facebook Modularity:', calculateModularityMetis('output/mlrmcl/r=3/facebook_combined.metis.c1000.i3.0.b0.5','data/facebook_combined.metis'))
+# print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
+# print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
+
+# print calculate_conductance('output/metis/wiki-Vote.metis.part.100', 'data/wiki-Vote.metis')
