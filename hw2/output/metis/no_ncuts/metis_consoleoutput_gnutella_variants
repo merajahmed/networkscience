@@ -1,0 +1,144 @@
+% /home/6/chakraba/local/bin/gpmetis ./data_5245/p2p-Gnutella08.metis 50
+******************************************************************************
+METIS 5.0 Copyright 1998-13, Regents of the University of Minnesota
+ (HEAD: , Built on: Feb  4 2016, 12:01:07)
+ size of idx_t: 32bits, real_t: 32bits, idx_t *: 64bits
+
+Graph Information -----------------------------------------------------------
+ Name: ./data_5245/p2p-Gnutella08.metis, #Vertices: 6301, #Edges: 20777, #Parts: 50
+
+Options ---------------------------------------------------------------------
+ ptype=kway, objtype=cut, ctype=shem, rtype=greedy, iptype=metisrb
+ dbglvl=0, ufactor=1.030, no2hop=NO, minconn=NO, contig=NO, nooutput=NO
+ seed=-1, niter=10, ncuts=1
+
+Direct k-way Partitioning ---------------------------------------------------
+ - Edgecut: 12037, communication volume: 19957.
+
+ - Balance:
+     constraint #0:  1.024 out of 0.008
+
+ - Most overweight partition:
+     pid: 46, actual: 129, desired: 126, ratio: 1.02.
+
+ - Subdomain connectivity: max: 49, min: 46, avg: 48.88
+
+ - The original graph had 2 connected components and the resulting
+   partitioning after removing the cut edges has 67 components.
+Timing Information ----------------------------------------------------------
+  I/O:          		   0.003 sec
+  Partitioning: 		   0.101 sec   (METIS time)
+  Reporting:    		   0.001 sec
+
+Memory Information ----------------------------------------------------------
+  Max memory used:		   1.758 MB
+******************************************************************************
+
+/home/0/guptanir                                                                                                % /home/6/chakraba/local/bin/gpmetis ./data_5245/p2p-Gnutella08.metis 75
+******************************************************************************
+METIS 5.0 Copyright 1998-13, Regents of the University of Minnesota
+ (HEAD: , Built on: Feb  4 2016, 12:01:07)
+ size of idx_t: 32bits, real_t: 32bits, idx_t *: 64bits
+
+Graph Information -----------------------------------------------------------
+ Name: ./data_5245/p2p-Gnutella08.metis, #Vertices: 6301, #Edges: 20777, #Parts: 75
+
+Options ---------------------------------------------------------------------
+ ptype=kway, objtype=cut, ctype=shem, rtype=greedy, iptype=metisrb
+ dbglvl=0, ufactor=1.030, no2hop=NO, minconn=NO, contig=NO, nooutput=NO
+ seed=-1, niter=10, ncuts=1
+
+Direct k-way Partitioning ---------------------------------------------------
+ - Edgecut: 12550, communication volume: 21367.
+
+ - Balance:
+     constraint #0:  1.024 out of 0.012
+
+ - Most overweight partition:
+     pid: 8, actual: 86, desired: 84, ratio: 1.02.
+
+ - Subdomain connectivity: max: 74, min: 43, avg: 70.91
+
+ - The original graph had 2 connected components and the resulting
+   partitioning after removing the cut edges has 97 components.
+Timing Information ----------------------------------------------------------
+  I/O:          		   0.003 sec
+  Partitioning: 		   0.119 sec   (METIS time)
+  Reporting:    		   0.002 sec
+
+Memory Information ----------------------------------------------------------
+  Max memory used:		   1.575 MB
+******************************************************************************
+
+/home/0/guptanir                                                                                                % /home/6/chakraba/local/bin/gpmetis ./data_5245/p2p-Gnutella08.metis 2
+******************************************************************************
+METIS 5.0 Copyright 1998-13, Regents of the University of Minnesota
+ (HEAD: , Built on: Feb  4 2016, 12:01:07)
+ size of idx_t: 32bits, real_t: 32bits, idx_t *: 64bits
+
+Graph Information -----------------------------------------------------------
+ Name: ./data_5245/p2p-Gnutella08.metis, #Vertices: 6301, #Edges: 20777, #Parts: 2
+
+Options ---------------------------------------------------------------------
+ ptype=kway, objtype=cut, ctype=shem, rtype=greedy, iptype=metisrb
+ dbglvl=0, ufactor=1.030, no2hop=NO, minconn=NO, contig=NO, nooutput=NO
+ seed=-1, niter=10, ncuts=1
+
+Direct k-way Partitioning ---------------------------------------------------
+ - Edgecut: 4012, communication volume: 3259.
+
+ - Balance:
+     constraint #0:  1.029 out of 0.000
+
+ - Most overweight partition:
+     pid: 0, actual: 3243, desired: 3150, ratio: 1.03.
+
+ - Subdomain connectivity: max: 1, min: 1, avg: 1.00
+
+ - The original graph had 2 connected components and the resulting
+   partitioning after removing the cut edges has 3 components.
+Timing Information ----------------------------------------------------------
+  I/O:          		   0.003 sec
+  Partitioning: 		   0.012 sec   (METIS time)
+  Reporting:    		   0.001 sec
+
+Memory Information ----------------------------------------------------------
+  Max memory used:		   1.682 MB
+******************************************************************************
+
+% /home/6/chakraba/local/bin/gpmetis ./data_5245/p2p-Gnutella08.metis 1000
+******************************************************************************
+METIS 5.0 Copyright 1998-13, Regents of the University of Minnesota
+ (HEAD: , Built on: Feb  4 2016, 12:01:07)
+ size of idx_t: 32bits, real_t: 32bits, idx_t *: 64bits
+
+Graph Information -----------------------------------------------------------
+ Name: ./data_5245/p2p-Gnutella08.metis, #Vertices: 6301, #Edges: 20777, #Parts: 1000
+
+Options ---------------------------------------------------------------------
+ ptype=kway, objtype=cut, ctype=shem, rtype=greedy, iptype=metisrb
+ dbglvl=0, ufactor=1.030, no2hop=NO, minconn=NO, contig=NO, nooutput=NO
+ seed=-1, niter=10, ncuts=1
+
+Direct k-way Partitioning ---------------------------------------------------
+ - Edgecut: 17821, communication volume: 33473.
+
+ - Balance:
+     constraint #0:  1.111 out of 0.159
+
+ - Most overweight partition:
+     pid: 4, actual: 7, desired: 6, ratio: 1.11.
+
+ - Subdomain connectivity: max: 135, min: 0, avg: 30.48
+
+ - The original graph had 2 connected components and the resulting
+   partitioning after removing the cut edges has 3347 components.
+Timing Information ----------------------------------------------------------
+  I/O:          		   0.004 sec
+  Partitioning: 		   0.313 sec   (METIS time)
+  Reporting:    		   0.003 sec
+
+Memory Information ----------------------------------------------------------
+  Max memory used:		   2.212 MB
+******************************************************************************
+
