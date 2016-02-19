@@ -1,7 +1,9 @@
 __author__ = 'meraj'
+from __future__ import division
 import csv
 import networkx as nx
 import community
+from itertools import chain
 
 
 # create community dictionary of form - {communityId:[list of vertices]}, and edge dictionary of form - {vertexId:[list of vertexIds connected to]}
@@ -46,6 +48,7 @@ def convert_to_networkx(metisfilepath):
     metisfile.close()
     return G
 
+
 def calculateModularityMetis(metisOutFilePath, metisFilePath):
     with open(metisOutFilePath, 'r') as metisOutFile:
         nxGraph = convert_to_networkx(metisFilePath)
@@ -80,6 +83,7 @@ def calculateModularityMetis(metisOutFilePath, metisFilePath):
     # modularity = modularity/(2*m)
     # return modularity
 
+
 def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
     with open(metisOutFilePath, 'r') as metisOutFile:
         nxGraph = convert_to_networkx(metisFilePath)
@@ -92,7 +96,27 @@ def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
 
     # return conductance
 
+### Taken from networkx's latest code ##
 
+def cut_size(G, S, T=None, weight=None):
+    edges = nx.edge_boundary(G, S, T, data=weight, default=1)
+    if G.is_directed():
+        edges = chain(edges, nx.edge_boundary(G, T, S, data=weight, default=1))
+    return sum(weight for u, v, weight in edges)
+
+
+def volume(G, S, weight=None):
+    degree = G.out_degree if G.is_directed() else G.degree
+    return sum(d for v, d in degree(S, weight=weight))
+
+
+def conductance(G, S, T=None, weight=None):
+    if T is None:
+        T = set(G) - set(S)
+    num_cut_edges = cut_size(G, S, T, weight=weight)
+    volume_S = volume(G, S, weight=weight)
+    volume_T = volume(G, T, weight=weight)
+    return num_cut_edges / min(volume_S, volume_T)
 
 # print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
 # print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
