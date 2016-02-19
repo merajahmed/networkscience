@@ -3,6 +3,8 @@ __author__ = 'meraj'
 import csv
 import networkx as nx
 import community
+import math
+from collections import Counter
 from itertools import chain
 
 
@@ -38,7 +40,7 @@ def findCommunityEdgesMetis(metisoutfile, metisfile):
 
 def convert_to_networkx(metisfilepath):
     G = nx.Graph()
-    with open(metisfilepath,'r') as metisfile:
+    with open(metisfilepath, 'r') as metisfile:
         lines = metisfile.readlines()
         vertexId = 1
         for line in lines[1:]:
@@ -129,7 +131,42 @@ def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
     average_conductance_value = sum(conductance_values)/len(conductance_values)
     return average_conductance_value
 
-def entropy()
+def entropy(labels):
+    p, lns = Counter(labels), float(len(labels))
+    return -sum(count/lns * math.log(count/lns, 2) for count in p.values())
+
+def calculate_entropy(metis_gt_file, metis_out_file):
+    ground_community_dict = {}
+    with open(metis_gt_file, 'r') as metis_gt:
+        for line_id, line in enumerate(metis_gt.readlines()):
+            for vertex_id in line.rstrip('\n').split():
+                if int(vertex_id) not in ground_community_dict:
+                    ground_community_dict[int(vertex_id)] = [line_id + 1]
+                else:
+                    ground_community_dict[int(vertex_id)].append(line_id + 1)
+
+    test_community_dict = {}
+    with open(metis_out_file, 'r') as metis_file:
+        for line_id, line in enumerate(metis_file.readlines()):
+            vertex_id = line_id + 1
+            if vertex_id not in ground_community_dict:  # skip the vertices which are not present in GT
+                continue
+            # build community sets with labels for different communities based on ground community dict
+            community_id = int(line.rstrip('\n'))
+            # the main building part for you to modify
+            if community_id not in test_community_dict:
+                test_community_dict[community_id] = [ground_community_dict[vertex_id][0]]  # here
+            else:
+                test_community_dict[community_id].append(ground_community_dict[vertex_id][0])  # and here
+
+    # true community label of vertices will be stored and now we can calculate entropy
+
+    entropy_dict = {}
+    for test_community_id, test_community_list in test_community_dict.iteritems():
+        entropy_dict[test_community_id] = entropy(test_community_list)
+
+    return entropy_dict
+
 
 # print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
 # print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
@@ -137,4 +174,5 @@ def entropy()
 # print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
 # print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
 
-print calculate_conductance('output/metis/ncut_r=1/facebook_combined.metis.part.100', 'data/wiki-Vote.metis')
+# print calculate_conductance('output/metis/ncut_r=1/facebook_combined.metis.part.100', 'data/wiki-Vote.metis')
+print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/ncut_r=1/com-youtube.ungraph.metis.part.100')
