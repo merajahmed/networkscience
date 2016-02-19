@@ -1,6 +1,5 @@
 from __future__ import division
 __author__ = 'meraj'
-import csv
 import networkx as nx
 import community
 import math
@@ -155,9 +154,14 @@ def calculate_entropy(metis_gt_file, metis_out_file):
             community_id = int(line.rstrip('\n'))
             # the main building part for you to modify
             if community_id not in test_community_dict:
-                test_community_dict[community_id] = [ground_community_dict[vertex_id][0]]  # here
+                test_community_dict[community_id] = []
+                test_community_dict[community_id].extend(ground_community_dict[vertex_id]
+                                                         if type(ground_community_dict[vertex_id]) == list
+                                                         else [ground_community_dict[vertex_id]])  # here
             else:
-                test_community_dict[community_id].append(ground_community_dict[vertex_id][0])  # and here
+                test_community_dict[community_id].extend(ground_community_dict[vertex_id]
+                                                         if type(ground_community_dict[vertex_id]) == list
+                                                         else [ground_community_dict[vertex_id]])  # and here
 
     # true community label of vertices will be stored and now we can calculate entropy
 
@@ -175,4 +179,4 @@ def calculate_entropy(metis_gt_file, metis_out_file):
 # print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
 
 # print calculate_conductance('output/metis/ncut_r=1/facebook_combined.metis.part.100', 'data/wiki-Vote.metis')
-print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/ncut_r=1/com-youtube.ungraph.metis.part.100')
+# print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/ncut_r=1/com-youtube.ungraph.metis.part.100')
