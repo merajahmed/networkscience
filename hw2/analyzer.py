@@ -38,14 +38,13 @@ def findCommunityEdgesMetis(metisoutfile, metisfile):
 
 def convert_to_networkx(metisfilepath):
     G = nx.Graph()
-    metisfile = open(metisfilepath,'r')
-    lines = metisfile.readlines()
-    vertexId = 1
-    for line in lines[1:]:
-        edgeList = map(lambda x: (vertexId, int(x)), line.split())
-        G.add_edges_from(edgeList)
-        vertexId += 1
-    metisfile.close()
+    with open(metisfilepath,'r') as metisfile:
+        lines = metisfile.readlines()
+        vertexId = 1
+        for line in lines[1:]:
+            edgeList = map(lambda x: (vertexId, int(x)), line.split())
+            G.add_edges_from(edgeList)
+            vertexId += 1
     return G
 
 
@@ -130,7 +129,7 @@ def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
     average_conductance_value = sum(conductance_values)/len(conductance_values)
     return average_conductance_value
 
-
+def entropy()
 
 # print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
 # print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))

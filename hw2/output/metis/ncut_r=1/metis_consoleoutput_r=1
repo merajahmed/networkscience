@@ -144,3 +144,41 @@ Memory Information ----------------------------------------------------------
   Max memory used:		   8.827 MB
 ******************************************************************************
 
+% /home/6/chakraba/local/bin/gpmetis ./data_5245/com-youtube.ungraph.metis 100 --ncut=263.595
+******************************************************************************
+METIS 5.0 Copyright 1998-13, Regents of the University of Minnesota
+ (HEAD: , Built on: Feb  4 2016, 12:01:07)
+ size of idx_t: 32bits, real_t: 32bits, idx_t *: 64bits
+
+Graph Information -----------------------------------------------------------
+ Name: ./data_5245/com-youtube.ungraph.metis, #Vertices: 1134890, #Edges: 2987624, #Parts: 100
+
+Options ---------------------------------------------------------------------
+ ptype=kway, objtype=cut, ctype=shem, rtype=greedy, iptype=metisrb
+ dbglvl=0, ufactor=1.030, no2hop=NO, minconn=NO, contig=NO, nooutput=NO
+ seed=-1, niter=10, ncuts=263
+
+Direct k-way Partitioning ---------------------------------------------------
+ - Edgecut: 1142494, communication volume: 1182308.
+
+ - Balance:
+     constraint #0:  1.030 out of 0.000
+
+ - Most overweight partition:
+     pid: 7, actual: 11689, desired: 11348, ratio: 1.03.
+
+ - Subdomain connectivity: max: 99, min: 99, avg: 99.00
+
+ - There are 100 non-contiguous partitions.
+   Total components after removing the cut edges: 12006,
+   max components: 1121 for pid: 71.
+
+Timing Information ----------------------------------------------------------
+  I/O:          		   0.850 sec
+  Partitioning: 		 2476.892 sec   (METIS time)
+  Reporting:    		   0.325 sec
+
+Memory Information ----------------------------------------------------------
+  Max memory used:		 365.784 MB
+******************************************************************************
+
