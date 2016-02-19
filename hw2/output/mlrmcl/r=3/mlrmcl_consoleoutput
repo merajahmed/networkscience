@@ -1,0 +1,152 @@
+Input graph information ---------------------------------------------------
+  Name: data/wiki-Vote.metis, #Vertices: 7115, #Edges: 104319
+Output shall be placed in the file data/wiki-Vote.metis.c1000.i3.0.b0.5
+------------------------------------------------
+Clustering....
+Coarsened 5 levels
+Number of vertices in coarsest graph:947
+Done level 5
+Done level 4
+Done level 3
+Done level 2
+Done level 1
+Done level 0
+------------------------------------------------
+Clusters: 601 N-Cut: 548.740 AvgN-Cut: 0.913 Balance in cluster sizes: 81.51 Std.Deviation in cluster sizes: 49.31 Coefficient_of_Variation: 4.17
+
+Output is written to file: data/wiki-Vote.metis.c1000.i3.0.b0.5
+
+Timing Information --------------------------------------------------
+  I/O:          		   0.000
+  Partitioning: 		   1.870   (MLR-MCL time)
+  Total:        		   1.870
+**********************************************************************
+Input graph information ---------------------------------------------------
+  Name: data/ca-GrQc.metis, #Vertices: 5241, #Edges: 17104
+Output shall be placed in the file data/ca-GrQc.metis.c1000.i3.0.b0.5
+------------------------------------------------
+Clustering....
+Coarsened 4 levels
+Number of vertices in coarsest graph:840
+Done level 4
+Done level 3
+Done level 2
+Done level 1
+Done level 0
+------------------------------------------------
+Clusters: 775 N-Cut: 146.824 AvgN-Cut: 0.189 Balance in cluster sizes: 13.16 Std.Deviation in cluster sizes: 5.88 Coefficient_of_Variation: 0.87
+
+Output is written to file: data/ca-GrQc.metis.c1000.i3.0.b0.5
+
+Timing Information --------------------------------------------------
+  I/O:          		   0.000
+  Partitioning: 		   0.080   (MLR-MCL time)
+  Total:        		   0.080
+**********************************************************************
+Input graph information ---------------------------------------------------
+  Name: data/facebook_combined.metis, #Vertices: 4039, #Edges: 90253
+Output shall be placed in the file data/facebook_combined.metis.c1000.i3.0.b0.5
+------------------------------------------------
+Clustering....
+Coarsened 3 levels
+Number of vertices in coarsest graph:605
+Done level 3
+Done level 2
+Done level 1
+Done level 0
+------------------------------------------------
+Clusters: 165 N-Cut: 97.292 AvgN-Cut: 0.590 Balance in cluster sizes: 14.91 Std.Deviation in cluster sizes: 51.58 Coefficient_of_Variation: 2.11
+
+Output is written to file: data/facebook_combined.metis.c1000.i3.0.b0.5
+
+Timing Information --------------------------------------------------
+  I/O:          		   0.000
+  Partitioning: 		   0.390   (MLR-MCL time)
+  Total:        		   0.400
+**********************************************************************
+Input graph information ---------------------------------------------------
+  Name: data/p2p-Gnutella08.metis, #Vertices: 6301, #Edges: 23927
+Output shall be placed in the file data/p2p-Gnutella08.metis.c1000.i3.0.b0.5
+------------------------------------------------
+Clustering....
+Coarsened 4 levels
+Number of vertices in coarsest graph:892
+Done level 4
+Done level 3
+Done level 2
+Done level 1
+Done level 0
+------------------------------------------------
+Clusters: 741 N-Cut: 528.070 AvgN-Cut: 0.713 Balance in cluster sizes: 10.35 Std.Deviation in cluster sizes: 4.75 Coefficient_of_Variation: 0.56
+
+Output is written to file: data/p2p-Gnutella08.metis.c1000.i3.0.b0.5
+
+Timing Information --------------------------------------------------
+  I/O:          		   0.000
+  Partitioning: 		   0.420   (MLR-MCL time)
+  Total:        		   0.420
+**********************************************************************
+Input graph information ---------------------------------------------------
+  Name: data/com-youtube.ungraph.metis, #Vertices: 1134890, #Edges: 3555069
+Output shall be placed in the file data/com-youtube.ungraph.metis.c1000.i3.0.b0.5
+------------------------------------------------
+Clustering....
+Stopped coarsening as ratio of new nvtxs (167140) to old nvtxs (168826) > 0.99
+Coarsened 43 levels
+Number of vertices in coarsest graph:167140
+Done level 43
+Done level 42
+Done level 41
+Done level 40
+Done level 39
+Done level 38
+Done level 37
+Done level 36
+Done level 35
+Done level 34
+Done level 33
+Done level 32
+Done level 31
+Done level 30
+Done level 29
+Done level 28
+Done level 27
+Done level 26
+Done level 25
+Done level 24
+Done level 23
+Done level 22
+Done level 21
+Done level 20
+Done level 19
+Done level 18
+Done level 17
+Done level 16
+Done level 15
+Done level 14
+Done level 13
+Done level 12
+Done level 11
+Done level 10
+Done level 9
+Done level 8
+Done level 7
+Done level 6
+Done level 5
+Done level 4
+Done level 3
+Done level 2
+Done level 1
+Done level 0
+------------------------------------------------
+Clusters: 154505 N-Cut: 145064.500 AvgN-Cut: 0.939 Balance in cluster sizes: 978.45 Std.Deviation in cluster sizes: 105.07 Coefficient_of_Variation: 14.30
+
+Output is written to file: data/com-youtube.ungraph.metis.c1000.i3.0.b0.5
+
+Timing Information --------------------------------------------------
+  I/O:          		   0.450
+  Partitioning: 		 584.310   (MLR-MCL time)
+  Total:        		 584.810
+**********************************************************************
+
+
