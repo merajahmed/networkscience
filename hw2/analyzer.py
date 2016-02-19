@@ -84,28 +84,6 @@ def calculateModularityMetis(metisOutFilePath, metisFilePath):
     # return modularity
 
 
-def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
-
-    # We are calculating conductance by comparing the average value of conductance in a method
-    community_dict = {}
-    with open(metisOutFilePath, 'r') as metisOutFile:
-        for line_id, line in enumerate(metisOutFile.readlines()):
-            vertex_id = line_id + 1
-            community_id = int(line.rstrip('\n'))
-            if community_id not in community_dict:
-                community_dict[community_id] = set([vertex_id])
-            else:
-                community_dict[community_id].add(vertex_id)
-
-    nxGraph = convert_to_networkx(metisFilePath)
-
-    # calculate average conductance
-
-    no_of_communities = len(community_dict)
-    conductance_values = [conductance(nxGraph, community_dict[community_id]) for community_id in community_dict]
-    average_conductance_value = sum(conductance_values)/len(conductance_values)
-    return average_conductance_value
-
 ### Taken from networkx's latest code ###
 ### HOWEVER MODIFIED, DUE TO OUR GRAPHS BEING NOT WEIGHTED ###
 ### Assumes each edge to be of weight = 1 ###
@@ -129,6 +107,30 @@ def conductance(G, S, T=None):
     volume_S = volume(G, S)
     volume_T = volume(G, T)
     return num_cut_edges / min(volume_S, volume_T)
+
+
+def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
+
+    # We are calculating conductance by comparing the average value of conductance in a method
+    community_dict = {}
+    with open(metisOutFilePath, 'r') as metisOutFile:
+        for line_id, line in enumerate(metisOutFile.readlines()):
+            vertex_id = line_id + 1
+            community_id = int(line.rstrip('\n'))
+            if community_id not in community_dict:
+                community_dict[community_id] = set([vertex_id])
+            else:
+                community_dict[community_id].add(vertex_id)
+
+    nxGraph = convert_to_networkx(metisFilePath)
+
+    # calculate average conductance
+
+    conductance_values = [conductance(nxGraph, community_dict[community_id]) for community_id in community_dict]
+    average_conductance_value = sum(conductance_values)/len(conductance_values)
+    return average_conductance_value
+
+
 
 # print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
 # print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
