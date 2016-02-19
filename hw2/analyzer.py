@@ -1,5 +1,5 @@
-__author__ = 'meraj'
 from __future__ import division
+__author__ = 'meraj'
 import csv
 import networkx as nx
 import community
@@ -85,37 +85,49 @@ def calculateModularityMetis(metisOutFilePath, metisFilePath):
 
 
 def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
+
+    # We are calculating conductance by comparing the average value of conductance in a method
+    community_dict = {}
     with open(metisOutFilePath, 'r') as metisOutFile:
-        nxGraph = convert_to_networkx(metisFilePath)
-        partition = dict()
-
         for line_id, line in enumerate(metisOutFile.readlines()):
-            vertexId = line_id + 1
-            partition[vertexId] = int(line.split()[0])
+            vertex_id = line_id + 1
+            community_id = int(line.rstrip('\n'))
+            if community_id not in community_dict:
+                community_dict[community_id] = set([vertex_id])
+            else:
+                community_dict[community_id].add(vertex_id)
 
+    nxGraph = convert_to_networkx(metisFilePath)
 
-    # return conductance
+    # calculate average conductance
 
-### Taken from networkx's latest code ##
+    no_of_communities = len(community_dict)
+    conductance_values = [conductance(nxGraph, community_dict[community_id]) for community_id in community_dict]
+    average_conductance_value = sum(conductance_values)/len(conductance_values)
+    return average_conductance_value
 
-def cut_size(G, S, T=None, weight=None):
-    edges = nx.edge_boundary(G, S, T, data=weight, default=1)
+### Taken from networkx's latest code ###
+### HOWEVER MODIFIED, DUE TO OUR GRAPHS BEING NOT WEIGHTED ###
+### Assumes each edge to be of weight = 1 ###
+
+def cut_size(G, S, T=None):
+    edges = nx.edge_boundary(G, S, T)
     if G.is_directed():
-        edges = chain(edges, nx.edge_boundary(G, T, S, data=weight, default=1))
-    return sum(weight for u, v, weight in edges)
+        edges = chain(edges, nx.edge_boundary(G, T, S))
+    return sum(1 for u, v in edges)
 
 
-def volume(G, S, weight=None):
+def volume(G, S):
     degree = G.out_degree if G.is_directed() else G.degree
-    return sum(d for v, d in degree(S, weight=weight))
+    return sum(1 for v in degree(S))
 
 
-def conductance(G, S, T=None, weight=None):
+def conductance(G, S, T=None):
     if T is None:
         T = set(G) - set(S)
-    num_cut_edges = cut_size(G, S, T, weight=weight)
-    volume_S = volume(G, S, weight=weight)
-    volume_T = volume(G, T, weight=weight)
+    num_cut_edges = cut_size(G, S, T)
+    volume_S = volume(G, S)
+    volume_T = volume(G, T)
     return num_cut_edges / min(volume_S, volume_T)
 
 # print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
@@ -124,4 +136,4 @@ def conductance(G, S, T=None, weight=None):
 # print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
 # print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
 
-# print calculate_conductance('output/metis/wiki-Vote.metis.part.100', 'data/wiki-Vote.metis')
+print calculate_conductance('output/metis/ncut_r=1/facebook_combined.metis.part.100', 'data/wiki-Vote.metis')
