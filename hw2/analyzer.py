@@ -221,13 +221,13 @@ filenames_list = ['ca-GrQc', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote']
 directory_list = ['r=1', 'r=2', 'r=3', 'cnm']
 
 for dir_name in directory_list:
-    for fname in os.listdir('./output/metis/{}/.'.format(dir_name)):
-        file_path = 'output/metis/{}/{}'.format(dir_name, fname)
+    for fname in os.listdir('/home/0/guptanir/my_folder/output/metis/{}/.'.format(dir_name)):
+        file_path = '/home/0/guptanir/my_folder/output/metis/{}/{}'.format(dir_name, fname)
         if '_output' in fname or 'youtube' in fname:
             continue
         for f in filenames_list:
             if f in fname:
-                other_file_path = 'data/{}.metis'.format(f)
+                other_file_path = '/home/0/guptanir/my_folder/data/{}.metis'.format(f)
                 break
         try:
             print('{} Conductance: {}'.format(fname, calculate_conductance(file_path, other_file_path)))
@@ -241,8 +241,8 @@ print '\n\nMLRMCL\n\n'
 # # for mlrmcl
 for i in [1, 2, 3]:
     for file_name in filenames_list:
-        file_path = 'output/mlrmcl/r={}/{}.metis.c1000.i{}.0.b0.5'.format(i, file_name, i)
-        other_file_path = 'data/{}.metis'.format(file_name)
+        file_path = '/home/0/guptanir/my_folder/output/mlrmcl/r={}/{}.metis.c1000.i{}.0.b0.5'.format(i, file_name, i)
+        other_file_path = '/home/0/guptanir/my_folder/data/{}.metis'.format(file_name)
         print('{} Modularity: {}'.format(file_name, calculateModularityMetis(file_path, other_file_path)))
         print('{} Average Ncut value: {}'.format(file_name, calculate_ncut_value(file_path, other_file_path)))
         print('{} Conductance: {}'.format(file_name, calculate_conductance(file_path, other_file_path)))
@@ -251,30 +251,37 @@ print '\n\nCNM\n\n'
 
 for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutella_cnm.txt', 'wiki_cnm.txt'],
                                     filenames_list):
-    data = create_text_for_cnm('output/CNM/{}'.format(filename))
-    other_file_path = 'data/{}.metis'.format(other_filename)
-    with open('output/CNM/temp_' + filename, 'w') as f:
+    data = create_text_for_cnm('/home/0/guptanir/my_folder/output/CNM/{}'.format(filename))
+    other_file_path = '/home/0/guptanir/my_folder/data/{}.metis'.format(other_filename)
+    with open('/home/0/guptanir/my_folder/output/CNM/temp_' + filename, 'w') as f:
         f.write(data)
-    print('{} Conductance: {}'.format(filename, calculate_conductance('output/CNM/temp_' + filename, other_file_path)))
+    print('{} Conductance: {}'.format(filename,
+                                      calculate_conductance('/home/0/guptanir/my_folder/output/CNM/temp_' + filename,
+                                                            other_file_path)))
     print(
         '{} Average Ncut value: {}'.format(filename,
-                                           calculate_ncut_value('output/CNM/temp_' + filename, other_file_path)))
+                                           calculate_ncut_value(
+                                               '/home/0/guptanir/my_folder/output/CNM/temp_' + filename,
+                                               other_file_path)))
 
 print 'For METIS\n'
 print 'For r=1\n'
-print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=1/com-youtube.ungraph.metis.part.1275')
+print calculate_entropy('/home/0/guptanir/my_folder/data/com-youtube.ungraph.metis.GT',
+                        '/home/0/guptanir/my_folder/output/metis/r=1/com-youtube.ungraph.metis.part.1275')
 print '\nFor r=2\n'
-print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=2/com-youtube.ungraph.metis.part.27084')
+print calculate_entropy('/home/0/guptanir/my_folder/data/com-youtube.ungraph.metis.GT',
+                        '/home/0/guptanir/my_folder/output/metis/r=2/com-youtube.ungraph.metis.part.27084')
 print '\nFor r=3\n'
-print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=3/com-youtube.ungraph.metis.part.154505')
+print calculate_entropy('/home/0/guptanir/my_folder/data/com-youtube.ungraph.metis.GT',
+                        '/home/0/guptanir/my_folder/output/metis/r=3/com-youtube.ungraph.metis.part.154505')
 
 print 'For MLRMCL\n'
 print 'For r=1\n'
-print calculate_entropy('data/com-youtube.ungraph.metis.GT',
-                        'output/mlrmcl/r=1/com-youtube.ungraph.metis.c1000.i1.0.b0.5')
+print calculate_entropy('/home/0/guptanir/my_folder/data/com-youtube.ungraph.metis.GT',
+                        '/home/0/guptanir/my_folder/output/mlrmcl/r=1/com-youtube.ungraph.metis.c1000.i1.0.b0.5')
 print '\nFor r=2\n'
-print calculate_entropy('data/com-youtube.ungraph.metis.GT',
-                        'output/mlrmcl/r=2/com-youtube.ungraph.metis.c1000.i2.0.b0.5')
+print calculate_entropy('/home/0/guptanir/my_folder/data/com-youtube.ungraph.metis.GT',
+                        '/home/0/guptanir/my_folder/output/mlrmcl/r=2/com-youtube.ungraph.metis.c1000.i2.0.b0.5')
 print '\nFor r=3\n'
-print calculate_entropy('data/com-youtube.ungraph.metis.GT',
-                        'output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5')
+print calculate_entropy('/home/0/guptanir/my_folder/data/com-youtube.ungraph.metis.GT',
+                        '/home/0/guptanir/my_folder/output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5')

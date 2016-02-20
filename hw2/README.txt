@@ -1,6 +1,8 @@
 Please beware, one must install louvain and networkx dev 2.0 module for the code to work
 (we tried sys.path.append, but it wasn't working)
 
+Also, I have linked the data and output to my directory, as they were too big for submission
+
 1. To run the program
 python analyzer.py
 
