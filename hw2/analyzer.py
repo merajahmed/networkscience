@@ -30,6 +30,18 @@ def findCommunityEdgesMCL(mcloutfile, metisfile):
     return edgeDictionary, communityDictionary
 
 
+def create_text_for_cnm(cnm_text_file):
+    temp_community_dict = {}
+
+    with open(cnm_text_file, 'r') as f:
+        for line in f.readlines()[6:]:
+            vertex_id, community_id = int(line.rstrip('\n').split()[0]), line.rstrip('\n').split()[1]
+            temp_community_dict[vertex_id] = community_id
+
+    text_list = [value for (key, value) in sorted(temp_community_dict.iteritems())]
+    return '\n'.join(text_list)
+
+
 def findCommunityEdgesMetis(metisoutfile, metisfile):
     communityDictionary = dict()
     edgeDictionary = dict()
@@ -111,6 +123,15 @@ def conductance(G, S, T=None):
         return 0
     return num_cut_edges / min(volume_S, volume_T)
 
+
+def normalized_cut_size(G, S, T=None):
+    if T is None:
+        T = set(G) - set(S)
+    num_cut_edges = cut_size(G, S, T=T)
+    volume_S = volume(G, S)
+    volume_T = volume(G, T)
+    return num_cut_edges * ((1 / volume_S) + (1 / volume_T))
+
 #returns number_of_components, min conductance across all components, list of conductance values for components with more than one community
 def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
     # We are calculating conductance by comparing the average value of conductance in a method
@@ -144,6 +165,25 @@ def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
     valid_conductance_values = filter(lambda x: x != 0, component_conductance_values)
     min_conductance_value = min(valid_conductance_values)
     return number_of_componets, min_conductance_value, valid_conductance_values
+
+
+def calculate_ncut_value(metisOutFilePath, metisFilePath):
+    community_dict = {}
+    vertex_dict = {}
+    with open(metisOutFilePath, 'r') as metisOutFile:
+        for line_id, line in enumerate(metisOutFile.readlines()):
+            vertex_id = line_id + 1
+            community_id = int(line.rstrip('\n'))
+            if community_id not in community_dict:
+                community_dict[community_id] = set([vertex_id])
+            else:
+                community_dict[community_id].add(vertex_id)
+            vertex_dict[vertex_id] = community_id
+    nxGraph = convert_to_networkx(metisFilePath)
+
+    ncut_values = [normalized_cut_size(nxGraph, community_dict[community_id]) for community_id in community_dict]
+    average_ncut_value = sum(ncut_values) / len(ncut_values)
+    return average_ncut_value
 
 def entropy(labels):
     p, lns = Counter(labels), float(len(labels))
@@ -187,9 +227,7 @@ def calculate_entropy(metis_gt_file, metis_out_file):
     return entropy_dict
 
 
-directory_list = ['mlrmcl/r=', 'metis/ncut_r=']
-
-filenames_list = ['ca-GrQC', 'com-youtube.ungraph', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote']
+filenames_list = ['ca-GrQc', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote', 'com-youtube.ungraph']
 
 # for file_name in filenames_list:
 #     for i in [2, 50, 75, 100, 1000]:
@@ -197,13 +235,30 @@ filenames_list = ['ca-GrQC', 'com-youtube.ungraph', 'facebook_combined', 'p2p-Gn
 #         print(
 #         '{} Modularity:'.format(file_name), calculateModularityMetis(file_path, 'data/{}.metis'.format(file_name)))
 
-for directory_name in directory_list:
-    for i in [1, 2, 3]:
-        for file_name in filenames_list:
-            if 'metis' in directory_name:
-                file_path = 'output/{}{}/{}.metis.part.100'.format(directory_name, i, file_name)
-            else:
-                file_path = 'output/{}{}/{}.metis.c1000,i{}.0.b0.5'.format(directory_name, i, file_name, i)
+# for metis
+# for i in [1, 2, 3]:
+#     for file_name in filenames_list:
+#         file_path = 'output/metis/ncut_r={}/{}.metis.part.100'.format(i, file_name)
+#         print('{} Modularity: {}'.format(file_name, calculateModularityMetis(file_path)))
+#
+#
+# # for mlrmcl
+# for i in [1, 2, 3]:
+#     for file_name in filenames_list:
+#         file_path = 'output/{mlrmcl/r={}/{}.metis.c1000.i{}.0.b0.5'.format(i, file_name, i)
+#         other_file_path = 'data/{}.metis'.format(file_name)
+#         print('{} Modularity: {}'.format(file_name, calculateModularityMetis(file_path, other_file_path)))
+#         print('{} Conductance: {}'.format(file_name, calculate_conductance(file_path, other_file_path)))
+
+for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutella_cnm.txt', 'wiki_cnm.txt'],
+                                    filenames_list[:-1]):
+    data = create_text_for_cnm('output/CNM/{}'.format(filename))
+    other_file_path = 'data/{}.metis'.format(other_filename)
+    with open('output/CNM/temp_' + filename, 'w') as f:
+        f.write(data)
+    # print('{} Conductance: {}'.format(filename, calculate_conductance('output/CNM/temp_' + filename, other_file_path)))
+    print(
+    '{} Average Ncut value: {}'.format(filename, calculate_ncut_value('output/CNM/temp_' + filename, other_file_path)))
 
 
 # print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
@@ -211,5 +266,5 @@ for directory_name in directory_list:
 # print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
 # print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
 
-print calculate_conductance('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5', 'data/ca-GrQc.metis')
+# print calculate_conductance('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5', 'data/ca-GrQc.metis')
 # print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/ncut_r=1/com-youtube.ungraph.metis.part.100')
