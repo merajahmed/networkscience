@@ -111,7 +111,7 @@ def conductance(G, S, T=None):
         return 0
     return num_cut_edges / min(volume_S, volume_T)
 
-
+#returns number_of_components, min conductance across all components, list of conductance values for components with more than one community
 def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
     # We are calculating conductance by comparing the average value of conductance in a method
     community_dict = {}
@@ -135,13 +135,15 @@ def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
         component_community_list = set()
         for node in component_nodes:
             component_community_list.add(vertex_dict[node])
-        print(component_community_list)
         conductance_values = [conductance(component, community_dict[community_id]) for community_id in component_community_list]
         component_conductance_values.append(min(conductance_values))
     # # calculate average conductance
     # conductance_values = [conductance(nxGraph, community_dict[community_id]) for community_id in community_dict]
     # average_conductance_value = sum(conductance_values)/len(conductance_values)
-    return component_conductance_values
+    number_of_componets = count
+    valid_conductance_values = filter(lambda x: x != 0, component_conductance_values)
+    min_conductance_value = min(valid_conductance_values)
+    return number_of_componets, min_conductance_value, valid_conductance_values
 
 def entropy(labels):
     p, lns = Counter(labels), float(len(labels))
@@ -189,11 +191,11 @@ directory_list = ['mlrmcl/r=', 'metis/ncut_r=']
 
 filenames_list = ['ca-GrQC', 'com-youtube.ungraph', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote']
 
-for file_name in filenames_list:
-    for i in [2, 50, 75, 100, 1000]:
-        file_path = 'output/metis/no_ncuts/{}.metis.part.{}'.format(file_name, i)
-        print(
-        '{} Modularity:'.format(file_name), calculateModularityMetis(file_path, 'data/{}.metis'.format(file_name)))
+# for file_name in filenames_list:
+#     for i in [2, 50, 75, 100, 1000]:
+#         file_path = 'output/metis/no_ncuts/{}.metis.part.{}'.format(file_name, i)
+#         print(
+#         '{} Modularity:'.format(file_name), calculateModularityMetis(file_path, 'data/{}.metis'.format(file_name)))
 
 for directory_name in directory_list:
     for i in [1, 2, 3]:
