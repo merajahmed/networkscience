@@ -97,6 +97,7 @@ def cut_size(G, S, T=None):
 
 def volume(G, S):
     degree = G.out_degree if G.is_directed() else G.degree
+    #print(degree(S))
     return sum(1 for v in degree(S))
 
 
@@ -106,13 +107,15 @@ def conductance(G, S, T=None):
     num_cut_edges = cut_size(G, S, T)
     volume_S = volume(G, S)
     volume_T = volume(G, T)
+    if volume_T == 0:
+        return 0
     return num_cut_edges / min(volume_S, volume_T)
 
 
 def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
-
     # We are calculating conductance by comparing the average value of conductance in a method
     community_dict = {}
+    vertex_dict = {}
     with open(metisOutFilePath, 'r') as metisOutFile:
         for line_id, line in enumerate(metisOutFile.readlines()):
             vertex_id = line_id + 1
@@ -121,14 +124,24 @@ def calculate_conductance(metisOutFilePath, metisFilePath): # work in progress
                 community_dict[community_id] = set([vertex_id])
             else:
                 community_dict[community_id].add(vertex_id)
-
+            vertex_dict[vertex_id] = community_id
     nxGraph = convert_to_networkx(metisFilePath)
-
-    # calculate average conductance
-
-    conductance_values = [conductance(nxGraph, community_dict[community_id]) for community_id in community_dict]
-    average_conductance_value = sum(conductance_values)/len(conductance_values)
-    return average_conductance_value
+    connected_components = nx.connected_component_subgraphs(nxGraph)
+    component_conductance_values = list()
+    count = 0
+    for component in connected_components:
+        count += 1
+        component_nodes = nx.nodes(component)
+        component_community_list = set()
+        for node in component_nodes:
+            component_community_list.add(vertex_dict[node])
+        print(component_community_list)
+        conductance_values = [conductance(component, community_dict[community_id]) for community_id in component_community_list]
+        component_conductance_values.append(min(conductance_values))
+    # # calculate average conductance
+    # conductance_values = [conductance(nxGraph, community_dict[community_id]) for community_id in community_dict]
+    # average_conductance_value = sum(conductance_values)/len(conductance_values)
+    return component_conductance_values
 
 def entropy(labels):
     p, lns = Counter(labels), float(len(labels))
@@ -196,5 +209,5 @@ for directory_name in directory_list:
 # print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
 # print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
 
-# print calculate_conductance('output/metis/ncut_r=1/facebook_combined.metis.part.100', 'data/wiki-Vote.metis')
+print calculate_conductance('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5', 'data/ca-GrQc.metis')
 # print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/ncut_r=1/com-youtube.ungraph.metis.part.100')
