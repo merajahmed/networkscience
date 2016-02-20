@@ -285,9 +285,22 @@ directory_list = ['r=1', 'r=2', 'r=3', 'cnm']
 # print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
 
 # print calculate_conductance('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5', 'data/ca-GrQc.metis')
+
+print 'For METIS\n'
 print 'For r=1\n'
 print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=1/com-youtube.ungraph.metis.part.1275')
 print '\nFor r=2\n'
 print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=2/com-youtube.ungraph.metis.part.27084')
 print '\nFor r=3\n'
 print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=3/com-youtube.ungraph.metis.part.154505')
+
+print 'For MLRMCL\n'
+print 'For r=1\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT',
+                        'output/mlrmcl/r=1/com-youtube.ungraph.metis.c1000.i1.0.b0.5')
+print '\nFor r=2\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT',
+                        'output/mlrmcl/r=2/com-youtube.ungraph.metis.c1000.i2.0.b0.5')
+print '\nFor r=3\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT',
+                        'output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5')
