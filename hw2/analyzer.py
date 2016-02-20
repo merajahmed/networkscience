@@ -262,7 +262,7 @@ for i in [1, 2, 3]:
 print '\n\nCNM\n\n'
 
 for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutella_cnm.txt', 'wiki_cnm.txt'],
-                                    filenames_list[:-1]):
+                                    filenames_list):
     data = create_text_for_cnm('output/CNM/{}'.format(filename))
     other_file_path = 'data/{}.metis'.format(other_filename)
     with open('output/CNM/temp_' + filename, 'w') as f:
