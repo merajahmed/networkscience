@@ -186,9 +186,9 @@ for directory_name in directory_list:
     for i in [1, 2, 3]:
         for file_name in filenames_list:
             if 'metis' in directory_name:
-                file_path = 'output/{}/{}.metis.part.100'.format(directory_name, file_name)
+                file_path = 'output/{}{}/{}.metis.part.100'.format(directory_name, i, file_name)
             else:
-                file_path = 'output/{}/{}.metis.part.'.format(directory_name, file_name)
+                file_path = 'output/{}{}/{}.metis.c1000,i{}.0.b0.5'.format(directory_name, i, file_name, i)
 
 
 # print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
