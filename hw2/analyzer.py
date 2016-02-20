@@ -222,10 +222,12 @@ def calculate_entropy(metis_gt_file, metis_out_file):
     entropy = 0
     for community_id in test_community_dict:
         total = float(len(test_community_dict[community_id]))
-        truecommunitylist = []
+        truecommunityset = set()
         for node in test_community_dict[community_id]:
-            truecommunitylist += ground_community_dict[node]
+            for truecommunity in ground_community_dict[node]:
+                truecommunityset.add(truecommunity)
         entropydict = dict()
+        truecommunitylist = list(truecommunityset)
         for community in truecommunitylist:
             for node in test_community_dict[community_id]:
                 contribution = 1.0/len(ground_community_dict[node])
