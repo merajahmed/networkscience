@@ -246,7 +246,7 @@ for dir_name in directory_list:
                 other_file_path = 'data/{}.metis'.format(f)
                 break
 
-        # print('{} Conductance: {}'.format(, calculate_conductance(file_path, other_file_path)))
+        print('{} Conductance: {}'.format(fname, calculate_conductance(file_path, other_file_path)))
         print('{} Modularity: {}'.format(fname, calculateModularityMetis(file_path, other_file_path)))
 # #
 #
