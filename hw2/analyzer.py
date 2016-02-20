@@ -192,41 +192,50 @@ def entropy(labels):
 
 def calculate_entropy(metis_gt_file, metis_out_file):
     ground_community_dict = {}
+    groundtruthnodes = set()
     with open(metis_gt_file, 'r') as metis_gt:
-        for line_id, line in enumerate(metis_gt.readlines()):
-            for vertex_id in line.rstrip('\n').split():
-                if int(vertex_id) not in ground_community_dict:
-                    ground_community_dict[int(vertex_id)] = [line_id + 1]
+        lines =  metis_gt.readlines()
+        community_id = 0
+        for line in lines:
+            nodelist = map(lambda x: int(x), line.split())
+            for node in nodelist:
+                groundtruthnodes.add(node)
+                if node not in ground_community_dict:
+                    ground_community_dict[node] = [community_id]
                 else:
-                    ground_community_dict[int(vertex_id)].append(line_id + 1)
-
-    test_community_dict = {}
+                    ground_community_dict[node].append(community_id)
+            community_id += 1
+    test_community_dict = dict()
     with open(metis_out_file, 'r') as metis_file:
-        for line_id, line in enumerate(metis_file.readlines()):
-            vertex_id = line_id + 1
-            if vertex_id not in ground_community_dict:  # skip the vertices which are not present in GT
+        lines = metis_file.readlines()
+        vertexid = 0
+        for line in lines:
+            vertexid += 1
+            if vertexid not in groundtruthnodes:
                 continue
-            # build community sets with labels for different communities based on ground community dict
-            community_id = int(line.rstrip('\n'))
-            # the main building part for you to modify
-            if community_id not in test_community_dict:
-                test_community_dict[community_id] = []
-                test_community_dict[community_id].extend(ground_community_dict[vertex_id]
-                                                         if type(ground_community_dict[vertex_id]) == list
-                                                         else [ground_community_dict[vertex_id]])  # here
             else:
-                test_community_dict[community_id].extend(ground_community_dict[vertex_id]
-                                                         if type(ground_community_dict[vertex_id]) == list
-                                                         else [ground_community_dict[vertex_id]])  # and here
-
-    # true community label of vertices will be stored and now we can calculate entropy
-
-    entropy_dict = {}
-    for test_community_id, test_community_list in test_community_dict.iteritems():
-        entropy_dict[test_community_id] = entropy(test_community_list)
-
-    return entropy_dict
-
+                community_id = int(line[0])
+                if community_id not in test_community_dict:
+                    test_community_dict[community_id] = [vertexid]
+                else:
+                    test_community_dict[community_id].append(vertexid)
+    entropy = 0
+    for community_id in test_community_dict:
+        total = float(len(test_community_dict[community_id]))
+        truecommunitylist = []
+        for node in test_community_dict[community_id]:
+            truecommunitylist += ground_community_dict[node]
+        entropydict = dict()
+        for community in truecommunitylist:
+            for node in test_community_dict[community_id]:
+                contribution = 1.0/len(ground_community_dict[node])
+                entropydict[community] = entropydict.get(community, 0.0) + contribution
+        plogp = 0.0
+        for community in entropydict:
+            plogp += ((entropydict[community]/float(len(truecommunitylist)))*math.log(entropydict[community]/float(len(truecommunitylist))))
+        plogp *= -1
+        entropy += ((len(test_community_dict[community_id])/float(len(groundtruthnodes)))*plogp)
+    return entropy
 
 filenames_list = ['ca-GrQc', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote']#, 'com-youtube.ungraph']
 
