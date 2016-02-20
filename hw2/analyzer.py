@@ -73,30 +73,6 @@ def calculateModularityMetis(metisOutFilePath, metisFilePath):
         modularity = community.modularity(partition, nxGraph)
     return modularity
 
-    # edgesWithinGroups = dict()
-    # edgeList = list()
-    # for vertex in edgeDictionary:
-    #     for vertex2 in edgeDictionary[vertex]:
-    #         if (vertex, vertex2) not in edgeList and (vertex2, vertex) not in edgeList:
-    #                    edgeList.append((vertex,vertex2))
-    # communityList_one = communityDictionary.keys()[0:communityDictionary.keys()/2]
-    # communityList_two = communityDictionary[communityDictionary.keys()/2+1:]
-    # modularity = 0.0
-    # m = 0.0 #number of edges
-    # for vertex in edgeDictionary:
-    #     m += len(edgeDictionary[vertex])
-    # m /= 2
-    # for community_one in communityList_one:
-    #     for community_two in communityList_two:
-    #         for vertex_one in communityList_one[community_one]:
-    #             for vertex_two in communityList_two[community_two]:
-    #                 if (vertex_one, vertex_two) in edgeList or (vertex_two, vertex_one) in edgeList:
-    #                     modularity += 1
-    #                     modularity -= ((len(edgeDictionary[vertex_one])*len(edgeDictionary[vertex_two]))/(2*m))
-    # modularity = modularity/(2*m)
-    # return modularity
-
-
 ### Taken from networkx's latest code ###
 ### HOWEVER MODIFIED, DUE TO OUR GRAPHS BEING NOT WEIGHTED ###
 ### Assumes each edge to be of weight = 1 ###
@@ -284,30 +260,21 @@ for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutel
         '{} Average Ncut value: {}'.format(filename,
                                            calculate_ncut_value('output/CNM/temp_' + filename, other_file_path)))
 
+print 'For METIS\n'
+print 'For r=1\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=1/com-youtube.ungraph.metis.part.1275')
+print '\nFor r=2\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=2/com-youtube.ungraph.metis.part.27084')
+print '\nFor r=3\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=3/com-youtube.ungraph.metis.part.154505')
 
-
-# print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
-# print('Facebook Modularity:', calculateModularityMetis('output/mlrmcl/r=3/facebook_combined.metis.c1000.i3.0.b0.5','data/facebook_combined.metis'))
-# print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
-# print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
-
-# print calculate_conductance('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5', 'data/ca-GrQc.metis')
-
-# print 'For METIS\n'
-# print 'For r=1\n'
-# print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=1/com-youtube.ungraph.metis.part.1275')
-# print '\nFor r=2\n'
-# print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=2/com-youtube.ungraph.metis.part.27084')
-# print '\nFor r=3\n'
-# print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=3/com-youtube.ungraph.metis.part.154505')
-#
-# print 'For MLRMCL\n'
-# print 'For r=1\n'
-# print calculate_entropy('data/com-youtube.ungraph.metis.GT',
-#                         'output/mlrmcl/r=1/com-youtube.ungraph.metis.c1000.i1.0.b0.5')
-# print '\nFor r=2\n'
-# print calculate_entropy('data/com-youtube.ungraph.metis.GT',
-#                         'output/mlrmcl/r=2/com-youtube.ungraph.metis.c1000.i2.0.b0.5')
-# print '\nFor r=3\n'
-# print calculate_entropy('data/com-youtube.ungraph.metis.GT',
-#                         'output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5')
+print 'For MLRMCL\n'
+print 'For r=1\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT',
+                        'output/mlrmcl/r=1/com-youtube.ungraph.metis.c1000.i1.0.b0.5')
+print '\nFor r=2\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT',
+                        'output/mlrmcl/r=2/com-youtube.ungraph.metis.c1000.i2.0.b0.5')
+print '\nFor r=3\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT',
+                        'output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5')
