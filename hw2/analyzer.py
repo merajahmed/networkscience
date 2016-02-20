@@ -227,7 +227,7 @@ def calculate_entropy(metis_gt_file, metis_out_file):
     return entropy_dict
 
 
-filenames_list = ['ca-GrQc', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote', 'com-youtube.ungraph']
+filenames_list = ['ca-GrQc', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote']#, 'com-youtube.ungraph']
 
 # for file_name in filenames_list:
 #     for i in [2, 50, 75, 100, 1000]:
@@ -241,33 +241,41 @@ directory_list = ['r=1', 'r=2', 'r=3', 'cnm']
 for dir_name in directory_list:
     for fname in os.listdir('./output/metis/{}/.'.format(dir_name)):
         file_path = 'output/metis/{}/{}'.format(dir_name, fname)
+        if '_output' in fname or 'youtube' in fname:
+            continue
         for f in filenames_list:
             if f in fname:
                 other_file_path = 'data/{}.metis'.format(f)
                 break
+        try:
+            print('{} Conductance: {}'.format(fname, calculate_conductance(file_path, other_file_path)))
+            print('{} Modularity: {}'.format(fname, calculateModularityMetis(file_path, other_file_path)))
+            print('{} Average Ncut value: {}'.format(fname, calculate_ncut_value(file_path, other_file_path)))
+        except:
+            pass
 
-        print('{} Conductance: {}'.format(fname, calculate_conductance(file_path, other_file_path)))
-        print('{} Modularity: {}'.format(fname, calculateModularityMetis(file_path, other_file_path)))
-# #
+
+print '\n\nMLRMCL\n\n'
 #
 # # for mlrmcl
-# for i in [1, 2, 3]:
-#     for file_name in filenames_list:
-#         file_path = 'output/mlrmcl/r={}/{}.metis.c1000.i{}.0.b0.5'.format(i, file_name, i)
-#         other_file_path = 'data/{}.metis'.format(file_name)
-#         print('{} Modularity: {}'.format(file_name, calculateModularityMetis(file_path, other_file_path)))
-#         print('{} Conductance: {}'.format(file_name, calculate_conductance(file_path, other_file_path)))
+for i in [1, 2, 3]:
+    for file_name in filenames_list:
+        file_path = 'output/mlrmcl/r={}/{}.metis.c1000.i{}.0.b0.5'.format(i, file_name, i)
+        other_file_path = 'data/{}.metis'.format(file_name)
+        print('{} Modularity: {}'.format(file_name, calculateModularityMetis(file_path, other_file_path)))
+        print('{} Conductance: {}'.format(file_name, calculate_conductance(file_path, other_file_path)))
 
+print '\n\nCNM\n\n'
 
-# for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutella_cnm.txt', 'wiki_cnm.txt'],
-#                                     filenames_list[:-1]):
-#     data = create_text_for_cnm('output/CNM/{}'.format(filename))
-#     other_file_path = 'data/{}.metis'.format(other_filename)
-#     with open('output/CNM/temp_' + filename, 'w') as f:
-#         f.write(data)
-#     # print('{} Conductance: {}'.format(filename, calculate_conductance('output/CNM/temp_' + filename, other_file_path)))
-#     print(
-#     '{} Average Ncut value: {}'.format(filename, calculate_ncut_value('output/CNM/temp_' + filename, other_file_path)))
+for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutella_cnm.txt', 'wiki_cnm.txt'],
+                                    filenames_list[:-1]):
+    data = create_text_for_cnm('output/CNM/{}'.format(filename))
+    other_file_path = 'data/{}.metis'.format(other_filename)
+    with open('output/CNM/temp_' + filename, 'w') as f:
+        f.write(data)
+    print('{} Conductance: {}'.format(filename, calculate_conductance('output/CNM/temp_' + filename, other_file_path)))
+    print(
+    '{} Average Ncut value: {}'.format(filename, calculate_ncut_value('output/CNM/temp_' + filename, other_file_path)))
 
 
 

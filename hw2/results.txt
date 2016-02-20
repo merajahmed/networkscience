@@ -1,0 +1,88 @@
+facebook_combined.metis.part.15 Conductance: (1, 0.31417624521072796, [0.31417624521072796])
+facebook_combined.metis.part.15 Modularity: 0.796609869957
+facebook_combined.metis.part.15 Average Ncut value: 4.38389748276
+wiki-Vote.metis.part.59 Conductance: (24, 6.423423423423423, [6.423423423423423])
+wiki-Vote.metis.part.59 Modularity: 0.171367157045
+wiki-Vote.metis.part.59 Average Ncut value: 22.9387535327
+p2p-Gnutella08.metis.part.76 Conductance: (2, 1.1604938271604939, [1.1604938271604939])
+p2p-Gnutella08.metis.part.76 Modularity: 0.376754838263
+p2p-Gnutella08.metis.part.76 Average Ncut value: 4.02970812508
+ca-GrQc.metis.part.618 Conductance: (354, 0.1111111111111111, [0.1111111111111111, 1.3333333333333333, 1.5, 0.2])
+ca-GrQc.metis.part.618 Modularity: 0.318501970882
+ca-GrQc.metis.part.618 Average Ncut value: 3.72396558242
+facebook_combined.metis.part.148 Conductance: (1, 1.125, [1.125])
+facebook_combined.metis.part.148 Modularity: 0.247396999998
+facebook_combined.metis.part.148 Average Ncut value: 32.1582001533
+p2p-Gnutella08.metis.part.654 Conductance: (2, 0.09090909090909091, [0.09090909090909091])
+p2p-Gnutella08.metis.part.654 Modularity: 0.131120374009
+p2p-Gnutella08.metis.part.654 Average Ncut value: 5.69214325248
+ca-GrQc.metis.part.753 Conductance: (354, 0.125, [0.125, 0.6, 1.5, 0.75])
+ca-GrQc.metis.part.753 Modularity: 0.347630656986
+ca-GrQc.metis.part.753 Average Ncut value: 3.58228085195
+wiki-Vote.metis.part.365 Conductance: (24, 0.8888888888888888, [0.8888888888888888])
+wiki-Vote.metis.part.365 Modularity: 0.081145693111
+wiki-Vote.metis.part.365 Average Ncut value: 25.6816369916
+wiki-Vote.metis.part.601 Conductance: (24, 1.0, [1.0])
+wiki-Vote.metis.part.601 Modularity: 0.0324166602932
+wiki-Vote.metis.part.601 Average Ncut value: 27.3646100728
+facebook_combined.metis.part.165 Conductance: (1, 1.08, [1.08])
+facebook_combined.metis.part.165 Modularity: 0.228711029591
+facebook_combined.metis.part.165 Average Ncut value: 33.1025721414
+p2p-Gnutella08.metis.part.741 Conductance: (2, 0.375, [0.375])
+p2p-Gnutella08.metis.part.741 Modularity: 0.132420454281
+p2p-Gnutella08.metis.part.741 Average Ncut value: 5.66369110064
+ca-GrQc.metis.part.775 Conductance: (354, 0.125, [0.125, 0.5, 0.6666666666666666, 1.5, 1.0, 1.0])
+ca-GrQc.metis.part.775 Modularity: 0.310992377403
+ca-GrQc.metis.part.775 Average Ncut value: 3.76306047744
+ca-GrQc.metis.part.421 Conductance: (354, 0.08333333333333333, [0.08333333333333333])
+ca-GrQc.metis.part.421 Modularity: 0.370814151428
+ca-GrQc.metis.part.421 Average Ncut value: 3.45045345894
+facebook_combined.metis.part.18 Conductance: (1, 1.3564814814814814, [1.3564814814814814])
+facebook_combined.metis.part.18 Modularity: 0.753955878357
+facebook_combined.metis.part.18 Average Ncut value: 6.92637470515
+wiki-Vote.metis.part.52 Conductance: (24, 5.265151515151516, [5.265151515151516])
+wiki-Vote.metis.part.52 Modularity: 0.18119697486
+wiki-Vote.metis.part.52 Average Ncut value: 22.5656232523
+p2p-Gnutella08.metis.part.22 Conductance: (2, 2.3427561837455833, [2.3427561837455833])
+p2p-Gnutella08.metis.part.22 Modularity: 0.427340380485
+p2p-Gnutella08.metis.part.22 Average Ncut value: 3.52890208871
+
+
+MLRMCL
+
+
+ca-GrQc Modularity: 0.77962335626
+ca-GrQc Conductance: (354, 0.0625, [0.0625])
+facebook_combined Modularity: 0.721818546948
+facebook_combined Conductance: (1, 0.08196721311475409, [0.08196721311475409])
+p2p-Gnutella08 Modularity: 0.051509106103
+p2p-Gnutella08 Conductance: (2, 0.09090909090909091, [0.09090909090909091])
+wiki-Vote Modularity: 0.316141305105
+wiki-Vote Conductance: (24, 0.2, [0.2])
+ca-GrQc Modularity: 0.742741373868
+ca-GrQc Conductance: (354, 0.0625, [0.0625, 1.0, 1.1666666666666667, 0.2])
+facebook_combined Modularity: 0.787844002379
+facebook_combined Conductance: (1, 1.0, [1.0])
+p2p-Gnutella08 Modularity: 0.319865200432
+p2p-Gnutella08 Conductance: (2, 0.09090909090909091, [0.09090909090909091])
+wiki-Vote Modularity: 0.120650881249
+wiki-Vote Conductance: (24, 1.0, [1.0])
+ca-GrQc Modularity: 0.724937602681
+ca-GrQc Conductance: (354, 0.0625, [0.0625, 1.0, 1.1666666666666667, 0.2])
+facebook_combined Modularity: 0.764696708487
+facebook_combined Conductance: (1, 1.0, [1.0])
+p2p-Gnutella08 Modularity: 0.294175730909
+p2p-Gnutella08 Conductance: (2, 0.09090909090909091, [0.09090909090909091])
+wiki-Vote Modularity: 0.142281440018
+wiki-Vote Conductance: (24, 1.0, [1.0])
+
+
+CNM
+
+
+grqc_cnm.txt Conductance: (354, 1.0, [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 3.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 3.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 3.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 2.0, 3.0, 1.0, 1.0, 1.0, 3.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 6.0, 3.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 2.0, 1.5, 1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 1.0, 2.0, 2.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.5, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 2.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 3.0, 1.0, 1.0, 5.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.3333333333333335, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 3.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 2.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 2.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.6666666666666665, 1.0, 4.0, 1.0, 1.0, 1.0, 1.0, 1.0, 3.0, 2.0, 2.0, 1.0, 2.0, 2.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+grqc_cnm.txt Average Ncut value: 5.49025569548
+facebook_cnm.txt Conductance: (1, 0.03398058252427184, [0.03398058252427184])
+facebook_cnm.txt Average Ncut value: 1.65948258228
+Gnutella_cnm.txt Conductance: (2, 0.09090909090909091, [0.09090909090909091])
+Gnutella_cnm.txt Average Ncut value: 2.03577393347
