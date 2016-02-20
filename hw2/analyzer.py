@@ -5,7 +5,7 @@ import community
 import math
 from collections import Counter
 from itertools import chain
-import os
+
 
 # create community dictionary of form - {communityId:[list of vertices]}, and edge dictionary of form - {vertexId:[list of vertexIds connected to]}
 def findCommunityEdgesMCL(mcloutfile, metisfile):
@@ -238,44 +238,44 @@ filenames_list = ['ca-GrQc', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote']
 # for metis
 directory_list = ['r=1', 'r=2', 'r=3', 'cnm']
 
-for dir_name in directory_list:
-    for fname in os.listdir('./output/metis/{}/.'.format(dir_name)):
-        file_path = 'output/metis/{}/{}'.format(dir_name, fname)
-        if '_output' in fname or 'youtube' in fname:
-            continue
-        for f in filenames_list:
-            if f in fname:
-                other_file_path = 'data/{}.metis'.format(f)
-                break
-        try:
-            print('{} Conductance: {}'.format(fname, calculate_conductance(file_path, other_file_path)))
-            print('{} Modularity: {}'.format(fname, calculateModularityMetis(file_path, other_file_path)))
-            print('{} Average Ncut value: {}'.format(fname, calculate_ncut_value(file_path, other_file_path)))
-        except:
-            pass
-
-
-print '\n\nMLRMCL\n\n'
+# for dir_name in directory_list:
+#     for fname in os.listdir('./output/metis/{}/.'.format(dir_name)):
+#         file_path = 'output/metis/{}/{}'.format(dir_name, fname)
+#         if '_output' in fname or 'youtube' in fname:
+#             continue
+#         for f in filenames_list:
+#             if f in fname:
+#                 other_file_path = 'data/{}.metis'.format(f)
+#                 break
+#         try:
+#             print('{} Conductance: {}'.format(fname, calculate_conductance(file_path, other_file_path)))
+#             print('{} Modularity: {}'.format(fname, calculateModularityMetis(file_path, other_file_path)))
+#             print('{} Average Ncut value: {}'.format(fname, calculate_ncut_value(file_path, other_file_path)))
+#         except:
+#             pass
 #
-# # for mlrmcl
-for i in [1, 2, 3]:
-    for file_name in filenames_list:
-        file_path = 'output/mlrmcl/r={}/{}.metis.c1000.i{}.0.b0.5'.format(i, file_name, i)
-        other_file_path = 'data/{}.metis'.format(file_name)
-        print('{} Modularity: {}'.format(file_name, calculateModularityMetis(file_path, other_file_path)))
-        print('{} Conductance: {}'.format(file_name, calculate_conductance(file_path, other_file_path)))
-
-print '\n\nCNM\n\n'
-
-for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutella_cnm.txt', 'wiki_cnm.txt'],
-                                    filenames_list[:-1]):
-    data = create_text_for_cnm('output/CNM/{}'.format(filename))
-    other_file_path = 'data/{}.metis'.format(other_filename)
-    with open('output/CNM/temp_' + filename, 'w') as f:
-        f.write(data)
-    print('{} Conductance: {}'.format(filename, calculate_conductance('output/CNM/temp_' + filename, other_file_path)))
-    print(
-    '{} Average Ncut value: {}'.format(filename, calculate_ncut_value('output/CNM/temp_' + filename, other_file_path)))
+#
+# print '\n\nMLRMCL\n\n'
+# #
+# # # for mlrmcl
+# for i in [1, 2, 3]:
+#     for file_name in filenames_list:
+#         file_path = 'output/mlrmcl/r={}/{}.metis.c1000.i{}.0.b0.5'.format(i, file_name, i)
+#         other_file_path = 'data/{}.metis'.format(file_name)
+#         print('{} Modularity: {}'.format(file_name, calculateModularityMetis(file_path, other_file_path)))
+#         print('{} Conductance: {}'.format(file_name, calculate_conductance(file_path, other_file_path)))
+#
+# print '\n\nCNM\n\n'
+#
+# for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutella_cnm.txt', 'wiki_cnm.txt'],
+#                                     filenames_list[:-1]):
+#     data = create_text_for_cnm('output/CNM/{}'.format(filename))
+#     other_file_path = 'data/{}.metis'.format(other_filename)
+#     with open('output/CNM/temp_' + filename, 'w') as f:
+#         f.write(data)
+#     print('{} Conductance: {}'.format(filename, calculate_conductance('output/CNM/temp_' + filename, other_file_path)))
+#     print(
+#     '{} Average Ncut value: {}'.format(filename, calculate_ncut_value('output/CNM/temp_' + filename, other_file_path)))
 
 
 
@@ -285,4 +285,9 @@ for filename, other_filename in zip(['grqc_cnm.txt', 'facebook_cnm.txt', 'Gnutel
 # print('Youtube Modularity:', calculateModularityMetis('output/mlrmcl/r=3/com-youtube.ungraph.metis.c1000.i3.0.b0.5','data/com-youtube.ungraph.metis'))
 
 # print calculate_conductance('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5', 'data/ca-GrQc.metis')
-# print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/ncut_r=1/com-youtube.ungraph.metis.part.100')
+print 'For r=1\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=1/com-youtube.ungraph.metis.part.1275')
+print '\nFor r=2\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=2/com-youtube.ungraph.metis.part.27084')
+print '\nFor r=3\n'
+print calculate_entropy('data/com-youtube.ungraph.metis.GT', 'output/metis/r=3/com-youtube.ungraph.metis.part.154505')
