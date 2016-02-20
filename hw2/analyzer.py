@@ -172,7 +172,25 @@ def calculate_entropy(metis_gt_file, metis_out_file):
     return entropy_dict
 
 
-# print('Wiki Vote Modularity:', calculateModularityMetis('output/mlrmcl/r=3/wiki-Vote.metis.c1000.i3.0.b0.5','data/wiki-Vote.metis'))
+directory_list = ['mlrmcl/r=', 'metis/ncut_r=']
+
+filenames_list = ['ca-GrQC', 'com-youtube.ungraph', 'facebook_combined', 'p2p-Gnutella08', 'wiki-Vote']
+
+for file_name in filenames_list:
+    for i in [2, 50, 75, 100, 1000]:
+        file_path = 'output/metis/no_ncuts/{}.metis.part.{}'.format(file_name, i)
+        print(
+        '{} Modularity:'.format(file_name), calculateModularityMetis(file_path, 'data/{}.metis'.format(file_name)))
+
+for directory_name in directory_list:
+    for i in [1, 2, 3]:
+        for file_name in filenames_list:
+            if 'metis' in directory_name:
+                file_path = 'output/{}/{}.metis.part.100'.format(directory_name, file_name)
+            else:
+                file_path = 'output/{}/{}.metis.part.'.format(directory_name, file_name)
+
+
 # print('Gnutella Modularity:', calculateModularityMetis('output/mlrmcl/r=3/p2p-Gnutella08.metis.c1000.i3.0.b0.5','data/p2p-Gnutella08.metis'))
 # print('Facebook Modularity:', calculateModularityMetis('output/mlrmcl/r=3/facebook_combined.metis.c1000.i3.0.b0.5','data/facebook_combined.metis'))
 # print('Ca-GrQc:', calculateModularityMetis('output/mlrmcl/r=3/ca-GrQc.metis.c1000.i3.0.b0.5','data/ca-GrQc.metis'))
