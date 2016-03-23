@@ -18,7 +18,7 @@ def closer(ball_data, my_list):
     with open('three_player.csv', 'a') as out_file:
         writer = csv.writer(out_file)
         row = [my_list[player_index][1]]
-        row.extend([my_list[player_index][3] for index in three_players])
+        row.extend([my_list[index][3] for index in three_players])
         writer.writerow(row)
 
     return my_list[player_index][1], my_list[player_index][2], my_list[player_index][3], my_list[player_index][4], my_list[player_index][5], player_ball[player_index],
