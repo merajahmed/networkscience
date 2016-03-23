@@ -34,6 +34,8 @@ with open('momentsdump.csv', 'r') as f:
                     trial.append(line)
                 # print trial
 
+
+
                     ## Two possible algorithms
                     ## 1) Take frame
                     ## 2) find closest player
