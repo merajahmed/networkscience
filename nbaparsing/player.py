@@ -2,6 +2,8 @@ __author__ = 'anirban'
 
 import csv
 from math import sqrt, pow
+from heapq import nsmallest
+
 
 def closer(ball_data, my_list):
     # print ball_data
@@ -11,6 +13,14 @@ def closer(ball_data, my_list):
     player_ball = [sqrt(pow(float(player_detail[4]) - ball_x, 2) + pow(float(player_detail[5]) - ball_y, 2)) for player_detail in my_list]
     player_index = player_ball.index(min(player_ball))
 
+    three_players = nsmallest(3, player_ball)
+    # print three_players
+    with open('three_player.csv', 'a') as out_file:
+        writer = csv.writer(out_file)
+        row = [my_list[player_index][1]]
+        row.extend(three_players)
+        writer.writerow(row)
+
     return my_list[player_index][1], my_list[player_index][2], my_list[player_index][3], my_list[player_index][4], my_list[player_index][5], player_ball[player_index],
 
 
@@ -18,6 +28,7 @@ with open('momentsdump.csv', 'r') as f:
     trial = []
     final_player_data = []
     ball_data = []
+    open('three_player.csv', 'w').close()
     with open('playerdump.csv', 'wb') as out_file:
         writer = csv.writer(out_file)
         for i, line in enumerate(csv.reader(f)):
