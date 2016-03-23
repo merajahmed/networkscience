@@ -33,3 +33,11 @@ with open('momentsdump.csv', 'r') as f:
                 else:
                     trial.append(line)
                 # print trial
+
+                    ## Two possible algorithms
+                    ## 1) Take frame
+                    ## 2) find closest player
+                    ## 3) dist >0 and < 1.01
+                    ## 4) Compare consecutive time frames upto 4 for ball and see if closest distance changes
+                    ## 5) If predicted ball position (or remembered player's position changes), then player lost possession the moment it crossed the distance threshold
+                    ## 6) Keep evaluating the frames till distance returns back to 0.something and stays like that
