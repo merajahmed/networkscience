@@ -10,9 +10,13 @@ event_dict = {}
 
 for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
     if row[2] not in event_dict:
-        event_dict[row[2]] = [[row[6], row[7], row[9]]]
+        event_dict[row[2]] = {}
 
-print event_dict
+    if row[3] not in event_dict[row[2]]:
+        event_dict[row[2]][row[3]] = [row[6], row[7], row[9]]
+
+# print event_dict
+print json.dumps(event_dict, sort_keys=True, indent=4)
 
 # with open('play_by_play_home.csv', 'wb') as home_file, open('play_by_play_away.csv', 'wb') as away_file, open('play_by_play_possession.csv', 'wb') as possession_file:
 #     home_writer = csv.writer(home_file)
