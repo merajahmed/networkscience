@@ -1,5 +1,7 @@
 import csv
+
 import networkx as nx
+
 __author__ = 'meraj'
 
 
@@ -30,6 +32,6 @@ def creategraph(graphfilename):
             G.add_edge(from_node, to_node, weight=currentweight+1)
     return G
 
-G = creategraph('stripped_OSUvsIowaGraph.txt')
+G = creategraph('OSUvsIowaGraph.txt')
 for edge in G.edges():
     print(edge, G.get_edge_data(edge[0], edge[1]))
