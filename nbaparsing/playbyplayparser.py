@@ -66,7 +66,10 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
     else:
         return combined_rule_runner(event_id, sub_event_id, home_event, away_event)
 
-    if event_id in [1, 2, 4]: # shots, misses, rebounds
+    if event_id == 1:
+        return team_flag, int(not team_flag)
+
+    if event_id in [2, 4]: # shots, misses, rebounds
         return team_flag, -1
 
     if event_id == 3: # for free throws
