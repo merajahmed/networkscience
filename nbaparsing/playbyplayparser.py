@@ -31,13 +31,13 @@ def combined_rule_runner(event_id, sub_event_id, home_event, away_event):
 
     if event_id == 5:
         if 'STEAL' in home_event: # specific to steals and turnovers
-            return 0
+            return 1, 0
         elif 'STEAL' in away_event: # specific to steals and turnovers
-            return 1
+            return 0, 1
         else:
-            return -1
+            return -1, -1
 
-    return -1
+    return -1, -1
 
 
 def rule_runner(event_id, sub_event_id, home_event, away_event):
@@ -45,16 +45,17 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
     Runs rules on the basis of event_ids, sub_event ids and team flag
     :param event_id: ids describing broad events
     :param sub_event_id: ids describing sub types of broad events
-    :returns: outcomes:- 0 for home event, 1 for away event or -1 to check i and i+1 comparison or -2 for useless events
+    :returns: present and future outcome as a tuple
+        possible values:- 0 for home event, 1 for away event or -1 to check i and i+1 comparison or -2 for useless events
     '''
 
     # worry about 8 - substitution and 9 - timeouts later
 
     if event_id in [8, 9, 12, 13, 18]:
-        return -2
+        return -2, -2
 
     if event_id in [1, 2, 4]: # shots, misses, rebounds
-        return -1
+        return -1, -1
 
     if home_event is None:
         team_flag = 1
@@ -65,13 +66,13 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
 
     if event_id == 3: # for free throws
         if sub_event_id != 11:
-            return int(not team_flag)
+            return team_flag, int(not team_flag)
         else: # 11 stands for free throw 1 of 2
-            return team_flag
+            return team_flag, team_flag
     elif event_id in [5, 6, 7]: # turnovers, fouls, violations
-        return int(not team_flag)
+        return team_flag, int(not team_flag)
     elif event_id == 10:
-        return team_flag
+        return team_flag, team_flag
 
 # for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
 #     if row[2] not in event_dict:
@@ -91,10 +92,10 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
 
 with open('play_by_play.csv', 'wb') as play_file:
     play_writer = csv.writer(play_file)
-    play_writer.writerow(['GameClock', 'Possession_ID', 'Home_event', 'Away_event'])
+    play_writer.writerow(['GameClock', 'Who has the ball', 'Who will now have the ball', 'Home_event', 'Away_event', 'Player1', 'Player2', 'Player3'])
     for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
-        possession_flag = rule_runner(row[2], row[3], row[7], row[9])
-        play_writer.writerow([row[6], possession_flag, row[7], row[9]])
+        pre_possession_flag, post_possession_flag = rule_runner(row[2], row[3], row[7], row[9])
+        play_writer.writerow([row[6], pre_possession_flag, post_possession_flag, row[7], row[9]])
 
 # print json.dumps(event_dict, sort_keys=True, indent=4)
 
