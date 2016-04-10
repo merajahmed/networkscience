@@ -36,6 +36,11 @@ def combined_rule_runner(event_id, sub_event_id, home_event, away_event):
             return 0, 1
         else:
             return -1, -1
+    elif event_id in [1, 2, 4]:  # shots, misses, rebounds
+        if 'MISS' or 'shot' or 'REBOUND' in home_event:
+            return 0, -1
+        elif 'MISS' or 'shot' or 'REBOUND' in away_event:
+            return 1, -1
 
     return -1, -1
 
@@ -54,15 +59,15 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
     if event_id in [8, 9, 12, 13, 18]:
         return -2, -2
 
-    if event_id in [1, 2, 4]: # shots, misses, rebounds
-        return -1, -1
-
     if home_event is None:
         team_flag = 1
     elif away_event is None:
         team_flag = 0
     else:
         return combined_rule_runner(event_id, sub_event_id, home_event, away_event)
+
+    if event_id in [1, 2, 4]: # shots, misses, rebounds
+        return team_flag, -1
 
     if event_id == 3: # for free throws
         if sub_event_id != 11:
