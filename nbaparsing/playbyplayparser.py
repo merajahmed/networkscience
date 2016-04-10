@@ -1,5 +1,6 @@
 __author__ = 'anirban'
 import json
+import csv
 
 pass_data = json.load(open('playbyplay.json'))
 
@@ -72,23 +73,33 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
     elif event_id == 10:
         return team_flag
 
-for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
-    if row[2] not in event_dict:
-        event_dict[row[2]] = {}
-
-    if row[3] not in event_dict[row[2]]:
-        event_dict[row[2]][row[3]] = [row[6], row[7], row[9]]
+# for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
+#     if row[2] not in event_dict:
+#         event_dict[row[2]] = {}
+#
+#     if row[3] not in event_dict[row[2]]:
+#         event_dict[row[2]][row[3]] = [row[6], row[7], row[9]]
 
 # print event_dict
 # print json.dumps(event_dict, sort_keys=True, indent=4)
 
-for event_id in event_dict.keys():
-    for sub_event_id in event_dict[event_id].keys():
-        home_event = event_dict[event_id][sub_event_id][1]
-        away_event = event_dict[event_id][sub_event_id][2]
-        event_dict[event_id][sub_event_id].append(rule_runner(event_id, sub_event_id, home_event, away_event))
+# for event_id in event_dict.keys():
+#     for sub_event_id in event_dict[event_id].keys():
+#         home_event = event_dict[event_id][sub_event_id][1]
+#         away_event = event_dict[event_id][sub_event_id][2]
+#         event_dict[event_id][sub_event_id].append(rule_runner(event_id, sub_event_id, home_event, away_event))
 
-print json.dumps(event_dict, sort_keys=True, indent=4)
+with open('play_by_play.csv', 'wb') as play_file:
+    play_writer = csv.writer(play_file)
+    play_writer.writerow(['GameClock', 'Possession_ID', 'Home_event', 'Away_event'])
+    for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
+        possession_flag = rule_runner(row[2], row[3], row[7], row[9])
+        play_writer.writerow([row[6], possession_flag, row[7], row[9]])
+
+# print json.dumps(event_dict, sort_keys=True, indent=4)
+
+
+# player name or player id
 
 # with open('play_by_play_home.csv', 'wb') as home_file, open('play_by_play_away.csv', 'wb') as away_file, open('play_by_play_possession.csv', 'wb') as possession_file:
 #     home_writer = csv.writer(home_file)
