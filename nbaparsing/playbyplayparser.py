@@ -94,6 +94,9 @@ with open('play_by_play.csv', 'wb') as play_file:
     play_writer = csv.writer(play_file)
     play_writer.writerow(['GameClock', 'Who has the ball', 'Who will now have the ball', 'Home_event', 'Away_event', 'Player1', 'Player2', 'Player3'])
     for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
+        # player_1 id 13, 15 team_id
+        # player_2 id 20, 22 team_id
+        # player_3 is 27, 29 team_id
         pre_possession_flag, post_possession_flag = rule_runner(row[2], row[3], row[7], row[9])
         play_writer.writerow([row[6], pre_possession_flag, post_possession_flag, row[7], row[9]])
 
