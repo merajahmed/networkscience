@@ -77,7 +77,7 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
     if event_id == 4:  # rebound
         return -1, team_flag  # we know who gets the ball after rebound, but not who had the ball (determine later)
 
-    if event_id == 6:  # for fouls
+    if event_id in [6, 7]:  # for fouls, violations
         return -1, int(not team_flag)
 
     if event_id == 3:  # for free throws
@@ -85,7 +85,7 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
             return team_flag, int(not team_flag)
         else: # 11 stands for free throw 1 of 2
             return team_flag, team_flag
-    elif event_id in [5, 7]: # turnovers, fouls, violations
+    elif event_id == 5:  # turnovers
         return team_flag, int(not team_flag)
     elif event_id == 10:  # jump_ball
         return team_flag, team_flag
