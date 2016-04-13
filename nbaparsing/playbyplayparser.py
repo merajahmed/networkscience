@@ -21,6 +21,8 @@ event_dict = {}
 # 8 - substitution
 
 
+# s.foul -> opponent team had possession, retains possession
+
 def combined_rule_runner(event_id, sub_event_id, home_event, away_event):
     '''
     Runs rules when both events are present
@@ -66,20 +68,26 @@ def rule_runner(event_id, sub_event_id, home_event, away_event):
     else:
         return combined_rule_runner(event_id, sub_event_id, home_event, away_event)
 
-    if event_id == 1:
+    if event_id == 1:  # shots
         return team_flag, int(not team_flag)
 
-    if event_id in [2, 4]: # shots, misses, rebounds
+    if event_id == 2:  # misses
         return team_flag, -1
 
-    if event_id == 3: # for free throws
+    if event_id == 4:  # rebound
+        return -1, team_flag  # we know who gets the ball after rebound, but not who had the ball (determine later)
+
+    if event_id == 6:  # for fouls
+        return -1, int(not team_flag)
+
+    if event_id == 3:  # for free throws
         if sub_event_id != 11:
             return team_flag, int(not team_flag)
         else: # 11 stands for free throw 1 of 2
             return team_flag, team_flag
-    elif event_id in [5, 6, 7]: # turnovers, fouls, violations
+    elif event_id in [5, 7]: # turnovers, fouls, violations
         return team_flag, int(not team_flag)
-    elif event_id == 10:
+    elif event_id == 10:  # jump_ball
         return team_flag, team_flag
 
 # for i, row in enumerate(pass_data['resultSets'][0]['rowSet']):
@@ -105,7 +113,25 @@ with open('play_by_play.csv', 'wb') as play_file:
         # player_1 id 13, 15 team_id
         # player_2 id 20, 22 team_id
         # player_3 is 27, 29 team_id
+
+        if row[2] == 4:  # rebounds
+            continue
+
         pre_possession_flag, post_possession_flag = rule_runner(row[2], row[3], row[7], row[9])
+        if pre_possession_flag == -2 and post_possession_flag == -2:
+            continue
+
+        if row[2] == 2:  # misses
+            next_row = pass_data['resultSets'][0]['rowSet'][i + 1]
+            if next_row[2] == 4:  # rebounds
+                pre_flag, post_flag = rule_runner(next_row[2], next_row[3], next_row[7], next_row[9])
+                post_possession_flag = post_flag
+
+                play_writer.writerow([row[6], pre_possession_flag, post_possession_flag, row[7], row[9]])
+                continue
+                # skip writing the rebound event as it's useless, change the post possession flag for rebound
+                # play_writer.writerow([next_row[6], pre_flag, post_flag, next_row[7], next_row[9]])
+
         play_writer.writerow([row[6], pre_possession_flag, post_possession_flag, row[7], row[9]])
 
 # print json.dumps(event_dict, sort_keys=True, indent=4)
