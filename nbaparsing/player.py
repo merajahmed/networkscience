@@ -1,9 +1,6 @@
-__author__ = 'anirban'
-
-import csv
 from math import sqrt, pow
 from heapq import nsmallest
-
+import csv
 
 def closer(ball_data, my_list):
     # print ball_data
