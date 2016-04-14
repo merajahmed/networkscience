@@ -24,10 +24,10 @@ def creategraph(graphfilename):
                     to_node = int(line[2])
                 elif line[1] == 'made':
                     from_node = int(line[0])
-                    to_node = 'End'
+                    to_node = 'MADE'
                 elif line[1] == 'missed':
                     from_node = int(line[0])
-                    to_node = 'End'
+                    to_node = 'MISSED'
             currentweight = G[from_node][to_node]['weight'] if G.has_edge(from_node, to_node) else 0
             G.add_edge(from_node, to_node, weight=currentweight+1)
     return G
