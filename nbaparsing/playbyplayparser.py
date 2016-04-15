@@ -109,6 +109,7 @@ def possession_time(row):
     # 0 - home_team, 1 - away_team
     # -1 - we don't know
     # -2 - shot, -3 - miss, -4 - steal
+    # rebounds, steals, incoming could be start of plays
     quarter, gametime, event_id, pre_flag, post_flag, home_event, away_event, player_1, player_1_team, player_2, player_2_team, player_3, player_3_team = row
 
     player_dict = OrderedDict((player, team) for player, team in zip([player_1, player_2, player_3],[player_1_team, player_2_team, player_3_team]))
@@ -120,18 +121,22 @@ def possession_time(row):
     if int(event_id) == 10:  # jumpball
         # print 'yolo'
         players = [player for player in player_dict.keys() if player_dict[player] == team_ids[int(post_flag)]]
-        return [list(element) for element in zip([quarter] * 2, [gametime] * 2, players)]
+        return [[quarter, gametime, pre_flag]] + [list(element) for element in zip([quarter] * 2, [gametime] * 2, players)]
 
     if int(event_id) == 1:  # shots
-        return [[quarter, gametime, player_1], [quarter, gametime, -2], [quarter, gametime, post_flag]]
+        my_list = []
+        if player_2 != '0':
+            my_list.append([quarter, gametime, player_2])
+        my_list.extend([[quarter, gametime, player_1], [quarter, gametime, -2], [quarter, gametime, post_flag]])
+        return my_list
 
     if int(event_id) == 2:  # misses
         return [[quarter, gametime, player_1], [quarter, gametime, -3]]
 
     if int(event_id) == 4:  # rebounds
-        return [[quarter, gametime, player_1]]
+        return [[quarter, gametime, pre_flag], [quarter, gametime, player_1]]
 
-    if int(event_id) in [6, 7]: # fouls, violations
+    if int(event_id) in [6, 7]:  # fouls, violations
         return [[quarter, gametime, -1], [quarter, gametime, post_flag]]
 
     if int(event_id) == 3:  # free-throws
