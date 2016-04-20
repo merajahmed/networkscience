@@ -4,7 +4,7 @@ import csv
 from collections import OrderedDict
 
 pass_data = json.load(open('playbyplay.json'))
-
+# pass_data = json.load(open('play_by_play_data/2.json'))
 headers = pass_data['resultSets'][0]['headers']
 header_names = headers[0:5] + headers[6:8] + headers[9:11] + headers[12:-3]
 
@@ -13,14 +13,14 @@ team_ids = []
 
 # Automated code to get home and visitor team id
 
-# gamedata = json.load(open('2.json'))
+
 # print gamedata.keys()
 
 # team_ids[0] = gamedata['events'][0]['home']['teamid']
 # team_ids[1] = gamedata['events'][0]['visitor']['teamid']
 
-team_ids = ['1610612752', '1610612741']
-# team_ids = ['1610612761', '1610612766']
+# team_ids = ['1610612752', '1610612741']
+team_ids = ['1610612761', '1610612766']
 
 # 1 - shot (i and i+1 comparison)
 # 2 - miss and possible blocks ( again check i and i+1 events)
@@ -214,8 +214,8 @@ with open('play_by_play.csv', 'rb') as play_file, open('possession.csv', 'wb') a
         if index == 0:
             continue
         my_list = possession_time(row)
-        for row in my_list:
-            writer.writerow(row)
+        for r in my_list:
+            writer.writerow(r)
     writer.writerow([4, 0.0, -1])
     # break
 

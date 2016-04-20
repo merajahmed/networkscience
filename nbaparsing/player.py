@@ -3,11 +3,18 @@ from heapq import nsmallest
 import csv
 
 def closer(ball_data, my_list):
-    # print ball_data
-    ball_x = float(ball_data[4])
-    ball_y = float(ball_data[5])
+    index_x = 5
+    index_y = 6
 
-    player_ball = [sqrt(pow(float(player_detail[4]) - ball_x, 2) + pow(float(player_detail[5]) - ball_y, 2)) for player_detail in my_list]
+    # print ball_data
+    ball_x = float(ball_data[index_x])
+    ball_y = float(ball_data[index_y])
+
+    # 3 - team id
+    # 4 - player id
+    # print ball_x, ball_y, my_list[0][index_x], my_list[0][index_x]
+    # print my_list[0]
+    player_ball = [sqrt(pow(float(player_detail[index_x]) - ball_x, 2) + pow(float(player_detail[index_y]) - ball_y, 2)) for player_detail in my_list]
     player_index = player_ball.index(min(player_ball))
 
     three_players = [player_ball.index(item) for item in nsmallest(3, player_ball)]
@@ -15,10 +22,11 @@ def closer(ball_data, my_list):
     with open('three_player.csv', 'a') as out_file:
         writer = csv.writer(out_file)
         row = [my_list[player_index][1]]
-        row.extend([my_list[index][3] for index in three_players])
+        # print my_list[player_index]
+        row.extend([my_list[index][4] for index in three_players])
         writer.writerow(row)
 
-    return my_list[player_index][1], my_list[player_index][2], my_list[player_index][3], my_list[player_index][4], my_list[player_index][5], player_ball[player_index],
+    return my_list[player_index][1], my_list[player_index][2], my_list[player_index][4], my_list[player_index][index_x], my_list[player_index][index_y], player_ball[player_index],
 
 
 with open('momentsdump.csv', 'r') as f:
@@ -41,6 +49,8 @@ with open('momentsdump.csv', 'r') as f:
                     ball_data = line
                 else:
                     trial.append(line)
+            # if i > 10000:
+            #     break
                 # print trial
 
 
