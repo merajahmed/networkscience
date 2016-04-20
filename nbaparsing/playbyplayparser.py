@@ -13,13 +13,14 @@ team_ids = []
 
 # Automated code to get home and visitor team id
 
-# gamedata = json.load(open('0021500492.json'))
+# gamedata = json.load(open('2.json'))
 # print gamedata.keys()
 
-# team_id[0] = gamedata['events'][0]['home']['teamid']
-# team_id[1] = gamedata['events'][0]['visitor']['teamid']
+# team_ids[0] = gamedata['events'][0]['home']['teamid']
+# team_ids[1] = gamedata['events'][0]['visitor']['teamid']
 
-team_ids = ['1610612761', '1610612766']
+team_ids = ['1610612752', '1610612741']
+# team_ids = ['1610612761', '1610612766']
 
 # 1 - shot (i and i+1 comparison)
 # 2 - miss and possible blocks ( again check i and i+1 events)
@@ -108,7 +109,7 @@ def possession_time(row):
     # 1- gametime, 2 - event id,
     # 0 - home_team, 1 - away_team
     # -1 - we don't know
-    # -2 - shot, -3 - miss, -4 - steal
+    # -2 - shot, -3 - miss, -4 - steal, -5 - rebound, -6 - turnover
     # rebounds, steals, incoming could be start of plays
     quarter, gametime, event_id, pre_flag, post_flag, home_event, away_event, player_1, player_1_team, player_2, player_2_team, player_3, player_3_team = row
 
@@ -134,7 +135,7 @@ def possession_time(row):
         return [[quarter, gametime, player_1], [quarter, gametime, -3]]
 
     if int(event_id) == 4:  # rebounds
-        return [[quarter, gametime, pre_flag], [quarter, gametime, player_1]]
+        return [[quarter, gametime, -5], [quarter, gametime, player_1]]
 
     if int(event_id) in [6, 7]:  # fouls, violations
         return [[quarter, gametime, -1], [quarter, gametime, post_flag]]
@@ -144,7 +145,8 @@ def possession_time(row):
         if 'MISS' in home_event or 'MISS' in away_event:  # miss
             my_list = [[quarter, gametime, player_1], [quarter, gametime, -3]]
         else:
-            my_list = [[quarter, gametime, player_1], [quarter, gametime, -4]]
+            # print row
+            my_list = [[quarter, gametime, player_1], [quarter, gametime, -2]]
 
         if pre_flag != post_flag:
             my_list.append([quarter, gametime, post_flag])
@@ -162,10 +164,13 @@ def possession_time(row):
         else:
             my_list.append([quarter, gametime, pre_player[0]])
 
+        my_list.append([quarter, gametime, -6])
+        my_list.append([quarter, gametime, -4])
+
         if not post_player:
-            my_list.append([quarter, gametime, pre_flag])
+            my_list.append([quarter, gametime, post_flag])
         else:
-            my_list.append([quarter, gametime, pre_player])
+            my_list.append([quarter, gametime, post_player[0]])
 
         return my_list
 
@@ -211,7 +216,8 @@ with open('play_by_play.csv', 'rb') as play_file, open('possession.csv', 'wb') a
         my_list = possession_time(row)
         for row in my_list:
             writer.writerow(row)
-        # break
+    writer.writerow([4, 0.0, -1])
+    # break
 
 # print json.dumps(event_dict, sort_keys=True, indent=4)
 
