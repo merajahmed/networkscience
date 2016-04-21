@@ -29,6 +29,11 @@ def creategraph(possessionfilename):
                 prev_row = row
                 continue
 
+            if first_site in end_nodes:
+                print prev_row, row
+                print first_site, second_site
+                print 'yolo'
+
             if G.has_edge(first_site, second_site):
                 G[first_site][second_site]['weight'] += 1
             else:

@@ -151,6 +151,9 @@ def possession_time(row):
         if pre_flag != post_flag:
             my_list.append([quarter, gametime, post_flag])
 
+        else:
+            my_list.append(([quarter, gametime, pre_flag]))
+
         return my_list
 
     if int(event_id) == 5:  # turnovers
