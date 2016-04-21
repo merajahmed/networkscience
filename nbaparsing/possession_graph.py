@@ -1,9 +1,8 @@
 __author__ = 'anirban'
 import csv
+import json
 
 import networkx as nx
-import matplotlib.pyplot as plt
-import json
 from networkx.readwrite import json_graph
 def creategraph(possessionfilename):
     G = nx.DiGraph()
@@ -24,10 +23,8 @@ def creategraph(possessionfilename):
             first_site = prev_row[2]
             second_site = row[2]
 
-            if first_site in end_nodes:
-                continue
-
             if second_site in start_nodes:
+                prev_row = row
                 continue
 
             if G.has_edge(first_site, second_site):
