@@ -23,7 +23,7 @@ def closer(ball_data, my_list):
         writer = csv.writer(out_file)
         row = [my_list[player_index][1]]
         # print my_list[player_index]
-        row.extend([my_list[index][4] for index in three_players])
+        row.extend([(my_list[index][4], player_ball[index]) for index in three_players])
         writer.writerow(row)
 
     return my_list[player_index][1], my_list[player_index][2], my_list[player_index][4], my_list[player_index][index_x], my_list[player_index][index_y], player_ball[player_index],
@@ -49,8 +49,8 @@ with open('momentsdump.csv', 'r') as f:
                     ball_data = line
                 else:
                     trial.append(line)
-            # if i > 10000:
-            #     break
+            if i > 10000:
+                break
                 # print trial
 
 

@@ -187,7 +187,7 @@ with open('play_by_play.csv', 'wb') as play_file:
         #     continue
 
         minutes, seconds = row[6].split(':')
-        row[6] = float(minutes) * 60 + float(minutes) % 60 + float(seconds)
+        row[6] = float(minutes) * 60 + float(seconds)
 
         pre_possession_flag, post_possession_flag = rule_runner(row[2], row[3], row[7], row[9])
         if pre_possession_flag == -2 and post_possession_flag == -2:
