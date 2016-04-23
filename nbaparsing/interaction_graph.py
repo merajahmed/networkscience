@@ -15,6 +15,8 @@ def creategraph(graphfilename):
         for line in reader:
             from_node = None
             to_node = None
+            if len(line) == 4 and line[3] == '':
+                line.pop()
             if len(line) == 2:
                 continue
             if len(line) == 4:
@@ -80,6 +82,7 @@ def calculate_entropy(G):
                 entropy -= p*np.log2(p)
     return entropy
 
+
 def get_pass_probability(player1, player2, G):
     pass_weight = 0
     if G.has_edge(player1, player2):
@@ -94,7 +97,7 @@ def get_pass_probability(player1, player2, G):
     for node in nodes:
         if G.has_edge(player1, node):
             total_weight += G.get_edge_data(player1, node)['weight']
-    return pass_weight/total_weight
+    return pass_weight/float(total_weight)
 
 
 def get_shot_rate(player, G):
@@ -107,7 +110,7 @@ def get_shot_rate(player, G):
         return 0
     if G.has_edge(player, 'MISSED'):
         miss_count = G.get_edge_data(player, 'MISSED')['weight']
-    return hit_count/(hit_count+miss_count)
+    return hit_count/float(hit_count+miss_count)
 
 
 def get_flux(G):
@@ -118,7 +121,9 @@ def get_flux(G):
     flux = 0.0
     for node1 in nodes:
         for node2 in nodes:
+
             flux += (get_pass_probability(node1, node2, G)*(get_shot_rate(node1, G)-get_shot_rate(node2, G)))
+
     return flux
 
 
@@ -153,4 +158,5 @@ def clustering_coefficient(G, cutoff):
 G = creategraph('OSUvsIowaGraph.txt')
 # print(calculate_entropy(G))
 # print(calculate_degree_centrality(G))
-print(clustering_coefficient(G,0))
+print(get_flux(G))
+# print(clustering_coefficient(G,0))
