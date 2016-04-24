@@ -1,9 +1,11 @@
 import csv
-
+import math
 import networkx as nx
 from collections import OrderedDict
 import operator
 import numpy as np
+import copy
+from operator import itemgetter
 
 __author__ = 'meraj'
 
@@ -155,8 +157,37 @@ def clustering_coefficient(G, cutoff):
     return nx.clustering(G)
 
 
+def threshold_graph(G, cutoff, start_nodes, end_nodes):
+    TG = copy.deepcopy(G)
+    for node in start_nodes+end_nodes:
+        TG.remove_node(node)
+    for node in G.nodes():
+        all_edges = TG.edges(node)
+        total_weight = 0.0
+        for edge in all_edges:
+            total_weight += TG.get_edge_data(*edge)['weight']
+        cutoff_weight = math.floor(cutoff*total_weight)
+        for edge in all_edges:
+            if TG.get_edge_data(*edge)['weight'] < cutoff_weight:
+                TG.remove_edge(*edge)
+    return TG
+
+
+def threshold_graph_ranked(G, cutoff, start_nodes, end_nodes):
+    TG = copy.deepcopy(G)
+    for node in start_nodes+end_nodes:
+        TG.remove_node(node)
+    for node in G.nodes():
+        all_edges = TG.edges(node)
+        weighted_edges = list()
+        for edge in all_edges:
+            weighted_edges.append((edge, TG.get_edge_data(*edge)['weight']))
+        ordered_edges = sorted(weighted_edges, key=itemgetter(1), reverse=True)
+        thresholded_edges = ordered_edges[:int(math.ceil(cutoff*len(ordered_edges)))]
+        pruned_edges = filter(lambda x: x not in thresholded_edges, ordered_edges)
+        for edge in pruned_edges:
+            TG.remove_edge(*edge)
+    return TG
+
 G = creategraph('OSUvsIowaGraph.txt')
-# print(calculate_entropy(G))
-# print(calculate_degree_centrality(G))
-print(get_flux(G))
-# print(clustering_coefficient(G,0))
+
