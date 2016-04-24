@@ -2,6 +2,7 @@ __author__ = 'meraj'
 import csv
 import json
 
+
 gamedata = json.load(open('0021500492.json'))
 print gamedata.keys()
 print(gamedata['gamedate'], gamedata['gameid'])
