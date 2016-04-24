@@ -130,30 +130,13 @@ def get_flux(G):
 
 
 def clustering_coefficient(G, cutoff):
-    G.remove_node('Start')
-    G.remove_node('MADE')
-    G.remove_node('MISSED')
-    nodes = G.nodes()
-
-    for edge in G.edges():
-        if G.has_edge(edge[1], edge[0]):
-            G.add_edge(edge[1], edge[0], weight=G.get_edge_data(edge[0], edge[1])['weight']+G.get_edge_data(edge[1], edge[0])['weight'])
-            G.add_edge(edge[0], edge[1], weight=G.get_edge_data(edge[0], edge[1])['weight']+G.get_edge_data(edge[1], edge[0])['weight'])
-    G = G.to_undirected()
-    nodes = G.nodes()
-    for node in nodes:
-        total_weight = 0.0
-        edges = G.edges([node])
-        for edge in edges:
-            total_weight = G.get_edge_data(*edge)['weight']
-        cutoff *= total_weight
-        prune_edges = list()
-        for edge in edges:
-            if G.get_edge_data(*edge)['weight'] < cutoff:
-                prune_edges.append(edge)
-        for edge in prune_edges:
-            G.remove_edge(*edge)
-    print(G.edges())
+    TG = threshold_graph_ranked(G, ['Start'], ['MADE', 'MISSED'], cutoff)
+    nodes = TG.nodes()
+    for edge in TG.edges():
+        if TG.has_edge(edge[1], edge[0]):
+            TG.add_edge(edge[1], edge[0], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
+            TG.add_edge(edge[0], edge[1], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
+    TG = TG.to_undirected()
     return nx.clustering(G)
 
 
@@ -190,4 +173,8 @@ def threshold_graph_ranked(G, cutoff, start_nodes, end_nodes):
     return TG
 
 G = creategraph('OSUvsIowaGraph.txt')
-
+# print(calculate_entropy(G))
+# print(calculate_degree_centrality(G))
+print(len(threshold_graph_ranked(G, 0.5, ['Start'], ['MADE', 'MISSED']).edges()))
+print(len(G.edges()))
+# print(clustering_coefficient(G,0))
