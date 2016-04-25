@@ -1,9 +1,10 @@
-__author__ = 'anirban'
 import csv
 import json
 import math
 import networkx as nx
 from networkx.readwrite import json_graph
+
+__author__ = 'anirban'
 
 
 def creategraph(possessionfilename):
@@ -67,6 +68,7 @@ def jsonify_graph(graphobj, graphfile):
 
     json.dump(j, open(graphfile, 'w'), indent=2)
 
+
 def jsonify_vis(graphobj, graphfile):
     G = graphobj
     visgraph = dict()
@@ -103,7 +105,8 @@ def jsonify_vis(graphobj, graphfile):
         visgraph['edges'].append({'from': edge[0], 'to': edge[1], 'value': weight, 'arrows': 'to','color':color,'smooth':False})
     json.dump(visgraph, open(graphfile, 'w'), indent=2)
 
-jsonify_graph(creategraph('possession.csv'), 'possession_graph.json')
+
+# jsonify_graph(creategraph('possession.csv'), 'possession_graph.json')
 # print G.edge
 # pos = nx.spring_layout(G)
 # nx.draw_networkx_nodes(G, pos, node_size=1000)

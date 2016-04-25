@@ -21,11 +21,11 @@
 2 to 33
 2 to 13 inbound
 13 to 33
-33 to 2
+33 to 2 
 2 made 3-pt-shot
 00 to 13 inbound
 13 to 2
-2 to 33
+2 to 33 
 33 to 32
 32 to 33
 33 made dunk
@@ -57,9 +57,9 @@
 33 missed 3-pt-shot
 13 to 2 inbound
 2 to 13
-13 to 2
+13 to 2 
 2 to 13
-13 to 2
+13 to 2 
 2 made 3-pt-shot
 33 to 12
 12 to 15
@@ -103,7 +103,7 @@
 33 to 2
 2 to 33
 33 to 12
-12 to 15
+12  to 15 
 15 to 12
 12 to 33
 33 made bank-shot
@@ -114,8 +114,8 @@
 15 missed 3-pt-shot
 12 to 00 inbound
 00 to 12
-12 to 2
-2 to 15
+12 to 2 
+2 to 15 
 15 missed shot
 00 to 12 inbound
 12 to 15
@@ -161,7 +161,7 @@
 13 to 4
 4 made hook-shot
 00 to 13 inbound
-13 to 00
+13 to 00 
 00 made layup
 00 to 13
 13 to 33
@@ -174,7 +174,7 @@
 12 made free-throw
 12 made free-throw
 00 to 12 inbound
-12 to 33
+12 to 33 
 33 to 2
 2 to 12
 12 to 33
@@ -195,17 +195,17 @@
 00 to 2
 2 made free-throw
 2 made free-throw
-13 to 00
+13 to 00 
 00 to 33
 33 to 13
 33 to 13 inbound
-13 to 33
+13 to 33 
 33 turnover
 13 to 2
 2 to 33
 33 missed 3-pt-shot
 2 to 13 inbound
-13 to 2
+13 to 2 
 2 to 13
 13 to 2
 2 to 13
@@ -217,7 +217,7 @@
 32 turnover
 00 to 13 inbound
 13 to 33
-33 to 2
+33 to 2 
 2 to 13
 13 to 2
 2 to 4
@@ -227,17 +227,17 @@
 33 made free-throw
 33 made free-throw
 00 to 13 inbound
-13 to 2
+13 to 2 
 2 to 4
 4 missed layup
 2 to 13
 13 to 33
 33 to 00
-00 to 13
+00 to 13 
 13 missed layup
 00 to 13 inbound
-13 to 00
-00 to 13
+13 to 00 
+00 to 13 
 13 to 2
 2 to 13
 13 to 2
@@ -254,21 +254,21 @@
 2 made free-throw
 00 to 13 inbound
 13 to 33
-33 to 00
+33 to 00 
 00 to 2
-00 to 33
+00 to 33 
 33 made layup
 00 to 12 inbound
-12 to 2
+12 to 2 
 2 to 12
-12 to 2
+12 to 2 
 2 missed layup
 15 to 12 inbound
 12 to 15
 15 to 12
 12 to 15
 15 to 12
-12 to 33
+12 to 33 
 33 made jumper
 12 to 15 inbound
 15 to 12
@@ -277,7 +277,7 @@
 32 to 2
 2 to 12
 12 to 15
-15 to 32
+15 to 32 
 32 missed hook-shot
 32 to 12 inbound
 12 to 15
@@ -329,7 +329,7 @@
 15 to 2
 2 made free-throw
 2 made free-throw
-32 to 13
+32 to 13 
 13 to 15
 15 to 13
 13 missed 3-pt-shot
@@ -344,19 +344,19 @@
 13 to 2
 2 missed shot
 33 to 13 inbound
-13 to 15
+13 to 15 
 15 made layup
 2 to 15 inbound
-15 to 13
+15 to 13 
 13 to 2
 2 to 13
-13 to 2
+13 to 2 
 2 to 15
 15 to 13
 13 to 2
 2 made 3-pt-shot
 33 to 13
-13 to 15
+13 to 15 
 15 made 3-pt-shot
 33 to 13
 13 to 2
@@ -369,8 +369,8 @@
 13 to 15
 15 made 3-pt-shot
 2 to 13 inbound
-13 to 2
-2 to 32
+13 to 2 
+2 to 32 
 32 to 33
 2 to 13 inbound
 13 to 15

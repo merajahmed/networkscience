@@ -2,3 +2,4 @@
 nbaparsing/.idea
 nbaparsing/*.json
 nbaparsing/*.csv
+nbaparsing/data/

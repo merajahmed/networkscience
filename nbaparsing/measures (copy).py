@@ -1,43 +1,15 @@
-import csv
-import math
-import networkx as nx
+import copy
 from collections import OrderedDict
 import operator
 import numpy as np
-import copy
+import math
+import networkx as nx
 from operator import itemgetter
+import json
+from networkx.readwrite import json_graph
 import os
+
 __author__ = 'meraj'
-
-
-def creategraph(graphfilename):
-    G = nx.DiGraph()
-    with open(graphfilename, 'r') as graphfile:
-        reader = csv.reader(graphfile, delimiter=' ')
-        for line in reader:
-            from_node = None
-            to_node = None
-            if len(line) == 4 and line[3] == '':
-                line.pop()
-            if len(line) == 2:
-                continue
-            if len(line) == 4:
-                from_node = 'Start'
-                to_node = int(line[2])
-            elif len(line) == 3:
-                #separate cases so as to decide edge weights later based on action, and other conditions
-                if line[1] == 'to':
-                    from_node = int(line[0])
-                    to_node = int(line[2])
-                elif line[1] == 'made':
-                    from_node = int(line[0])
-                    to_node = 'MADE'
-                elif line[1] == 'missed':
-                    from_node = int(line[0])
-                    to_node = 'MISSED'
-            currentweight = G[from_node][to_node]['weight'] if G.has_edge(from_node, to_node) else 0
-            G.add_edge(from_node, to_node, weight=currentweight+1)
-    return G
 
 
 def calculate_degree_centrality(OG, start_nodes, end_nodes):
@@ -134,14 +106,14 @@ def get_flux(OG, start_nodes, end_nodes, made_nodes, miss_nodes):
 
 
 def clustering_coefficient(G, cutoff, start_nodes, end_nodes):
-    TG = threshold_graph_ranked(G, cutoff, start_nodes, end_nodes)
+    TG = threshold_graph_ranked(G, start_nodes, end_nodes, cutoff)
     nodes = TG.nodes()
     for edge in TG.edges():
         if TG.has_edge(edge[1], edge[0]):
             TG.add_edge(edge[1], edge[0], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
             TG.add_edge(edge[0], edge[1], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
     TG = TG.to_undirected()
-    return nx.clustering(TG)
+    return nx.clustering(G)
 
 
 def threshold_graph(G, cutoff, start_nodes, end_nodes):
@@ -173,17 +145,24 @@ def threshold_graph_ranked(G, cutoff, start_nodes, end_nodes):
         thresholded_edges = ordered_edges[:int(math.ceil(cutoff*len(ordered_edges)))]
         pruned_edges = filter(lambda x: x not in thresholded_edges, ordered_edges)
         for edge in pruned_edges:
-            TG.remove_edge(*edge[0])
+            TG.remove_edge(*edge)
     return TG
 
 
+def read_jsongraph(filename):
+    with open(filename) as f:
+        js_graph = json.load(f)
+    return json_graph.node_link_graph(js_graph)
+
+
 def calculate_measures():
-    graph_files = os.listdir('college_games')
+    graph_files = os.listdir('jsongraphs_nba')
     for graph_file in graph_files:
-        nxgraph = creategraph('college_games/'+graph_file)
-        print('file name:' , graph_file)
-        print('clustering coefficient:' , clustering_coefficient(nxgraph, 0.8, ['Start'], ['MADE', 'MISSED']))
-        print('entropy:' , calculate_entropy(nxgraph, ['Start']))
-        print('flux:' , get_flux(nxgraph, ['Start'], ['MADE', 'MISSED'], ['MADE'], ['MISSED']))
-        print('degree centrality:' , calculate_degree_centrality(nxgraph, ['Start'], ['MADE', 'MISSED']))
+        nxgraph = read_jsongraph('jsongraphs_nba/'+graph_file)
+        print('file name:', graph_file)
+        print('clustering coefficient:', clustering_coefficient(nxgraph, 0.8, [0, 1, -4, -5], [-2, -3, -1, -6]))
+        print('entropy:', calculate_entropy(nxgraph,[0, 1, -4, -5]))
+        print('flux:', get_flux(nxgraph, [0, 1, -4, -5], [-2, -3, -1, -6], [-2], [-3]))
+        print('degree centrality:', calculate_degree_centrality(nxgraph, [0, 1, -4, -5], [-2, -3, -1, -6]))
+
 calculate_measures()

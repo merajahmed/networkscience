@@ -2,6 +2,8 @@ from collections import OrderedDict
 import json
 import csv
 import math
+from math import sqrt, pow
+from heapq import nsmallest
 
 from networkx.readwrite import json_graph
 import networkx as nx
@@ -18,13 +20,12 @@ class playByPlay:
 
         # load the play_by_play_data, moments data and get necessary info
         self.pass_data = json.load(open(play_by_play_json_file))
-        # self.team_ids, self.home_team_name, self.visitor_team_name, self.home_team_abbr, \
-        #         self.visitor_team_abbr, self.visitor_dict, \
-        #         self.home_dict = self.initial_game_data_writer(whole_movements_json)
+        self.team_ids, self.home_team_name, self.visitor_team_name, self.home_team_abbr, \
+                self.visitor_team_abbr, self.visitor_dict, \
+                self.home_dict = self.initial_game_data_writer(whole_movements_json)
 
         # for debugging purposes
         self.team_ids = ['1610612761', '1610612766']
-
         # moments playing about and generation
         # self.three_closest_csv = three_closest_file
         # self.closest_player_csv = closest_player_file
@@ -35,6 +36,7 @@ class playByPlay:
         # merge with play_by_play and write into possession_csv
         self.play_by_play_csv = play_by_play_csv
         self.play_by_play_writer()
+        self.merger()
         # TODO: MERGING
 
         # generate the graph
@@ -308,6 +310,174 @@ class playByPlay:
 
         return [str(home_team_id), str(visitor_team_id)], home_team_name, visitor_team_name, home_team_abbr, \
                visitor_team_abbr, visitor_dict, home_dict
+
+    def closer(self, ball_data, my_list):
+        index_x = 5
+        index_y = 6
+
+        # print ball_data
+        ball_x = float(ball_data[index_x])
+        ball_y = float(ball_data[index_y])
+
+        # 3 - team id
+        # 4 - player id
+        # print ball_x, ball_y, my_list[0][index_x], my_list[0][index_x]
+        # print my_list[0]
+        player_ball = [sqrt(pow(float(player_detail[index_x]) - ball_x, 2) + pow(float(player_detail[index_y]) - ball_y, 2)) for player_detail in my_list]
+        player_index = player_ball.index(min(player_ball))
+
+        # three_players = [player_ball.index(item) for item in nsmallest(3, player_ball)]
+        # # print three_players
+        # with open('three_player.csv', 'a') as out_file:
+        #     writer = csv.writer(out_file)
+        #     # print my_list[player_index]
+        #     for index in three_players:
+        #         writer.writerow([my_list[player_index][1], my_list[index][4], player_ball[index]])
+
+        return [my_list[player_index][1], my_list[player_index][2], my_list[player_index][4], my_list[player_index][index_x], my_list[player_index][index_y], player_ball[player_index]]
+
+    def perform_moments_stuff(self, movement_list, moments):
+
+        home_list = self.home_dict.keys()
+        visitor_list = self.visitor_dict.keys()
+
+        first_look = int(float(movement_list[0][2]))
+        second_look = int(float(movement_list[1][2]))
+
+        first_time = int(float(movement_list[0][1]))
+        last_time = int(float(movement_list[-1][1]))
+
+        my_temp_list = None
+
+        if first_look == 0:
+            my_temp_list = home_list
+        elif first_look == 1:
+            my_temp_list = visitor_list
+        elif first_look == -4 or -5:
+            if second_look == 0 or second_look in home_list:
+                my_temp_list = home_list
+            elif second_look == 1 or second_look in visitor_list:
+                my_temp_list = visitor_list
+
+        moment_list = []
+        trial = []
+        ball_data = None
+        for i, row in enumerate(moments):
+            if (i + 1) % 12 == 0:
+                if int(row[4]) in my_temp_list:
+                    trial.append(row)
+
+                if float(row[1]) > first_time:  # can change this to first_time + 1 later
+                    trial = []
+                    continue
+                # print ball_data
+                # print trial
+                final_player = self.closer(ball_data, trial)
+                # print final_player[5]
+                if final_player[5] <= 1.1:  # for distance threshold
+                    # print final_player
+                    moment_list.append(final_player)
+                trial = []
+                if int(float(row[1]) - 0.04) < last_time:
+                    break
+            else:
+                try:
+                    if int(row[3]) == -1:
+                        ball_data = row
+                    else:
+                        if int(row[4]) in my_temp_list:
+                            trial.append(row)
+                except:
+                    # print row
+                    # print 'yolo'
+                    exit(1)
+
+        # print moment_list
+        if not moment_list:
+            # print 'yolo'
+            return None
+
+        current_player = moment_list[0][2]
+        new_moments = []
+        prev_row = moment_list[0]
+        for moment in moment_list[1:]:
+            if moment[2] == current_player:
+                prev_row = moment
+            elif moment[2] != current_player:
+                new_moments.append(prev_row)
+                new_moments.append(moment)
+                current_player = moment[2]
+
+        prev_row = movement_list[0]
+        new_data = [movement_list[0]]
+        my_index = 0
+        j = 0
+        i = 1
+        for movement in movement_list[1:]:
+            for moment in new_moments[my_index:]:
+                if moment[0] > movement[1]:  # movement consists of time at index 1 and moment consists of time at index 0
+                    new_data.append([prev_row[0], moment[0], moment[2]])
+                    j += 1
+                    my_index += 1
+                else:
+                    new_data.append(movement)
+                    i += 1
+                    break
+            if j == len(new_moments):
+                new_data.extend(movement_list[i:])
+                break
+            i += 1
+
+        prev_row = new_data[0]
+        indices_list = []
+        for i, row in enumerate(new_data[1:]):
+            if row[2] == prev_row[2]:
+                indices_list.append(i - len(indices_list))
+            else:
+                prev_row = row
+
+        for indices in indices_list:
+            del new_data[indices]
+
+        # print new_data
+
+        return new_data
+
+    def merger(self):
+        start_nodes = [0, 1, -4, -5]
+        end_nodes = [-2, -3, -1, -6]
+        my_list = []
+        current_quarter = 1
+        entire_correct_play = []
+        with open(self.possession_file_name, 'rb') as f, open(self.moments_dump_file_name, 'rb') as moments_file:
+            reader = csv.reader(f)
+            moments_reader = csv.reader(moments_file)
+            reader.next()  # to ignore header
+            prev_row = moments_reader.next()
+            moments = [[prev_row]]
+            j = 0
+            for i, moment in enumerate(moments_reader):
+                if moment[0] > prev_row[0]:
+                    j += 1
+                    moments.append([moment])
+
+                moments[j].append(moment)
+                prev_row = moment
+
+            for i, row in enumerate(reader):
+                my_list.append(row)
+                if len(row[2]) <= 2:
+                    if int(row[2]) in end_nodes:
+                        quarter = int(row[0]) - 1
+                        asd = self.perform_moments_stuff(my_list, moments[quarter])
+                        if asd is not None:
+                            entire_correct_play.extend(asd)
+                        my_list = []
+
+        with open(self.possession_file_name, 'wb') as out_file:
+            writer = csv.writer(out_file)
+            for row in entire_correct_play:
+                writer.writerow(row)
 
     def create_graph(self):
         G = nx.DiGraph()
