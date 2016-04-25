@@ -2,7 +2,6 @@ __author__ = 'anirban'
 import csv
 import json
 import math
-
 import networkx as nx
 from networkx.readwrite import json_graph
 
@@ -30,10 +29,10 @@ def creategraph(possessionfilename):
                 prev_row = row
                 continue
 
-            # if first_site in end_nodes:
-            #     print prev_row, row
-            #     print first_site, second_site
-            #     print 'yolo'
+            if first_site in end_nodes:
+                print prev_row, row
+                print first_site, second_site
+                print 'yolo'
 
             if G.has_edge(first_site, second_site):
                 G[first_site][second_site]['weight'] += 1
