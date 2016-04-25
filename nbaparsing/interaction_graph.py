@@ -39,6 +39,7 @@ def creategraph(graphfilename):
             G.add_edge(from_node, to_node, weight=currentweight+1)
     return G
 
+
 def calculate_degree_centrality(G):
     node_degrees = dict()
     for edge in G.edges():
@@ -116,6 +117,7 @@ def get_shot_rate(player, G):
 
 
 def get_flux(G):
+
     nodes = G.nodes()
     nodes.remove('Start')
     nodes.remove('MADE')
