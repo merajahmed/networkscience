@@ -1,5 +1,3 @@
-from math import sqrt, pow
-from heapq import nsmallest
 from collections import OrderedDict
 import json
 import csv
@@ -20,7 +18,9 @@ class playByPlay:
 
         # load the play_by_play_data, moments data and get necessary info
         self.pass_data = json.load(open(play_by_play_json_file))
-        # self.team_ids, self.visitor_dict, self.home_dict = self.initial_game_data_writer(whole_movements_json)
+        self.team_ids, self.home_team_name, self.visitor_team_name, self.home_team_abbr, \
+                self.visitor_team_abbr, self.visitor_dict, \
+                self.home_dict = self.initial_game_data_writer(whole_movements_json)
 
         # for debugging purposes
         self.team_ids = ['1610612761', '1610612766']
@@ -68,7 +68,6 @@ class playByPlay:
 
         return -1, -1
 
-
     def rule_runner(self, event_id, sub_event_id, home_event, away_event):
         '''
         Runs rules on the basis of event_ids, sub_event ids and team flag
@@ -113,7 +112,6 @@ class playByPlay:
 
         if event_id == 10:  # jump_ball
             return team_flag, team_flag
-
 
     def possession_time(self, row):
         # 1- gametime, 2 - event id,
@@ -187,7 +185,6 @@ class playByPlay:
 
             return my_list
 
-
     def play_by_play_writer(self):
         with open(self.play_by_play_csv, 'wb') as play_file:
             play_writer = csv.writer(play_file)
@@ -232,7 +229,6 @@ class playByPlay:
                     writer.writerow(r)
             writer.writerow([4, 0.0, -1])
 
-
     def initial_game_data_writer(self, actual_movements_json):
         gamedata = json.load(open(actual_movements_json))
 
@@ -245,6 +241,12 @@ class playByPlay:
 
         visitor_list = gamedata['events'][0]['visitor']['players']
         home_list = gamedata['events'][0]['home']['players']
+
+        home_team_name = gamedata['events'][0]['home']['name']
+        visitor_team_name = gamedata['events'][0]['visitor']['name']
+
+        home_team_abbr = gamedata['events'][0]['home']['abbreviation']
+        visitor_team_abbr = gamedata['events'][0]['visitor']['abbreviation']
 
         visitor_dict = {}
         home_dict = {}
@@ -261,94 +263,34 @@ class playByPlay:
             for keys in specific_keys:
                 home_dict[player['playerid']][keys] = player[keys]
 
-
         playermoments = []
+        quarter_time_sets = set()
+
         for event in gamedata['events']:
             for moment in event['moments']:
-                playermoments.append(moment)
+                if len(moment[5]) < 11:
+                    continue
+
+                if (moment[0], moment[3]) not in quarter_time_sets:
+                    quarter_time_sets.add((moment[0], moment[3]))
+                    playermoments.append(moment)
+
         playermoments.sort(key=lambda x: (int(4-x[0]), x[2], x[3]), reverse=True)
 
-        with open(self.moments_dump_file_name, 'wb') as momentsdump:
+        with open('momentsdump.csv', 'wb') as momentsdump:
             writer = csv.writer(momentsdump)
+
             for playermoment in playermoments:
-                for i in range(0, 10):
+                # if len(playermoment[5]) < 11:
+                #     continue
+
+                for i in range(0, 11):
                     trial = [playermoment[0], playermoment[2], playermoment[3]]
                     trial.extend(playermoment[5][i])
                     writer.writerow(trial)
 
-        # with open('momentsdump.csv', 'rb') as f:
-        #     shotclock = None
-        #     for row in csv.reader(f):
-        #         # print type(row[2])
-        #         shot_clock = float(row[2])
-        #         break
-
-        # with open('momentsdump.csv', 'rb') as f, open('shotclock_reset.csv', 'wb') as shot_clock_reset_log:
-        #     writer = csv.writer(shot_clock_reset_log)
-        #     for row in csv.reader(f):
-        #         try:
-        #             # print row[2]
-        #             if float(row[2]) >= shot_clock:
-        #                 writer.writerow(row)
-        #         except ValueError, e:
-        #             pass
-
-        return [str(home_team_id), str(visitor_team_id)], visitor_dict, home_dict
-
-
-    def closer(self, ball_data, player_moment_row):
-        index_x = 5
-        index_y = 6
-
-        # print ball_data
-        ball_x = float(ball_data[index_x])
-        ball_y = float(ball_data[index_y])
-
-        # 3 - team id
-        # 4 - player id
-        # print ball_x, ball_y, player_moment_row[0][index_x], player_moment_row[0][index_x]
-        # print player_moment_row[0]
-        player_ball = [sqrt(pow(float(player_detail[index_x]) - ball_x, 2) + pow(float(player_detail[index_y]) - ball_y, 2)) for player_detail in player_moment_row]
-        player_index = player_ball.index(min(player_ball))
-
-        three_players = [player_ball.index(item) for item in nsmallest(3, player_ball)]
-        # print three_players
-        with open(self.three_closest_csv, 'a') as out_file:
-            writer = csv.writer(out_file)
-            row = [player_moment_row[player_index][1]]
-            # print player_moment_row[player_index]
-            row.extend([(player_moment_row[index][4], player_ball[index]) for index in three_players])
-            writer.writerow(row)
-
-        return player_moment_row[player_index][1], player_moment_row[player_index][2], \
-               player_moment_row[player_index][4], player_moment_row[player_index][index_x], \
-               player_moment_row[player_index][index_y], player_ball[player_index],
-
-
-    def closest_players(self):
-        with open(self.moments_dump_file_name, 'r') as f:
-            trial = []
-            ball_data = []
-            open(self.three_closest_csv, 'w').close()
-            with open(self.closest_player_csv, 'wb') as out_file:
-                writer = csv.writer(out_file)
-                for i, line in enumerate(csv.reader(f)):
-                    if (i + 1) % 11 == 0:
-                        # print ball_data
-                        final_player = self.closer(ball_data, trial)
-                        writer.writerow(final_player)
-                        trial = []
-                        # break
-                    else:
-                        # print line
-                        if int(line[3]) == -1:
-                            ball_data = line
-                        else:
-                            trial.append(line)
-                    if i > 10000:
-                        break
-                    # print trial
-
+        return [str(home_team_id), str(visitor_team_id)], home_team_name, visitor_team_name, home_team_abbr, \
+               visitor_team_abbr, visitor_dict, home_dict
 
     def create_graph(self):
         G = nx.DiGraph()
@@ -381,7 +323,6 @@ class playByPlay:
                 prev_row = row
         return G
 
-
     def jsonify_graph(self, graphobj, graphfile):
         G = graphobj
         start_nodes = [0, 1, -4, -5]
@@ -405,7 +346,6 @@ class playByPlay:
                 id_pair['fixed'] = True
 
         json.dump(j, open(graphfile, 'w'), indent=2)
-
 
     def jsonify_vis(self, graphobj, graphfile):
         G = graphobj
@@ -444,6 +384,7 @@ class playByPlay:
             visgraph['edges'].append({'from': edge[0], 'to': edge[1], 'value': weight, 'arrows': 'to', 'color': color,
                                       'smooth':False})
         json.dump(visgraph, open(graphfile, 'w'), indent=2)
+
 
 my_play_by_play = playByPlay('0021500492.json', 'playbyplay.json',  # input data
                              'momentsdump.csv', 'three_player.csv', 'playerdump.csv',  # o/p i/p for moments part

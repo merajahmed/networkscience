@@ -21,10 +21,9 @@ def closer(ball_data, my_list):
     # print three_players
     with open('three_player.csv', 'a') as out_file:
         writer = csv.writer(out_file)
-        row = [my_list[player_index][1]]
         # print my_list[player_index]
-        row.extend([(my_list[index][4], player_ball[index]) for index in three_players])
-        writer.writerow(row)
+        for index in three_players:
+            writer.writerow([my_list[player_index][1], my_list[index][4], player_ball[index]])
 
     return my_list[player_index][1], my_list[player_index][2], my_list[player_index][4], my_list[player_index][index_x], my_list[player_index][index_y], player_ball[player_index],
 
@@ -49,10 +48,39 @@ with open('momentsdump.csv', 'r') as f:
                     ball_data = line
                 else:
                     trial.append(line)
-            if i > 10000:
-                break
+            # if i > 100000:
+            #     break
                 # print trial
 
+with open('three_player.csv', 'rb') as f, open('new_three_player.csv', 'wb') as out_file:
+    writer = csv.writer(out_file)
+    reader = csv.reader(f)
+    for row in reader:
+        prev_row = row
+        break
+    i = 1
+    writer.writerow(row)
+    for row in reader:
+        if row[0] == prev_row[0] and i >= 3:
+            continue
+        else:
+            i = 1 if i >= 3 else i + 1
+            writer.writerow(row)
+            prev_row = row
+
+with open('playerdump.csv', 'rb') as f, open('newplayerdump.csv', 'wb') as out_file:
+    writer = csv.writer(out_file)
+    reader = csv.reader(f)
+    for row in reader:
+        prev_row = row
+        break
+    writer.writerow(row)
+    for row in reader:
+        if row[0] == prev_row[0]:
+            continue
+        else:
+            writer.writerow(row)
+            prev_row = row
 
 
 ## Two possible algorithms
