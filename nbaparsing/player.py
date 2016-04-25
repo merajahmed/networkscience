@@ -52,35 +52,35 @@ with open('momentsdump.csv', 'r') as f:
             #     break
                 # print trial
 
-with open('three_player.csv', 'rb') as f, open('new_three_player.csv', 'wb') as out_file:
-    writer = csv.writer(out_file)
-    reader = csv.reader(f)
-    for row in reader:
-        prev_row = row
-        break
-    i = 1
-    writer.writerow(row)
-    for row in reader:
-        if row[0] == prev_row[0] and i >= 3:
-            continue
-        else:
-            i = 1 if i >= 3 else i + 1
-            writer.writerow(row)
-            prev_row = row
+# with open('three_player.csv', 'rb') as f, open('new_three_player.csv', 'wb') as out_file:
+#     writer = csv.writer(out_file)
+#     reader = csv.reader(f)
+#     for row in reader:
+#         prev_row = row
+#         break
+#     i = 1
+#     writer.writerow(row)
+#     for row in reader:
+#         if row[0] == prev_row[0] and i >= 3:
+#             continue
+#         else:
+#             i = 1 if i >= 3 else i + 1
+#             writer.writerow(row)
+#             prev_row = row
 
-with open('playerdump.csv', 'rb') as f, open('newplayerdump.csv', 'wb') as out_file:
-    writer = csv.writer(out_file)
-    reader = csv.reader(f)
-    for row in reader:
-        prev_row = row
-        break
-    writer.writerow(row)
-    for row in reader:
-        if row[0] == prev_row[0]:
-            continue
-        else:
-            writer.writerow(row)
-            prev_row = row
+# with open('playerdump.csv', 'rb') as f, open('newplayerdump.csv', 'wb') as out_file:
+#     writer = csv.writer(out_file)
+#     reader = csv.reader(f)
+#     for row in reader:
+#         prev_row = row
+#         break
+#     writer.writerow(row)
+#     for row in reader:
+#         if row[0] == prev_row[0]:
+#             continue
+#         else:
+#             writer.writerow(row)
+#             prev_row = row
 
 
 ## Two possible algorithms

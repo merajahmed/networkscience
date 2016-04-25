@@ -18,9 +18,9 @@ class playByPlay:
 
         # load the play_by_play_data, moments data and get necessary info
         self.pass_data = json.load(open(play_by_play_json_file))
-        self.team_ids, self.home_team_name, self.visitor_team_name, self.home_team_abbr, \
-                self.visitor_team_abbr, self.visitor_dict, \
-                self.home_dict = self.initial_game_data_writer(whole_movements_json)
+        # self.team_ids, self.home_team_name, self.visitor_team_name, self.home_team_abbr, \
+        #         self.visitor_team_abbr, self.visitor_dict, \
+        #         self.home_dict = self.initial_game_data_writer(whole_movements_json)
 
         # for debugging purposes
         self.team_ids = ['1610612761', '1610612766']
@@ -143,6 +143,8 @@ class playByPlay:
             return [[quarter, gametime, player_1], [quarter, gametime, -3]]
 
         if int(event_id) == 4:  # rebounds
+            if player_1 in self.team_ids:  # in case we do not know the rebounds from the logs
+                player_1 = self.team_ids.index(player_1)
             return [[quarter, gametime, -5], [quarter, gametime, player_1]]
 
         if int(event_id) in [6, 7]:  # fouls, violations
@@ -186,6 +188,7 @@ class playByPlay:
             return my_list
 
     def play_by_play_writer(self):
+        first_team = 0
         with open(self.play_by_play_csv, 'wb') as play_file:
             play_writer = csv.writer(play_file)
             play_writer.writerow(['Quarter', 'GameClock', 'EventId', 'Who has the ball', 'Who will now have the ball', 'Home_event', 'Away_event', 'Player1', 'Player1_team_id', 'Player2', 'Player2_team_id', 'Player3', 'Player3_team_id'])
@@ -215,15 +218,29 @@ class playByPlay:
 
                         # play_writer.writerow([next_row[6], pre_flag, post_flag, next_row[7], next_row[9]])
 
+                if i == 0:  # jump_ball part
+                    first_team = pre_possession_flag
+
                 play_writer.writerow([row[4], row[6], row[2], pre_possession_flag, post_possession_flag, row[7], row[9], row[13], row[15], row[20], row[22], row[27], row[29]])
         #
         #
         with open(self.play_by_play_csv, 'rb') as play_file, open(self.possession_file_name, 'wb') as poss_file:
             writer = csv.writer(poss_file)
             writer.writerow(['Quarter', 'Gametime', 'Player_Id'])
+            current_quarter = 1
             for index, row in enumerate(csv.reader(play_file)):
                 if index == 0:
                     continue
+
+                if int(row[0]) != current_quarter:
+                    # do the insertion stuff
+                    writer.writerow([current_quarter, 0.0, -1])
+                    if int(row[0]) == 2 or 3:
+                        writer.writerow([row[0], 720.0, int(not(first_team))])
+                    else:
+                        writer.writerow([row[0], 720.0, int(first_team)])
+                    current_quarter = int(row[0])
+
                 my_list = self.possession_time(row)
                 for r in my_list:
                     writer.writerow(r)
