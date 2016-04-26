@@ -39,9 +39,14 @@ function graph(name){
             //document.getElementById('eventSpan').innerHTML = '<h2>Click event:</h2>' + JSON.stringify(params, null, 4);
             //edges = params.edges;
             nodes = params.nodes;
-            $('#playerstats').html("Player Stats:-" +"<br/>"+
+	    if (graphstats['centrality'][nodes[0]]!=null){
+		$('#playerstats').html("Player Stats:-" +"<br/>"+
                 "Degree Centrality: "+graphstats['centrality'][nodes[0]]+"<br/>"+
                 "Clustering Coefficient: "+graphstats['clustering'][nodes[0]]);
+	    }
+            else	
+		$('#playerstats').html("");			
+            
         });
 
     });
@@ -51,6 +56,7 @@ function graph(name){
         var entropy = stats['entropy'];
         var flux = stats['flux'];
         var centralplayer = stats['centralplayer'];
+	$('#playerstats').html("");
         $('#teamstats').html("Team Stats:-" +"<br/>"+
             "Team Centrality: "+teamcentrality+"<br/>"+
         "Flux: "+flux+"<br/>"+

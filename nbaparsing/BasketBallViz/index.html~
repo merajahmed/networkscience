@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="static/js/lib/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="static/js/lib/vis.min.js"></script>
+    <script type="text/javascript" src="static/js/lib/zelect.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/vis.min.css"/>
+    <style type="text/css">
+        body {
+            color: #d3d3d3;
+            font: 12pt arial;
+            background-color: #222222;
+
+        }
+
+        #mynetwork {
+            width: 75vw;
+            height: 75vh;
+            /*border: 1px solid lightgray;*/
+            background-color: #222222;
+            
+        }
+
+    </style>
+</head>
+<body>
+
+<select id="game_id"></select>
+<div id="mynetwork" ></div>
+<pre id ="teamstats" style = "float:left"></pre>
+<pre id="playerstats" style="float:right"></pre>
+</body>
+</html>
