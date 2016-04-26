@@ -1,0 +1,452 @@
+/usr/bin/python2.7 /home/anirban/projects/networkscience/nbaparsing/playbyplayparser.py
+{
+    "1": {
+        "1": [
+            "9:13", 
+            "DeRozan 24' 3PT Jump Shot (3 PTS) (Lowry 1 AST)", 
+            null
+        ], 
+        "7": [
+            "7:05", 
+            "Biyombo  Dunk (2 PTS) (Joseph 2 AST)", 
+            null
+        ], 
+        "42": [
+            "4:43", 
+            "DeRozan 2' Driving Layup (5 PTS)", 
+            null
+        ], 
+        "46": [
+            "7:09", 
+            null, 
+            "Williams 1' Running Jump Shot (2 PTS) (Walker 2 AST)"
+        ], 
+        "47": [
+            "9:49", 
+            "Patterson 11' Turnaround Jump Shot (5 PTS)", 
+            null
+        ], 
+        "48": [
+            "11:25", 
+            null, 
+            "Zeller 1' Dunk (2 PTS) (Batum 1 AST)"
+        ], 
+        "49": [
+            "5:44", 
+            "Ross  Driving Dunk (8 PTS) (Lowry 10 AST)", 
+            null
+        ], 
+        "55": [
+            "3:47", 
+            null, 
+            "Williams 8' Hook Shot (9 PTS) (Batum 3 AST)"
+        ], 
+        "58": [
+            "10:59", 
+            null, 
+            "Kaminsky 4' Turnaround Hook Shot (2 PTS)"
+        ], 
+        "66": [
+            "0:33", 
+            "DeRozan 2' Jump Bank Shot (12 PTS)", 
+            null
+        ], 
+        "72": [
+            "7:57", 
+            null, 
+            "Hansbrough 1' Putback Layup (2 PTS)"
+        ], 
+        "75": [
+            "1:14", 
+            null, 
+            "Walker 2' Driving Finger Roll Layup (2 PTS)"
+        ], 
+        "76": [
+            "9:42", 
+            null, 
+            "Kaminsky 2' Running Finger Roll Layup (13 PTS)"
+        ], 
+        "79": [
+            "8:54", 
+            null, 
+            "Hairston 20' Pullup Jump Shot (2 PTS)"
+        ], 
+        "80": [
+            "3:28", 
+            "Lowry 24' 3PT Step Back Jump Shot (16 PTS)", 
+            null
+        ], 
+        "81": [
+            "10:59", 
+            null, 
+            "Batum 16' Pullup Bank Shot (2 PTS)"
+        ], 
+        "87": [
+            "11:35", 
+            "Valanciunas  Putback Dunk (2 PTS)", 
+            null
+        ], 
+        "97": [
+            "5:37", 
+            "Valanciunas 2' Tip Layup Shot (6 PTS)", 
+            null
+        ], 
+        "98": [
+            "8:34", 
+            "Lowry 1' Cutting Layup Shot (2 PTS) (Valanciunas 1 AST)", 
+            null
+        ], 
+        "100": [
+            "9:45", 
+            null, 
+            "Zeller 1' Running Alley Oop Layup Shot (4 PTS) (Walker 1 AST)"
+        ], 
+        "101": [
+            "5:42", 
+            null, 
+            "Batum 24' 3PT Driving Floating Jump Shot (5 PTS)"
+        ], 
+        "103": [
+            "10:09", 
+            null, 
+            "Walker 25' 3PT Running Pull-Up Jump Shot (11 PTS)"
+        ], 
+        "108": [
+            "5:24", 
+            null, 
+            "Zeller  Cutting Dunk Shot (15 PTS) (Williams 1 AST)"
+        ]
+    }, 
+    "2": {
+        "1": [
+            "10:20", 
+            null, 
+            "MISS Batum 18' Jump Shot"
+        ], 
+        "5": [
+            "2:33", 
+            "MISS DeRozan 2' Layup", 
+            null
+        ], 
+        "41": [
+            "9:27", 
+            null, 
+            "MISS Zeller 2' Running Layup"
+        ], 
+        "42": [
+            "0:19", 
+            null, 
+            "MISS Lamb 2' Driving Layup"
+        ], 
+        "43": [
+            "9:07", 
+            "MISS Valanciunas 3' Alley Oop Layup", 
+            null
+        ], 
+        "45": [
+            "2:00", 
+            "MISS Patterson 4' Jump Shot", 
+            null
+        ], 
+        "46": [
+            "1:56", 
+            "MISS Carroll 24' 3PT Running Jump Shot", 
+            null
+        ], 
+        "47": [
+            "9:17", 
+            null, 
+            "MISS Batum 16' Turnaround Jump Shot"
+        ], 
+        "52": [
+            "11:22", 
+            null, 
+            "MISS Lamb 2' Alley Oop Dunk"
+        ], 
+        "57": [
+            "6:22", 
+            "MISS Lowry 5' Driving Hook Shot", 
+            null
+        ], 
+        "58": [
+            "6:19", 
+            "MISS Valanciunas 6' Turnaround Hook Shot", 
+            null
+        ], 
+        "63": [
+            "7:29", 
+            null, 
+            "MISS Batum 16' Fadeaway Jumper"
+        ], 
+        "66": [
+            "4:07", 
+            null, 
+            "MISS Williams 24' 3PT Jump Bank Shot"
+        ], 
+        "71": [
+            "11:33", 
+            null, 
+            "MISS Lamb 2' Finger Roll Layup"
+        ], 
+        "72": [
+            "9:50", 
+            "MISS Scola 2' Putback Layup", 
+            "Williams BLOCK (1 BLK)"
+        ], 
+        "78": [
+            "7:06", 
+            null, 
+            "MISS Williams 12' Floating Jump Shot"
+        ], 
+        "79": [
+            "6:32", 
+            null, 
+            "MISS Walker 14' Pullup Jump Shot"
+        ], 
+        "80": [
+            "7:34", 
+            "MISS Lowry 25' 3PT Step Back Jump Shot", 
+            null
+        ], 
+        "81": [
+            "6:33", 
+            null, 
+            "MISS Lamb 24' 3PT Pullup Bank Shot"
+        ], 
+        "83": [
+            "6:04", 
+            null, 
+            "MISS Batum 21' Fadeaway Bank Shot"
+        ], 
+        "86": [
+            "11:06", 
+            "MISS Lowry 16' Turnaround Fadeaway Shot", 
+            null
+        ], 
+        "93": [
+            "6:54", 
+            null, 
+            "MISS Lamb 2' Driving Bank Hook Shot"
+        ], 
+        "97": [
+            "9:53", 
+            "MISS Scola 2' Tip Layup Shot", 
+            null
+        ], 
+        "98": [
+            "8:00", 
+            "Biyombo BLOCK (2 BLK)", 
+            "MISS Hansbrough 3' Cutting Layup Shot"
+        ], 
+        "101": [
+            "11:41", 
+            "MISS Scola 5' Driving Floating Jump Shot", 
+            "Zeller BLOCK (1 BLK)"
+        ], 
+        "102": [
+            "9:56", 
+            "MISS DeRozan 5' Driving Floating Bank Jump Shot", 
+            null
+        ], 
+        "103": [
+            "0:00", 
+            null, 
+            "MISS Walker 27' 3PT Running Pull-Up Jump Shot"
+        ]
+    }, 
+    "3": {
+        "10": [
+            "8:59", 
+            "MISS Valanciunas Free Throw 1 of 1", 
+            null
+        ], 
+        "11": [
+            "10:33", 
+            "Valanciunas Free Throw 1 of 2 (3 PTS)", 
+            null
+        ], 
+        "12": [
+            "10:33", 
+            "Valanciunas Free Throw 2 of 2 (4 PTS)", 
+            null
+        ], 
+        "16": [
+            "2:13", 
+            "DeRozan Free Throw Technical (8 PTS)", 
+            null
+        ]
+    }, 
+    "4": {
+        "0": [
+            "11:39", 
+            "Valanciunas REBOUND (Off:1 Def:0)", 
+            null
+        ], 
+        "1": [
+            "4:22", 
+            null, 
+            "Hornets Rebound"
+        ]
+    }, 
+    "5": {
+        "1": [
+            "9:33", 
+            "DeRozan Bad Pass Turnover (P1.T1)", 
+            "Walker STEAL (1 STL)"
+        ], 
+        "2": [
+            "2:22", 
+            "Patterson STEAL (1 STL)", 
+            "Kaminsky Lost Ball Turnover (P1.T2)"
+        ], 
+        "4": [
+            "10:04", 
+            null, 
+            "Hansbrough Traveling Turnover (P1.T9)"
+        ], 
+        "5": [
+            "11:28", 
+            "Valanciunas Foul Turnover (P1.T6)", 
+            null
+        ], 
+        "8": [
+            "7:19", 
+            "Biyombo 3 Second Violation Turnover (P3.T12)", 
+            null
+        ], 
+        "11": [
+            "6:04", 
+            null, 
+            "Hornets Turnover: Shot Clock (T#3)"
+        ], 
+        "12": [
+            "4:16", 
+            null, 
+            "Batum Inbound Turnover (P2.T6)"
+        ], 
+        "40": [
+            "1:20", 
+            "Biyombo Out of Bounds Lost Ball Turnover (P2.T8)", 
+            null
+        ], 
+        "45": [
+            "5:56", 
+            "Lowry Out of Bounds - Bad Pass Turnover Turnover (P2.T3)", 
+            null
+        ]
+    }, 
+    "6": {
+        "1": [
+            "5:48", 
+            "Scola P.FOUL (P1.T2) (S.Corbin)", 
+            null
+        ], 
+        "2": [
+            "10:33", 
+            null, 
+            "Zeller S.FOUL (P1.T1) (M.Davis)"
+        ], 
+        "3": [
+            "1:29", 
+            null, 
+            "Batum L.B.FOUL (P1.T3) (M.Boland)"
+        ], 
+        "4": [
+            "11:28", 
+            "Valanciunas OFF.Foul (P2) (S.Corbin)", 
+            null
+        ], 
+        "11": [
+            "1:42", 
+            "DeRozan T.FOUL (P2.PN) (M.Davis)", 
+            null
+        ], 
+        "17": [
+            "2:13", 
+            null, 
+            "Hornets T.Foul (Def. 3 Sec Hansbrough ) (S.Corbin)"
+        ], 
+        "27": [
+            "8:21", 
+            "Patterson Personal Block Foul (P1.T3) (S.Corbin)", 
+            null
+        ], 
+        "29": [
+            "4:21", 
+            null, 
+            "Kaminsky Shooting Block Foul (P1.T4) (S.Corbin)"
+        ]
+    }, 
+    "7": {
+        "1": [
+            "7:42", 
+            null, 
+            "Hornets Violation: Delay of game Violation"
+        ], 
+        "5": [
+            "9:38", 
+            "Biyombo Violation:Kicked Ball (S.Corbin)", 
+            null
+        ]
+    }, 
+    "8": {
+        "0": [
+            "4:35", 
+            "SUB: Ross FOR Carroll", 
+            null
+        ]
+    }, 
+    "9": {
+        "1": [
+            "7:42", 
+            null, 
+            "Hornets Timeout: Regular (Reg.1 Short 0)"
+        ], 
+        "2": [
+            "4:35", 
+            null, 
+            "Hornets Timeout: Short (Reg.1 Short 1)"
+        ], 
+        "4": [
+            "2:42", 
+            null, 
+            null
+        ]
+    }, 
+    "10": {
+        "0": [
+            "12:00", 
+            "Jump Ball Valanciunas vs. Zeller: Tip to Lowry", 
+            null
+        ]
+    }, 
+    "12": {
+        "0": [
+            "12:00", 
+            null, 
+            null
+        ]
+    }, 
+    "13": {
+        "0": [
+            "0:00", 
+            null, 
+            null
+        ]
+    }, 
+    "18": {
+        "0": [
+            "2:33", 
+            null, 
+            null
+        ], 
+        "1": [
+            "0:00", 
+            null, 
+            null
+        ]
+    }
+}
+
+Process finished with exit code 0
+

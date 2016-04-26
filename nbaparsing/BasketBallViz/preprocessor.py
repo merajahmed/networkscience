@@ -203,7 +203,7 @@ def jsonify_vis(gameid):
     G = read_jsongraph('data/jsongraphs_nba/'+gameid+'.json')
     visgraph = dict()
     start_nodes = [0, -4, -5]
-    start_labels = ['Jump Ball', 'Rebound', 'Steal']
+    start_labels = ['Start of Play', 'Rebound', 'Steal']
     end_labels = ['Made Shot', 'Missed Shot', 'Play End', 'Turnover']
     end_nodes = [-2, -3, -1, -6]
     start_count = 0
