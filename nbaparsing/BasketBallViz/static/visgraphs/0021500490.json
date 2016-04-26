@@ -1,0 +1,893 @@
+{
+  "nodes": [
+    {
+      "group": "start", 
+      "label": "Steal", 
+      "y": -200, 
+      "x": -400, 
+      "fixed": true, 
+      "id": 0
+    }, 
+    {
+      "y": 0, 
+      "x": 150, 
+      "group": "players", 
+      "id": 2400, 
+      "label": "Drew Gooden"
+    }, 
+    {
+      "y": 96, 
+      "x": 114, 
+      "group": "players", 
+      "id": 203490, 
+      "label": "Otto Porter"
+    }, 
+    {
+      "y": 147, 
+      "x": 26, 
+      "group": "players", 
+      "id": 201162, 
+      "label": "Jared Dudley"
+    }, 
+    {
+      "y": 129, 
+      "x": -74, 
+      "group": "players", 
+      "id": 201196, 
+      "label": "Ramon Sessions"
+    }, 
+    {
+      "y": 51, 
+      "x": -140, 
+      "group": "players", 
+      "id": 1626162, 
+      "label": "Kelly Oubre"
+    }, 
+    {
+      "group": "end", 
+      "label": "Turnover", 
+      "y": -200, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -3
+    }, 
+    {
+      "y": -51, 
+      "x": -140, 
+      "group": "players", 
+      "id": 202066, 
+      "label": "Garrett Temple"
+    }, 
+    {
+      "y": -129, 
+      "x": -75, 
+      "group": "players", 
+      "id": 202322, 
+      "label": "John Wall"
+    }, 
+    {
+      "group": "end", 
+      "label": "Play End", 
+      "y": -50, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -1
+    }, 
+    {
+      "y": -147, 
+      "x": 26, 
+      "group": "players", 
+      "id": 2743, 
+      "label": "Kris Humphries"
+    }, 
+    {
+      "group": "end", 
+      "label": "Missed Shot", 
+      "y": 50, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -6
+    }, 
+    {
+      "group": "start", 
+      "label": "Rebound", 
+      "y": -50, 
+      "x": -400, 
+      "fixed": true, 
+      "id": -5
+    }, 
+    {
+      "group": "start", 
+      "label": "Jump Ball", 
+      "y": 50, 
+      "x": -400, 
+      "fixed": true, 
+      "id": -4
+    }, 
+    {
+      "y": -96, 
+      "x": 114, 
+      "group": "players", 
+      "id": 101162, 
+      "label": "Marcin Gortat"
+    }, 
+    {
+      "group": "end", 
+      "label": "Made Shot", 
+      "y": 200, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -2
+    }
+  ], 
+  "edges": [
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 203490
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 101162
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.8125, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 6, 
+      "to": 201196
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 1.0, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 9, 
+      "to": 202322
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202066
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 201162
+    }, 
+    {
+      "from": 2400, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201196
+    }, 
+    {
+      "from": 203490, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.8125, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 6, 
+      "to": 202322
+    }, 
+    {
+      "from": 203490, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201196
+    }, 
+    {
+      "from": 203490, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202066
+    }, 
+    {
+      "from": 203490, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -2
+    }, 
+    {
+      "from": 203490, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.75, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 5, 
+      "to": -3
+    }, 
+    {
+      "from": 201162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203490
+    }, 
+    {
+      "from": 201162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 201196
+    }, 
+    {
+      "from": 201162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 202322
+    }, 
+    {
+      "from": 201162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202066
+    }, 
+    {
+      "from": 201162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -6
+    }, 
+    {
+      "from": 201162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -3
+    }, 
+    {
+      "from": 201162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -2
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203490
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 101162
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.75, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 5, 
+      "to": -3
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202322
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 2743
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -6
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201162
+    }, 
+    {
+      "from": 201196, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -2
+    }, 
+    {
+      "from": 1626162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203490
+    }, 
+    {
+      "from": 1626162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201196
+    }, 
+    {
+      "from": 1626162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202322
+    }, 
+    {
+      "from": 202066, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 201162
+    }, 
+    {
+      "from": 202066, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201196
+    }, 
+    {
+      "from": 202066, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -3
+    }, 
+    {
+      "from": 202066, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202322
+    }, 
+    {
+      "from": 202066, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 101162
+    }, 
+    {
+      "from": 202066, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -2
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 2400
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6875, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 4, 
+      "to": 203490
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 201162
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 101162
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 201196
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202066
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 2743
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -6
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": -3
+    }, 
+    {
+      "from": 202322, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": -2
+    }, 
+    {
+      "from": 2743, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 1626162
+    }, 
+    {
+      "from": 2743, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": -2
+    }, 
+    {
+      "from": 2743, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -1
+    }, 
+    {
+      "from": 2743, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -3
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.75, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 5, 
+      "to": 203490
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 1626162
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6875, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 4, 
+      "to": 101162
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 2743
+    }, 
+    {
+      "from": -4, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201162
+    }, 
+    {
+      "from": -4, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203490
+    }, 
+    {
+      "from": -4, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202066
+    }, 
+    {
+      "from": 101162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201162
+    }, 
+    {
+      "from": 101162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 1626162
+    }, 
+    {
+      "from": 101162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202066
+    }, 
+    {
+      "from": 101162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.625, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202322
+    }, 
+    {
+      "from": 101162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -6
+    }, 
+    {
+      "from": 101162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6875, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 4, 
+      "to": -3
+    }, 
+    {
+      "from": 101162, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -2
+    }
+  ]
+}

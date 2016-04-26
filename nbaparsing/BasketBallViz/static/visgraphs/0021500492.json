@@ -1,0 +1,1008 @@
+{
+  "nodes": [
+    {
+      "group": "start", 
+      "label": "Steal", 
+      "y": -200, 
+      "x": -400, 
+      "fixed": true, 
+      "id": 0
+    }, 
+    {
+      "y": 0, 
+      "x": 150, 
+      "group": "players", 
+      "id": 200768, 
+      "label": "Kyle Lowry"
+    }, 
+    {
+      "group": "start", 
+      "label": "Rebound", 
+      "y": -50, 
+      "x": -400, 
+      "fixed": true, 
+      "id": -5
+    }, 
+    {
+      "y": 88, 
+      "x": 121, 
+      "group": "players", 
+      "id": 201960, 
+      "label": "DeMarre Carroll"
+    }, 
+    {
+      "group": "end", 
+      "label": "Turnover", 
+      "y": -200, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -1
+    }, 
+    {
+      "y": 142, 
+      "x": 46, 
+      "group": "players", 
+      "id": 203082, 
+      "label": "Terrence Ross"
+    }, 
+    {
+      "group": "end", 
+      "label": "Play End", 
+      "y": -50, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -3
+    }, 
+    {
+      "y": 142, 
+      "x": -46, 
+      "group": "players", 
+      "id": 201949, 
+      "label": "James Johnson"
+    }, 
+    {
+      "y": 88, 
+      "x": -121, 
+      "group": "players", 
+      "id": 2449, 
+      "label": "Luis Scola"
+    }, 
+    {
+      "y": 0, 
+      "x": -150, 
+      "group": "players", 
+      "id": 202709, 
+      "label": "Cory Joseph"
+    }, 
+    {
+      "y": -88, 
+      "x": -121, 
+      "group": "players", 
+      "id": 201942, 
+      "label": "DeMar DeRozan"
+    }, 
+    {
+      "group": "end", 
+      "label": "Missed Shot", 
+      "y": 50, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -6
+    }, 
+    {
+      "y": -142, 
+      "x": -46, 
+      "group": "players", 
+      "id": 202335, 
+      "label": "Patrick Patterson"
+    }, 
+    {
+      "group": "start", 
+      "label": "Jump Ball", 
+      "y": 50, 
+      "x": -400, 
+      "fixed": true, 
+      "id": -4
+    }, 
+    {
+      "y": -142, 
+      "x": 46, 
+      "group": "players", 
+      "id": 202685, 
+      "label": "Jonas Valanciunas"
+    }, 
+    {
+      "group": "end", 
+      "label": "Made Shot", 
+      "y": 200, 
+      "x": 400, 
+      "fixed": true, 
+      "id": -2
+    }, 
+    {
+      "y": -88, 
+      "x": 121, 
+      "group": "players", 
+      "id": 202687, 
+      "label": "Bismack Biyombo"
+    }
+  ], 
+  "edges": [
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 1.0, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 18, 
+      "to": 200768
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203082
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 2449
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6764705882352942, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 7, 
+      "to": 201942
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202685
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -1
+    }, 
+    {
+      "from": 0, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202335
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5882352941176471, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 4, 
+      "to": 201960
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203082
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6764705882352942, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 7, 
+      "to": 202685
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 2449
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 202709
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.8823529411764706, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 14, 
+      "to": 201942
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6176470588235294, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 5, 
+      "to": -6
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6470588235294118, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 6, 
+      "to": -3
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -2
+    }, 
+    {
+      "from": 200768, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 202335
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 200768
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201960
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 203082
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6176470588235294, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 5, 
+      "to": 2449
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6470588235294118, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 6, 
+      "to": 202687
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202685
+    }, 
+    {
+      "from": -5, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202335
+    }, 
+    {
+      "from": 201960, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 200768
+    }, 
+    {
+      "from": 201960, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 201942
+    }, 
+    {
+      "from": 201960, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202685
+    }, 
+    {
+      "from": 201960, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -2
+    }, 
+    {
+      "from": 201960, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -3
+    }, 
+    {
+      "from": 203082, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 200768
+    }, 
+    {
+      "from": 203082, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": -3
+    }, 
+    {
+      "from": 203082, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -2
+    }, 
+    {
+      "from": 201949, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 200768
+    }, 
+    {
+      "from": 201949, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202335
+    }, 
+    {
+      "from": 201949, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202687
+    }, 
+    {
+      "from": 2449, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6176470588235294, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 5, 
+      "to": 200768
+    }, 
+    {
+      "from": 2449, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201942
+    }, 
+    {
+      "from": 2449, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 202685
+    }, 
+    {
+      "from": 2449, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -2
+    }, 
+    {
+      "from": 2449, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": -3
+    }, 
+    {
+      "from": 202709, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201949
+    }, 
+    {
+      "from": 202709, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5882352941176471, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 4, 
+      "to": 202335
+    }, 
+    {
+      "from": 202709, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -3
+    }, 
+    {
+      "from": 202709, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -2
+    }, 
+    {
+      "from": 202709, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202687
+    }, 
+    {
+      "from": 201942, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.7058823529411764, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 8, 
+      "to": 200768
+    }, 
+    {
+      "from": 201942, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 201960
+    }, 
+    {
+      "from": 201942, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202685
+    }, 
+    {
+      "from": 201942, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 2449
+    }, 
+    {
+      "from": 201942, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -6
+    }, 
+    {
+      "from": 201942, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6764705882352942, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 7, 
+      "to": -3
+    }, 
+    {
+      "from": 201942, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5882352941176471, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 4, 
+      "to": -2
+    }, 
+    {
+      "from": 202335, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203082
+    }, 
+    {
+      "from": 202335, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 201949
+    }, 
+    {
+      "from": 202335, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202709
+    }, 
+    {
+      "from": 202335, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -3
+    }, 
+    {
+      "from": 202335, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5882352941176471, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 4, 
+      "to": -2
+    }, 
+    {
+      "from": 202335, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": 202687
+    }, 
+    {
+      "from": -4, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201960
+    }, 
+    {
+      "from": 202685, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.6470588235294118, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 6, 
+      "to": 200768
+    }, 
+    {
+      "from": 202685, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 201960
+    }, 
+    {
+      "from": 202685, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5294117647058824, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 2, 
+      "to": -1
+    }, 
+    {
+      "from": 202685, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 201942
+    }, 
+    {
+      "from": 202685, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": -3
+    }, 
+    {
+      "from": 202685, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": -2
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 200768
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -2
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 203082
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5588235294117647, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 3, 
+      "to": 202709
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -6
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -3
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": -1
+    }, 
+    {
+      "from": 202687, 
+      "color": {
+        "color": "#9775aa", 
+        "opacity": 0.5, 
+        "highlight": "yellow"
+      }, 
+      "smooth": false, 
+      "arrows": "to", 
+      "value": 1, 
+      "to": 202335
+    }
+  ]
+}

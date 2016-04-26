@@ -1,0 +1,11 @@
+{ "games":[
+    {"gameid":"0021500490", "name":"Orlando Magic vs Washington Wizards"},
+    {"gameid":"0021500491", "name":"Dallas Mavericks vs Miam Heat"},
+    {"gameid":"0021500492", "name":"Charlotte Hornets vs Toronto Raptors"},
+    {"gameid":"0021500493", "name":"New York Nicks vs Chicago Bulls"},
+    {"gameid":"0021500494", "name":"Philadelphia 76ers vs LA Lakers"},
+    {"gameid":"0021500495", "name":"Brooklyn Nets vs Boston Celtics"},
+    {"gameid":"0021500497", "name":"Oklahoma City Thunder vs Charlotte Hornet"},
+    {"gameid":"0021500499", "name":"Orlando Magic vs Cleveland Cavaliers"}
+  ]
+}
