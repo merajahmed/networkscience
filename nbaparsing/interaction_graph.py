@@ -141,6 +141,7 @@ def clustering_coefficient(G, cutoff, start_nodes, end_nodes):
             TG.add_edge(edge[1], edge[0], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
             TG.add_edge(edge[0], edge[1], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
     TG = TG.to_undirected()
+    print(TG.edges())
     return nx.clustering(TG)
 
 
