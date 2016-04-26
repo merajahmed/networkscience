@@ -4,6 +4,8 @@ import csv
 import math
 from math import sqrt, pow
 from heapq import nsmallest
+import os
+
 
 from networkx.readwrite import json_graph
 import networkx as nx
@@ -11,8 +13,7 @@ import networkx as nx
 __author__ = 'anirban, meraj'
 
 class playByPlay:
-    def __init__(self, whole_movements_json, play_by_play_json_file, moments_dump_file, three_closest_file,
-                 closest_player_file, play_by_play_csv, possession_csv_file, graph_file):
+    def __init__(self, whole_movements_json, play_by_play_json_file, moments_dump_file, play_by_play_csv, possession_csv_file, graph_file):
 
         # take the files
         self.possession_file_name = possession_csv_file
@@ -25,7 +26,7 @@ class playByPlay:
                 self.home_dict = self.initial_game_data_writer(whole_movements_json)
 
         # for debugging purposes
-        self.team_ids = ['1610612761', '1610612766']
+        # self.team_ids = ['1610612761', '1610612766']
         # moments playing about and generation
         # self.three_closest_csv = three_closest_file
         # self.closest_player_csv = closest_player_file
@@ -40,6 +41,7 @@ class playByPlay:
         # TODO: MERGING
 
         # generate the graph
+
         self.player_graph = self.create_graph()
 
         # json the graph
@@ -296,7 +298,7 @@ class playByPlay:
 
         playermoments.sort(key=lambda x: (int(4-x[0]), x[2], x[3]), reverse=True)
 
-        with open('momentsdump.csv', 'wb') as momentsdump:
+        with open(self.moments_dump_file_name, 'wb') as momentsdump:
             writer = csv.writer(momentsdump)
 
             for playermoment in playermoments:
@@ -488,13 +490,11 @@ class playByPlay:
             file_reader = csv.reader(f)
 
             for index, row in enumerate(file_reader):
-                if index == 0:
-                    continue
-                else:
-                    prev_row = row
-                    break
+                prev_row = row
+                break
 
             for index, row in enumerate(file_reader):
+                # print row
                 first_site = int(prev_row[2])
                 second_site = int(row[2])
 
@@ -503,11 +503,19 @@ class playByPlay:
                     continue
 
                 if G.has_edge(first_site, second_site):
+                    # print 'exists'
                     G[first_site][second_site]['weight'] += 1
                 else:
+                    # print 'trial'
                     G.add_edge(first_site, second_site, weight=1)
 
                 prev_row = row
+
+            # print G.nodes()
+            # print G.edges()
+            # print(type(G))
+            # print(G)
+            # print(G is None)
         return G
 
     def jsonify_graph(self, graphobj, graphfile):
@@ -572,9 +580,34 @@ class playByPlay:
                                       'smooth':False})
         json.dump(visgraph, open(graphfile, 'w'), indent=2)
 
+# game_id = '0021500492'
+#
+# my_play_by_play = playByPlay('data/positionlog/{}.json'.format(game_id), 'data/playbyplay/{}.json'.format(game_id), # input data
+#                              'momentsdump.csv',  # o/p i/p for moments part
+#                              'play_by_play.csv', 'possession.csv',  # o/p i/p for play by play part
+#                              'possession_graph.json')  # o/p for graph generation part
 
-my_play_by_play = playByPlay('0021500492.json', 'playbyplay.json',  # input data
-                             'momentsdump.csv', 'three_player.csv', 'playerdump.csv',  # o/p i/p for moments part
-                             'play_by_play.csv', 'possession.csv',  # o/p i/p for play by play part
-                             'possession_graph.json')  # o/p for graph generation part
 
+gamelist = os.listdir('data/playbyplay')
+for gamefile in gamelist:
+    game_id = gamefile[:-5]
+
+    my_play_by_play = playByPlay('data/positionlog/{}.json'.format(game_id), 'data/playbyplay/{}.json'.format(game_id), # input data
+                             'data/momentsdump/{}.csv'.format(game_id),  # o/p i/p for moments part
+                             'data/playbyplay_csv/{}.csv'.format(game_id), 'data/possession_csv/{}.csv'.format(game_id),  # o/p i/p for play by play part
+                             'data/possession_graph/{}.json'.format(game_id))  # o/p for graph generation part
+
+    nodes = [1]
+    nodes.extend(my_play_by_play.visitor_dict.keys())
+
+    for node in nodes:
+        try:
+            my_play_by_play.player_graph.remove_node(node)
+        except:
+            pass
+
+    json.dump(my_play_by_play.home_dict, open('jsongraphs_nba/{}.json'.format(game_id), 'w'), indent=2)
+
+    g_json = json_graph.node_link_data(my_play_by_play.player_graph)
+    json.dump(g_json, open('jsongraphs_nba/{}.json'.format(game_id), 'w'), indent=2)
+    # print my_play_by_play.player_graph

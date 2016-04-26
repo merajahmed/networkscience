@@ -164,7 +164,7 @@ def threshold_graph_ranked(G, cutoff, start_nodes, end_nodes):
     TG = copy.deepcopy(G)
     for node in start_nodes+end_nodes:
         TG.remove_node(node)
-    for node in G.nodes():
+    for node in TG.nodes():
         all_edges = TG.edges(node)
         weighted_edges = list()
         for edge in all_edges:

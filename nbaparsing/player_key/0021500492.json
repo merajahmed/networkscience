@@ -1,0 +1,80 @@
+{
+  "200768": {
+    "position": "G", 
+    "jersey": "7", 
+    "firstname": "Kyle", 
+    "lastname": "Lowry"
+  }, 
+  "201960": {
+    "position": "F", 
+    "jersey": "5", 
+    "firstname": "DeMarre", 
+    "lastname": "Carroll"
+  }, 
+  "1626153": {
+    "position": "G", 
+    "jersey": "55", 
+    "firstname": "Delon", 
+    "lastname": "Wright"
+  }, 
+  "203082": {
+    "position": "F-G", 
+    "jersey": "31", 
+    "firstname": "Terrence", 
+    "lastname": "Ross"
+  }, 
+  "202685": {
+    "position": "C", 
+    "jersey": "17", 
+    "firstname": "Jonas", 
+    "lastname": "Valanciunas"
+  }, 
+  "2449": {
+    "position": "F", 
+    "jersey": "4", 
+    "firstname": "Luis", 
+    "lastname": "Scola"
+  }, 
+  "202709": {
+    "position": "G", 
+    "jersey": "6", 
+    "firstname": "Cory", 
+    "lastname": "Joseph"
+  }, 
+  "201942": {
+    "position": "G", 
+    "jersey": "10", 
+    "firstname": "DeMar", 
+    "lastname": "DeRozan"
+  }, 
+  "203512": {
+    "position": "C", 
+    "jersey": "92", 
+    "firstname": "Lucas", 
+    "lastname": "Nogueira"
+  }, 
+  "202335": {
+    "position": "F", 
+    "jersey": "54", 
+    "firstname": "Patrick", 
+    "lastname": "Patterson"
+  }, 
+  "201949": {
+    "position": "F", 
+    "jersey": "3", 
+    "firstname": "James", 
+    "lastname": "Johnson"
+  }, 
+  "203998": {
+    "position": "F", 
+    "jersey": "20", 
+    "firstname": "Bruno", 
+    "lastname": "Caboclo"
+  }, 
+  "202687": {
+    "position": "C-F", 
+    "jersey": "8", 
+    "firstname": "Bismack", 
+    "lastname": "Biyombo"
+  }
+}

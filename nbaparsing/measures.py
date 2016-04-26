@@ -106,14 +106,14 @@ def get_flux(OG, start_nodes, end_nodes, made_nodes, miss_nodes):
 
 
 def clustering_coefficient(G, cutoff, start_nodes, end_nodes):
-    TG = threshold_graph_ranked(G, start_nodes, end_nodes, cutoff)
+    TG = threshold_graph_ranked(G, cutoff, start_nodes, end_nodes)
     nodes = TG.nodes()
     for edge in TG.edges():
         if TG.has_edge(edge[1], edge[0]):
             TG.add_edge(edge[1], edge[0], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
             TG.add_edge(edge[0], edge[1], weight=TG.get_edge_data(edge[0], edge[1])['weight']+TG.get_edge_data(edge[1], edge[0])['weight'])
     TG = TG.to_undirected()
-    return nx.clustering(G)
+    return nx.clustering(TG)
 
 
 def threshold_graph(G, cutoff, start_nodes, end_nodes):
@@ -136,7 +136,7 @@ def threshold_graph_ranked(G, cutoff, start_nodes, end_nodes):
     TG = copy.deepcopy(G)
     for node in start_nodes+end_nodes:
         TG.remove_node(node)
-    for node in G.nodes():
+    for node in TG.nodes():
         all_edges = TG.edges(node)
         weighted_edges = list()
         for edge in all_edges:
@@ -145,7 +145,7 @@ def threshold_graph_ranked(G, cutoff, start_nodes, end_nodes):
         thresholded_edges = ordered_edges[:int(math.ceil(cutoff*len(ordered_edges)))]
         pruned_edges = filter(lambda x: x not in thresholded_edges, ordered_edges)
         for edge in pruned_edges:
-            TG.remove_edge(*edge)
+            TG.remove_edge(*edge[0])
     return TG
 
 
@@ -160,9 +160,9 @@ def calculate_measures():
     for graph_file in graph_files:
         nxgraph = read_jsongraph('jsongraphs_nba/'+graph_file)
         print('file name:', graph_file)
-        print('clustering coefficient:', clustering_coefficient(nxgraph, 0.8, [0, 1, -4, -5], [-2, -3, -1, -6]))
-        print('entropy:', calculate_entropy(nxgraph,[0, 1, -4, -5]))
-        print('flux:', get_flux(nxgraph, [0, 1, -4, -5], [-2, -3, -1, -6], [-2], [-3]))
-        print('degree centrality:', calculate_degree_centrality(nxgraph, [0, 1, -4, -5], [-2, -3, -1, -6]))
+        print('clustering coefficient:', clustering_coefficient(nxgraph, 0.8, [0, -4, -5], [-2, -3, -1, -6]))
+        print('entropy:', calculate_entropy(nxgraph,[0, -4, -5]))
+        print('flux:', get_flux(nxgraph, [0, -4, -5], [-2, -3, -1, -6], [-2], [-3]))
+        print('degree centrality:', calculate_degree_centrality(nxgraph, [0, -4, -5], [-2, -3, -1, -6]))
 
 calculate_measures()
