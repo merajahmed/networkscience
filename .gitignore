@@ -1,9 +1,8 @@
 .idea/
 nbaparsing/.idea
-nbaparsing/*.json
-nbaparsing/*.csv
 nbaparsing/data/positionlog/
 nbaparsing/data/playbyplay/
 nbaparsing/data/possession_graph/
 nbaparsing/data/possession_csv/
 nbaparsing/data/playbyplay_csv/
+nbaparsing/data/momentsdump/
