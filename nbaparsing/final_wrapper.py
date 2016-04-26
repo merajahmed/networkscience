@@ -283,6 +283,8 @@ class playByPlay:
             home_dict[player['playerid']] = {}
             for keys in specific_keys:
                 home_dict[player['playerid']][keys] = player[keys]
+        with open('data/player_key'+self.possession_file_name[19:-4]+'.json','w') as playerkey:
+             json.dump(home_dict, playerkey)
 
         playermoments = []
         quarter_time_sets = set()
